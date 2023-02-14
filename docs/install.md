@@ -6,6 +6,7 @@ c:\windows\system32\drivers\etc\hosts
 
 ## Install
 - sudo apt install apache2-utils
+- cp .env.example .env
 - make install
 - make init
 
