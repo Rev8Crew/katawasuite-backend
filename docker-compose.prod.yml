@@ -71,7 +71,7 @@ services:
 
   web:
     <<: *app
-    command: rr serve -c .rr.yaml
+    command: "rr serve -c .rr.yaml"
     expose:
       - 8080
     environment:
@@ -84,15 +84,15 @@ services:
 
   queue:
     <<: *app
-    command: php /app/artisan queue:work --memory=256 --sleep=1
+    command: "php /app/artisan queue:work --memory=256 --sleep=1"
 
   cron:
     <<: *app
-    command: supercronic /etc/supercronic/laravel # it runs artisan schedule:run
+    command: "supercronic /etc/supercronic/laravel" # it runs artisan schedule:run
 
   horizon:
     <<: *app
-    command: php /app/artisan horizon
+    command: "php /app/artisan horizon"
 
   mysql:
     image: 'mysql/mysql-server:8.0'
@@ -135,7 +135,7 @@ services:
   redis:
     image: redis:7-alpine # Image page: <https://hub.docker.com/_/redis>
     container_name: katawa-suite-redis
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+    command: "redis-server --requirepass ${REDIS_PASSWORD}"
     networks:
       - katawa-suite
     volumes:
