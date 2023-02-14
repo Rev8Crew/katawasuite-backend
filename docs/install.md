@@ -33,3 +33,14 @@ php artisan rabbitmq:queue-bind default default
 
 3. Веб-интерфейс
 - https://rabbitmq.katawa.local
+
+
+## MySQL - если проблемы
+```shell
+docker-compose exec mysql bash
+mysql -u root
+CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
+grant all on *.* to 'admin'@'%';
+exit
+exit
+```

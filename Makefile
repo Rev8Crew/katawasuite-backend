@@ -38,7 +38,7 @@ up: ## Create and start containers
 	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8080 or https://127.0.0.1:8443';
 
 down: ## Stop containers
-	docker-compose down
+	docker-compose down --remove-orphans
 
 restart: down up ## Restart all containers
 
