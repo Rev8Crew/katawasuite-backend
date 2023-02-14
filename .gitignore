@@ -10,6 +10,7 @@
 # Vendors
 /vendor
 /node_modules
+/public/vendor
 
 # Temp dirs & trash
 /temp

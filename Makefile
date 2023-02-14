@@ -37,11 +37,11 @@ test-cover: ## Execute app tests with coverage
 		&& su $(shell whoami) -s /bin/sh -c "composer phpunit"'
 
 up: ## Create and start containers
-	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --detach --remove-orphans --scale queue=2 web queue cron
+	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --detach --remove-orphans --scale queue=2 web queue cron horizon
 	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8080 or https://127.0.0.1:8443';
 
 up_production: ## Create and start containers
-	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans --scale queue=2 web queue cron
+	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans --scale queue=2 web queue cron horizon
 	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8080 or https://127.0.0.1:8443';
 
 down: ## Stop containers
