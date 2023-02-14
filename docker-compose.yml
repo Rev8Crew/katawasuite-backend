@@ -3,11 +3,11 @@
 version: '3.8'
 
 volumes:
-  pg-data:
-    driver: local
-  redis-data:
+  mysql-data:
     driver: local
   tmp-data:
+    driver: local
+  rabbit-data:
     driver: local
 
 services:
@@ -17,38 +17,35 @@ services:
       dockerfile: Dockerfile
     user: "${APP_UID:-10001}:${APP_GID:-10001}"
     networks:
-      - laravel
+      - katawa-suite
+    env_file:
+      - .env
     environment:
       PS1: '\[\033[1;32m\]\[\033[1;36m\][\u@\h] \[\033[1;34m\]\w\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]'
       HOME: /tmp
-      APP_DEBUG: 'true'
-      APP_ENV: local
-      REDIS_HOST: redis
-      REDIS_PASSWORD: redis_password
-      DB_DATABASE: forge
-      DB_USERNAME: forge
-      DB_PASSWORD: forge
     volumes:
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
       - tmp-data:/tmp:rw
       - .:/app:rw
+      - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
-      postgres: {condition: service_healthy}
-      redis: {condition: service_healthy}
+      mysql: {condition: service_healthy}
       nginx-proxy: {condition: service_started}
-      pgadmin: {condition: service_started}
+      phpmyadmin: {condition: service_started}
+      rabbitmq: {condition: service_started}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
+    container_name: katawa-suite-nginx-proxy
     networks:
-      - laravel
+      - katawa-suite
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./docker/htpasswd:/etc/nginx/htpasswd
-      - ./docker/certs:/etc/nginx/certs
+      - ./docker/nginx/certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   web:
@@ -57,7 +54,7 @@ services:
     expose:
       - 8080
     environment:
-      - VIRTUAL_HOST=katawa.local
+      - VIRTUAL_HOST=${WEB_VIRTUAL_HOST}
     healthcheck:
       test: ['CMD-SHELL', 'wget --spider -q "http://127.0.0.1:8082/health?plugin=http&plugin=rpc"']
       interval: 2s
@@ -71,54 +68,63 @@ services:
     <<: *app
     command: supercronic /etc/supercronic/laravel # it runs artisan schedule:run
 
-  postgres:
-    image: postgres:15-alpine # Image page: <https://hub.docker.com/_/postgres>
-    networks:
-      - laravel
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '3306:3306'
+    container_name: katawa-suite-mysql
     environment:
-      POSTGRES_DB: forge
-      POSTGRES_USER: forge
-      POSTGRES_PASSWORD: forge
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - pg-data:/var/lib/postgresql/data:rw
-    ports:
-      - '5432/tcp'
-    healthcheck: # Healthcheck docs: <https://docs.docker.com/engine/reference/builder/#healthcheck>
-      test: ['CMD-SHELL', 'pg_isready -U forge']
-      interval: 2s
-      timeout: 5s
-      start_period: 2s
-
-  redis:
-    image: redis:7-alpine # Image page: <https://hub.docker.com/_/redis>
-    command: redis-server --requirepass redis_password
+      - 'mysql-data:/var/lib/mysql'
     networks:
-      - laravel
-    volumes:
-      - redis-data:/data:rw
-    ports:
-      - '6379/tcp'
+      - katawa-suite
     healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
-      interval: 500ms
-      timeout: 1s
+      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+      retries: 3
+      timeout: 5s
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    networks:
-      - laravel
+  phpmyadmin:
+    build: ./docker/phpmyadmin
+    container_name: katawa-suite-phpmyadmin
     expose:
       - 80
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-      - VIRTUAL_HOST=pgadmin.katawa.local
-    volumes:
-      - ./docker/pgadmin:/var/lib/pgadmin
+      - PMA_ARBITRARY=1
+      - MYSQL_USER=${PMA_USER}
+      - MYSQL_PASSWORD=${PMA_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
+      - MAX_EXECUTION_TIME=${PMA_MAX_EXECUTION_TIME}
+      - MEMORY_LIMIT=${PMA_MEMORY_LIMIT}
+      - UPLOAD_LIMIT=${PMA_UPLOAD_LIMIT}
+      - VIRTUAL_HOST=${PMA_VIRTUAL_HOST}
     depends_on:
-      - postgres
+      - mysql
+    networks:
+      - katawa-suite
 
+  rabbitmq:
+    build: ./docker/rabbitmq
+    container_name: katawa-suite-rabbitmq
+    environment:
+      - VIRTUAL_HOST=${RABBITMQ_VIRTUAL_HOST}
+      - VIRTUAL_PORT=${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}
+    ports:
+      - "${RABBITMQ_NODE_HOST_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}:15672"
+    privileged: true
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./docker/rabbitmq/management_agent.disable_metrics_collector.conf:/etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+    networks:
+      - katawa-suite
 
 networks:
-  laravel:
+  katawa-suite:
     driver: bridge

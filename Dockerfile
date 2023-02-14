@@ -40,7 +40,7 @@ RUN set -x \
         g++ \
     # install PHP extensions (CFLAGS usage reason - https://bit.ly/3ALS5NU)
     && CFLAGS="$CFLAGS -D_GNU_SOURCE" docker-php-ext-install -j$(nproc) \
-        pdo_pgsql \
+        pdo_mysql \
         sockets \
         opcache \
         pcntl \
@@ -53,7 +53,6 @@ RUN set -x \
          -O /usr/bin/supercronic \
     && chmod +x /usr/bin/supercronic \
     && mkdir /etc/supercronic \
-    && echo '*/1 * * * * php /app/artisan schedule:run' > /etc/supercronic/laravel \
     # generate self-signed SSL key and certificate files
     && openssl req -x509 -nodes -days 1095 -newkey rsa:2048 \
         -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" \

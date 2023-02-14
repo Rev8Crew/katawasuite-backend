@@ -24,7 +24,8 @@ shell_prod: ## Start shell into app container
 
 init: ## Make full application initialization
 	docker-compose run $(DC_RUN_ARGS) app php ./artisan migrate --force --seed
-	-docker-compose run $(DC_RUN_ARGS) --no-deps app php ./artisan storage:link
+	docker-compose run $(DC_RUN_ARGS) --no-deps app php ./artisan storage:link
+	docker-compose run $(DC_RUN_ARGS) --no-deps app php ./artisan key:generate
 
 test: ## Execute app tests
 	docker-compose run $(DC_RUN_ARGS) app composer test
@@ -54,3 +55,7 @@ clean: ## Make clean
 	-docker-compose run $(DC_RUN_ARGS) --no-deps app sh -c "\
 		php ./artisan config:clear; php ./artisan route:clear; php ./artisan view:clear; php ./artisan cache:clear file"
 	docker-compose down -v # Stops containers and remove named volumes declared in the `volumes` section
+
+.PHONY: build
+build:
+	docker-compose -f docker-compose.yml build
