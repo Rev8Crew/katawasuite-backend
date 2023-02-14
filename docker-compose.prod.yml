@@ -104,7 +104,6 @@ services:
       MYSQL_USER: '${DB_USERNAME}'
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
-      NETWORK_ACCESS: internal
     volumes:
       - 'mysql-data:/var/lib/mysql'
     networks:

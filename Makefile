@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_production restart_production
+.PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_prod restart_prod
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -18,9 +18,6 @@ install: ## Install all app dependencies
 
 shell: ## Start shell into app container
 	docker-compose run $(DC_RUN_ARGS) app sh
-
-shell_prod: ## Start shell into app container
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app sh
 
 init: ## Make full application initialization
 	docker-compose run $(DC_RUN_ARGS) app php ./artisan migrate --force --seed
@@ -61,8 +58,7 @@ init_prod: ## Make full application initialization
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app php ./artisan storage:link
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app php ./artisan key:generate
 
-up_production: ## Create and start containers
+up_prod: ## Create and start containers
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans --scale queue=2 web queue cron horizon
-	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8080 or https://127.0.0.1:8443';
 
-restart_production: down up_production ## Restart all containers
+restart_prod: down up_prod ## Restart all containers
