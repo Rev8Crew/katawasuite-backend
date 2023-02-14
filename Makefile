@@ -4,7 +4,6 @@
 
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
-DC_RUN_ARGS_PROD = --user "$(shell id -u):$(shell id -g)"
 
 .PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_prod restart_prod
 .DEFAULT_GOAL : help
@@ -52,7 +51,7 @@ install_prod: ## Install all app dependencies
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app composer install --ansi --prefer-dist
 
 shell_prod: ## Start shell into app container
-	docker-compose -f docker-compose.prod.yml exec $(DC_RUN_ARGS_PROD) app sh
+	docker-compose -f docker-compose.prod.yml exec $(DC_RUN_ARGS) app sh
 
 init_prod: ## Make full application initialization
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app php ./artisan migrate --force --seed

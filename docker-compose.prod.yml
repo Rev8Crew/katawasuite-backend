@@ -84,7 +84,7 @@ services:
 
   queue:
     <<: *app
-    command: "php /app/artisan queue:work --memory=256 --sleep=1"
+    command: "php /app/artisan queue:work --sleep=1"
 
   cron:
     <<: *app
@@ -110,6 +110,11 @@ services:
       - 'mysql-data:/var/lib/mysql'
     networks:
       - katawa-suite
+    deploy:
+      resources:
+        limits:
+          cpus: 0.5
+          memory: 512M
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
       retries: 3
