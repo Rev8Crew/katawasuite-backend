@@ -30,6 +30,7 @@ services:
       - /etc/group:/etc/group:ro
       - tmp-data:/tmp:rw
       - .:/app:rw
+      - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
