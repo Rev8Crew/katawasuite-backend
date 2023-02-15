@@ -59,6 +59,6 @@ init_prod: ## Make full application initialization
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app php ./artisan key:generate
 
 up_prod: ## Create and start containers
-	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron horizon
+	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron
 
 restart_prod: down up_prod ## Restart all containers
