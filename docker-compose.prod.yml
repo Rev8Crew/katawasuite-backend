@@ -32,6 +32,7 @@ services:
       - .:/app:rw
       - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
+      redis: {condition: service_healthy}
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
       phpmyadmin: {condition: service_started}
@@ -128,6 +129,21 @@ services:
       - mysql
     networks:
       - katawa-suite
+
+  redis:
+    image: redis:7-alpine # Image page: <https://hub.docker.com/_/redis>
+    container_name: katawa-suite-redis
+    command: redis-server --requirepass $${REDIS_PASSWORD}
+    sysctls:
+      -
+    networks:
+      - katawa-suite
+    volumes:
+      - redis-data:/data:rw
+    healthcheck:
+      test: [ 'CMD', 'redis-cli', 'ping' ]
+      interval: 500ms
+      timeout: 1s
 
   rabbitmq:
     build: ./docker/rabbitmq
