@@ -91,6 +91,10 @@ services:
     <<: *app
     command: "supercronic /etc/supercronic/laravel" # it runs artisan schedule:run
 
+  horizon:
+    <<: *app
+    command: php /app/artisan horizon
+
   mysql:
     image: 'mysql/mysql-server:8.0'
     ports:
