@@ -18,13 +18,14 @@
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.6",
         "fakerphp/faker": "^1.21.0",
+        "laravel/envoy": "^2.8",
         "laravel/sail": "^1.19.0",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^6.4",
         "phpstan/phpstan": "^1.9.14",
-        "phpunit/phpunit": "^9.5.28"
+        "phpunit/phpunit": "^9.5.28",
+        "spatie/laravel-ignition": "^1.6"
     },
     "autoload": {
         "psr-4": {

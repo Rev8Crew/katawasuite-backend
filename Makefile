@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_prod restart_prod
+.PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_prod restart_prod ps renew_certs command artisan
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -62,3 +62,15 @@ up_prod: ## Create and start containers
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron
 
 restart_prod: down up_prod ## Restart all containers
+
+command: # Execute any command
+	docker-compose run $(DC_RUN_ARGS) app $(filter-out $@,$(MAKECMDGOALS))
+
+artisan: # Execute artisan command
+	docker-compose run $(DC_RUN_ARGS) app php artisan $(filter-out $@,$(MAKECMDGOALS))
+
+ps: # PS
+	docker-compose ps -a
+
+renew_certs_prod: # Renew SSL certs
+	docker-compose -f docker-compose.prod.yml exec acme-companion /app/force_renew
