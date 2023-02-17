@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::domain(config('app.subdomains.app'))->get('/', function () {
+    return view('welcome');
+});
+
 /**
  * @internal   Just for a test
  * @deprecated Remove this routes group

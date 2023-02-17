@@ -196,4 +196,11 @@ return [
         // ...
     ])->toArray(),
 
+
+    /**
+     *
+     */
+    'subdomains' => [
+        'app' => env('APP_SUBDOMAIN', '')
+    ]
 ];

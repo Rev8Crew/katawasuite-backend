@@ -75,8 +75,8 @@ services:
     expose:
       - 8080
     environment:
-      - VIRTUAL_HOST=${WEB_VIRTUAL_HOST},${HORIZON_DOMAIN},${TELESCOPE_DOMAIN}
-      - LETSENCRYPT_HOST=${WEB_VIRTUAL_HOST},${HORIZON_DOMAIN},${TELESCOPE_DOMAIN}
+      - VIRTUAL_HOST=${WEB_VIRTUAL_HOST},${HORIZON_DOMAIN},${TELESCOPE_DOMAIN},${APP_SUBDOMAIN}
+      - LETSENCRYPT_HOST=${WEB_VIRTUAL_HOST},${HORIZON_DOMAIN},${TELESCOPE_DOMAIN},${APP_SUBDOMAIN}
     healthcheck:
       test: ['CMD-SHELL', 'wget --spider -q "http://127.0.0.1:8082/health?plugin=http&plugin=rpc"']
       interval: 2s
