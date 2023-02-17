@@ -9,16 +9,16 @@
 cd {{ env('DEPLOY_PATH') }}
 git pull
 make install_prod
-make artisan migrate
-make artisan optimize
+make artisan_prod migrate --force
+make artisan_prod optimize
 @endtask
 
 @task('deploy_with_docker', ['on' => 'production'])
 cd {{ env('DEPLOY_PATH') }}
 git pull
 make install_prod
-make artisan migrate
-make artisan optimize
+make artisan_prod migrate --force
+make artisan_prod optimize
 make down
 make up_prod
 @endtask
