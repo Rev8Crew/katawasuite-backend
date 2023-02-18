@@ -11,13 +11,8 @@ git pull
 make command_prod 'composer i && php artisan migrate --force && php artisan optimize'
 @endtask
 
-@task('deploy_with_docker', ['on' => 'production'])
+@task('restart_docker', ['on' => 'production'])
 cd {{ env('DEPLOY_PATH') }}
-git pull
-make install_prod
-make artisan_prod migrate --force
-make artisan_prod optimize
-make down
-make up_prod
+make restart_prod
 @endtask
 

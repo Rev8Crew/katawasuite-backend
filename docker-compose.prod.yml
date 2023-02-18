@@ -172,6 +172,7 @@ services:
       - VIRTUAL_HOST=${RABBITMQ_VIRTUAL_HOST}
       - LETSENCRYPT_HOST=${RABBITMQ_VIRTUAL_HOST}
       - VIRTUAL_PORT=${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}
+      - NETWORK_ACCESS=internal
     privileged: true
     volumes:
       - rabbit-data:/var/lib/rabbitmq
