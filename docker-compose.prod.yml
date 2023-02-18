@@ -3,12 +3,16 @@
 version: '3.8'
 
 volumes:
-  mysql-data:
+  pg-data:
     driver: local
+  pg-admin-data:
+    driver: local
+  #  mysql-data:
+  #    driver: local
   tmp-data:
     driver: local
-  redis-data:
-    driver: local
+  #  redis-data:
+  #    driver: local
   rabbit-data:
     driver: local
 
@@ -32,11 +36,11 @@ services:
       - .:/app:rw
       - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
+      postgres: { condition: service_healthy }
+      pgadmin: { condition: service_started }
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
-      phpmyadmin: {condition: service_started}
       rabbitmq: {condition: service_started}
-      mysql: {condition: service_healthy}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -90,44 +94,78 @@ services:
     <<: *app
     command: "supercronic /etc/supercronic/laravel" # it runs artisan schedule:run
 
-  mysql:
-    image: 'mysql/mysql-server:8.0'
-    ports:
-      - '3306:3306'
-    container_name: katawa-suite-mysql
+  postgres:
+    image: postgres:15-alpine # Image page: <https://hub.docker.com/_/postgres>
+    container_name: katawa-suite-pgsql
+    networks:
+      - katawa-suite
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      NETWORK_ACCESS: internal
     volumes:
-      - 'mysql-data:/var/lib/mysql'
-    networks:
-      - katawa-suite
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
-      retries: 3
+      - pg-data:/var/lib/postgresql/data:rw
+    expose:
+      - 5432
+    healthcheck: # Healthcheck docs: <https://docs.docker.com/engine/reference/builder/#healthcheck>
+      test: [ 'CMD-SHELL', 'pg_isready -U forge' ]
+      interval: 2s
       timeout: 5s
+      start_period: 2s
 
-  phpmyadmin:
-    build: ./docker/phpmyadmin
-    container_name: katawa-suite-phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - MYSQL_USER=${PMA_USER}
-      - MYSQL_PASSWORD=${PMA_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
-      - MAX_EXECUTION_TIME=${PMA_MAX_EXECUTION_TIME}
-      - MEMORY_LIMIT=${PMA_MEMORY_LIMIT}
-      - UPLOAD_LIMIT=${PMA_UPLOAD_LIMIT}
-      - VIRTUAL_HOST=${PMA_VIRTUAL_HOST}
-      - LETSENCRYPT_HOST=${PMA_VIRTUAL_HOST}
-    depends_on:
-      - mysql
+  pgadmin:
+    image: dpage/pgadmin4:latest
     networks:
       - katawa-suite
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - VIRTUAL_HOST=${PGADMIN_VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${PGADMIN_VIRTUAL_HOST}
+    volumes:
+      - pg-admin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+#  mysql:
+#    image: 'mysql/mysql-server:8.0'
+#    ports:
+#      - '3306:3306'
+#    container_name: katawa-suite-mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+#      MYSQL_ROOT_HOST: "%"
+#      MYSQL_DATABASE: '${DB_DATABASE}'
+#      MYSQL_USER: '${DB_USERNAME}'
+#      MYSQL_PASSWORD: '${DB_PASSWORD}'
+#      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+#    volumes:
+#      - 'mysql-data:/var/lib/mysql'
+#    networks:
+#      - katawa-suite
+#    healthcheck:
+#      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+#      retries: 3
+#      timeout: 5s
+#
+#  phpmyadmin:
+#    build: ./docker/phpmyadmin
+#    container_name: katawa-suite-phpmyadmin
+#    environment:
+#      - PMA_ARBITRARY=1
+#      - MYSQL_USER=${PMA_USER}
+#      - MYSQL_PASSWORD=${PMA_PASSWORD}
+#      - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
+#      - MAX_EXECUTION_TIME=${PMA_MAX_EXECUTION_TIME}
+#      - MEMORY_LIMIT=${PMA_MEMORY_LIMIT}
+#      - UPLOAD_LIMIT=${PMA_UPLOAD_LIMIT}
+#      - VIRTUAL_HOST=${PMA_VIRTUAL_HOST}
+#      - LETSENCRYPT_HOST=${PMA_VIRTUAL_HOST}
+#    depends_on:
+#      - mysql
+#    networks:
+#      - katawa-suite
 
   rabbitmq:
     build: ./docker/rabbitmq
