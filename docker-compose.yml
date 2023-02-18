@@ -42,7 +42,7 @@ services:
       postgres: {condition: service_healthy}
       pgadmin: {condition: service_started}
       nginx-proxy: {condition: service_started}
-      rabbitmq: {condition: service_started}
+      rabbitmq: {condition: service_healthy}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -180,6 +180,11 @@ services:
       - rabbit-data:/var/lib/rabbitmq
       - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./docker/rabbitmq/management_agent.disable_metrics_collector.conf:/etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
     networks:
       - katawa-suite
 

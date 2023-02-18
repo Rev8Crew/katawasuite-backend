@@ -1,5 +1,3 @@
-# Docker-compose file is used only for local development. This is not production-ready example.
-
 version: '3.8'
 
 volumes:
@@ -179,6 +177,11 @@ services:
       - rabbit-data:/var/lib/rabbitmq
       - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./docker/rabbitmq/management_agent.disable_metrics_collector.conf:/etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
     networks:
       - katawa-suite
 
