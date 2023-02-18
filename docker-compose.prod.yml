@@ -38,7 +38,7 @@ services:
       pgadmin: { condition: service_started }
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
-      rabbitmq: {condition: service_started}
+      rabbitmq: {condition: service_healthy}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
