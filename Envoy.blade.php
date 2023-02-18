@@ -8,7 +8,7 @@
 @task('deploy', ['on' => 'production'])
 cd {{ env('DEPLOY_PATH') }}
 git pull
-make command 'composer i && php artisan migrate --force && php artisan optimize'
+make command_prod 'composer i && php artisan migrate --force && php artisan optimize'
 @endtask
 
 @task('deploy_with_docker', ['on' => 'production'])
