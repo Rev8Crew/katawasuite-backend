@@ -3,7 +3,7 @@
 version: '3.8'
 
 volumes:
-  pg-data:
+  postgres-data:
     driver: local
   pg-admin-data:
     driver: local
@@ -105,7 +105,7 @@ services:
       POSTGRES_PASSWORD: '${DB_PASSWORD}'
       NETWORK_ACCESS: internal
     volumes:
-      - pg-data:/var/lib/postgresql/data:rw
+      - postgres-data:/var/lib/postgresql/data:rw
     expose:
       - 5432
     healthcheck: # Healthcheck docs: <https://docs.docker.com/engine/reference/builder/#healthcheck>
