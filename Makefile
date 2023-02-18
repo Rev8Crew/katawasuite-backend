@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean install_prod shell_prod init_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker
+.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -47,16 +47,8 @@ clean: ## Make clean
 		php ./artisan config:clear; php ./artisan route:clear; php ./artisan view:clear; php ./artisan cache:clear file"
 	docker-compose down -v # Stops containers and remove named volumes declared in the `volumes` section
 
-install_prod: ## Install all app dependencies
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app composer install --ansi --prefer-dist
-
 shell_prod: ## Start shell into app container
 	docker-compose -f docker-compose.prod.yml exec $(DC_RUN_ARGS) app sh
-
-init_prod: ## Make full application initialization
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app php ./artisan migrate --force --seed
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app php ./artisan storage:link
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) --no-deps app php ./artisan key:generate
 
 up_prod: ## Create and start containers
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron
@@ -80,3 +72,9 @@ deploy:
 
 deploy_with_docker:
 	php vendor/bin/envoy run deploy_with_docker
+
+command:
+	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
+
+command_prod:
+	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
