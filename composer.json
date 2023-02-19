@@ -19,6 +19,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.13",
         "laravel/tinker": "^2.8",
+        "nwidart/laravel-modules": "^9.0",
         "spiral/roadrunner-laravel": "^5.11",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1",
         "vluzrmos/language-detector": "^2.3"
