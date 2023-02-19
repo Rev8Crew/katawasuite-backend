@@ -48,7 +48,7 @@ clean: ## Make clean
 	docker-compose down -v # Stops containers and remove named volumes declared in the `volumes` section
 
 shell_prod: ## Start shell into app container
-	docker-compose -f docker-compose.prod.yml exec $(DC_RUN_ARGS) app sh
+	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app sh
 
 up_prod: ## Create and start containers
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron
