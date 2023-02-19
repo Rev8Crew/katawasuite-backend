@@ -6,16 +6,22 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "aedart/athenaeum-config": "^6.8",
+        "encore/laravel-admin": "^1.8",
         "enlightn/enlightn": "^2.1",
         "fruitcake/laravel-cors": "^3.0.0",
         "guzzlehttp/guzzle": "^7.5.0",
+        "laravel-admin-ext/helpers": "1.*",
+        "laravel-admin-ext/log-viewer": "^1.0",
+        "laravel-admin-ext/summernote": "^1.0",
         "laravel/framework": "^9.49",
         "laravel/horizon": "^5.14",
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.13",
         "laravel/tinker": "^2.8",
         "spiral/roadrunner-laravel": "^5.11",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1"
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1",
+        "vluzrmos/language-detector": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
