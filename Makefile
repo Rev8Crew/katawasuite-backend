@@ -70,7 +70,7 @@ renew_certs_prod: # Renew SSL certs
 deploy:
 	php vendor/bin/envoy run deploy
 
-deploy_with_docker:
+deploy_docker:
 	php vendor/bin/envoy run deploy_with_docker
 
 command:
