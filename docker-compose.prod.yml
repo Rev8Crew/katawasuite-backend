@@ -74,6 +74,7 @@ services:
   web:
     <<: *app
     command: "rr serve -c .rr.yaml"
+    restart: unless-stopped
     expose:
       - 8080
     environment:
@@ -86,17 +87,18 @@ services:
 
   queue:
     <<: *app
+    restart: unless-stopped
     command: "php /app/artisan queue:work --sleep=1"
 
   cron:
     <<: *app
+    restart: unless-stopped
     command: "supercronic /etc/supercronic/laravel" # it runs artisan schedule:run
 
   postgres:
     image: postgres:15-alpine # Image page: <https://hub.docker.com/_/postgres>
     container_name: katawa-suite-pgsql
-    networks:
-      - katawa-suite
+    restart: unless-stopped
     environment:
       POSTGRES_DB: '${DB_DATABASE}'
       POSTGRES_USER: '${DB_USERNAME}'
@@ -106,6 +108,8 @@ services:
       - postgres-data:/var/lib/postgresql/data:rw
     expose:
       - 5432
+    networks:
+      - katawa-suite
     healthcheck: # Healthcheck docs: <https://docs.docker.com/engine/reference/builder/#healthcheck>
       test: [ 'CMD-SHELL', 'pg_isready -U forge' ]
       interval: 2s
@@ -114,8 +118,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    networks:
-      - katawa-suite
+    restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
@@ -123,6 +126,8 @@ services:
       - LETSENCRYPT_HOST=${PGADMIN_VIRTUAL_HOST}
     volumes:
       - pg-admin-data:/var/lib/pgadmin
+    networks:
+      - katawa-suite
     depends_on:
       - postgres
 
@@ -168,6 +173,7 @@ services:
   rabbitmq:
     build: ./docker/rabbitmq
     container_name: katawa-suite-rabbitmq
+    restart: unless-stopped
     environment:
       - VIRTUAL_HOST=${RABBITMQ_VIRTUAL_HOST}
       - LETSENCRYPT_HOST=${RABBITMQ_VIRTUAL_HOST}

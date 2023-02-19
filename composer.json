@@ -18,6 +18,7 @@
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.21.0",
         "laravel/envoy": "^2.8",
         "laravel/sail": "^1.19.0",
@@ -43,6 +44,11 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+        "@php artisan ide-helper:generate",
+        "@php artisan ide-helper:meta"
         ],
         "phpunit": "@php ./vendor/bin/phpunit -d memory_limit=512M",
         "phpstan": "@php -d 'opcache.enable=0' ./vendor/bin/phpstan analyze -c ./phpstan.neon --no-progress --ansi",
