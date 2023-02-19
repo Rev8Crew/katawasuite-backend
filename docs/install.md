@@ -9,6 +9,10 @@ c:\windows\system32\drivers\etc\hosts
 - cp .env.example .env
 - make install
 - make init
+- make shell
+```shell
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+```
 
 ## PhpMyAdmin
 1. Веб-интерфейс
