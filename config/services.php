@@ -30,4 +30,23 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_SECRET_KEY'),
+        'redirect' => '/web/auth/providers/callback/google',
+    ],
+
+    'vkontakte' => [
+        'client_id' => env('VK_CLIENT_ID'),
+        'client_secret' => env('VK_SECRET_KEY'),
+        'redirect' => '/web/auth/providers/callback/vkontakte'
+    ],
+
+    'telegram' => [
+        'bot' => env('TELEGRAM_BOT_NAME'),  // The bot's username
+        'client_id' => null,
+        'client_secret' => env('TELEGRAM_TOKEN'),
+        'redirect' => '/web/auth/providers/callback/telegram',
+    ],
+
 ];

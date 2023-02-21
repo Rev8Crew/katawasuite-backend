@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Modules\User\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;

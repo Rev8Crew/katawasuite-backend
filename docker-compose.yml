@@ -51,6 +51,7 @@ services:
       - katawa-suite
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./docker/htpasswd:/etc/nginx/htpasswd
       - ./docker/nginx/certs:/etc/nginx/certs
@@ -63,7 +64,6 @@ services:
       - 8080
     environment:
       - VIRTUAL_HOST=localhost,${WEB_VIRTUAL_HOST},${HORIZON_DOMAIN},${TELESCOPE_DOMAIN},${APP_SUBDOMAIN}
-      - VIRTUAL_PROTO=http
     healthcheck:
       test: ['CMD-SHELL', 'wget --spider -q "http://127.0.0.1:8082/health?plugin=http&plugin=rpc"']
       interval: 2s

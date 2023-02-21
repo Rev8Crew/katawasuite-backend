@@ -25,8 +25,6 @@ class $CLASS$ extends ServiceProvider
     public function boot()
     {
         $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, '$MIGRATIONS_PATH$'));
     }
 
@@ -38,39 +36,6 @@ class $CLASS$ extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            module_path($this->moduleName, '$PATH_CONFIG$/config.php') => config_path($this->moduleNameLower . '.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, '$PATH_CONFIG$/config.php'), $this->moduleNameLower
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
-
-        $sourcePath = module_path($this->moduleName, '$PATH_VIEWS$');
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ], ['views', $this->moduleNameLower . '-module-views']);
-
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }
 
     /**
@@ -99,16 +64,5 @@ class $CLASS$ extends ServiceProvider
     public function provides()
     {
         return [];
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        foreach (\Config::get('view.paths') as $path) {
-            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
-                $paths[] = $path . '/modules/' . $this->moduleNameLower;
-            }
-        }
-        return $paths;
     }
 }

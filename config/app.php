@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         \Aedart\Config\Providers\ConfigLoaderServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...

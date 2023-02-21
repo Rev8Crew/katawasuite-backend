@@ -26,28 +26,28 @@ return [
     */
 
     'stubs' => [
-        'enabled' => false,
-        'path' => base_path('vendor/nwidart/laravel-modules/src/Commands/stubs'),
+        'enabled' => true,
+        'path' => base_path('stubs/nwidart-stubs'),
         'files' => [
             'routes/web' => 'Routes/web.php',
             'routes/api' => 'Routes/api.php',
-            'views/index' => 'Resources/views/index.blade.php',
-            'views/master' => 'Resources/views/layouts/master.blade.php',
-            'scaffold/config' => 'Config/config.php',
-            'composer' => 'composer.json',
-            'assets/js/app' => 'Resources/assets/js/app.js',
-            'assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'vite' => 'vite.config.js',
-            'package' => 'package.json',
+            //'views/index' => 'Resources/views/index.blade.php',
+            //'views/master' => 'Resources/views/layouts/master.blade.php',
+            //'scaffold/config' => 'Config/config.php',
+            //'composer' => 'composer.json',
+            //'assets/js/app' => 'Resources/assets/js/app.js',
+            //'assets/sass/app' => 'Resources/assets/sass/app.scss',
+            //'vite' => 'vite.config.js',
+            //'package' => 'package.json',
         ],
         'replacements' => [
             'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api' => ['LOWER_NAME'],
             'vite' => ['LOWER_NAME'],
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
-            'views/index' => ['LOWER_NAME'],
-            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'scaffold/config' => ['STUDLY_NAME'],
+            //'views/index' => ['LOWER_NAME'],
+            //'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
+            //'scaffold/config' => ['STUDLY_NAME'],
             'composer' => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
@@ -101,23 +101,26 @@ return [
         | Set the generate key to false to not generate that folder
         */
         'generator' => [
-            'config' => ['path' => 'Config', 'generate' => true],
-            'command' => ['path' => 'Console', 'generate' => true],
+            'enums' => ['path' => 'Enums', 'generate' => true],
+            'config' => ['path' => 'Config', 'generate' => false],
+            'command' => ['path' => 'Console', 'generate' => false],
             'migration' => ['path' => 'Database/Migrations', 'generate' => true],
             'seeder' => ['path' => 'Database/Seeders', 'generate' => true],
             'factory' => ['path' => 'Database/factories', 'generate' => true],
             'model' => ['path' => 'Entities', 'generate' => true],
+            'dto' => ['path' => 'Entities/DTO', 'generate' => true],
             'routes' => ['path' => 'Routes', 'generate' => true],
             'controller' => ['path' => 'Http/Controllers', 'generate' => true],
-            'filter' => ['path' => 'Http/Middleware', 'generate' => true],
+            'filter' => ['path' => 'Http/Middleware', 'generate' => false],
             'request' => ['path' => 'Http/Requests', 'generate' => true],
             'provider' => ['path' => 'Providers', 'generate' => true],
-            'assets' => ['path' => 'Resources/assets', 'generate' => true],
+            'assets' => ['path' => 'Resources/assets', 'generate' => false],
             'lang' => ['path' => 'Resources/lang', 'generate' => true],
-            'views' => ['path' => 'Resources/views', 'generate' => true],
-            'test' => ['path' => 'Tests/Unit', 'generate' => true],
-            'test-feature' => ['path' => 'Tests/Feature', 'generate' => true],
+            'views' => ['path' => 'Resources/views', 'generate' => false],
+            'test' => ['path' => 'Tests/Unit', 'generate' => false],
+            'test-feature' => ['path' => 'Tests/Feature', 'generate' => false],
             'repository' => ['path' => 'Repositories', 'generate' => false],
+            'services' => ['path' => 'Services', 'generate' => true],
             'event' => ['path' => 'Events', 'generate' => false],
             'listener' => ['path' => 'Listeners', 'generate' => false],
             'policies' => ['path' => 'Policies', 'generate' => false],
@@ -214,10 +217,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'katawa-suite',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'Dmitriy Elizarov',
+            'email' => 'dimaelik71@gmail.com',
         ],
         'composer-output' => false,
     ],
@@ -245,6 +248,8 @@ return [
     */
     'register' => [
         'translations' => true,
+        'views' => false,
+        'config' => false,
         /**
          * load files on boot or register method
          *
