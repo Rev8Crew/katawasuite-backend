@@ -73,6 +73,9 @@ deploy:
 deploy_docker:
 	php vendor/bin/envoy run deploy_docker
 
+deploy_build:
+	php vendor/bin/envoy run deploy_build
+
 command:
 	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
 
