@@ -29,7 +29,7 @@ Route::domain(config('app.subdomains.app'))->get('/', function () {
  * @internal   Just for a test
  * @deprecated Remove this routes group
  */
-Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static function () {
+Route::/*middleware(AdminEmailMiddleware::class)->*/prefix('test')->group(static function () {
     Route::get('/database', [TestController::class, 'database'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
 
