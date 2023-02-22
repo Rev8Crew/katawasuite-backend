@@ -47,4 +47,28 @@ class UserService implements UserServiceInterface
     {
         return User::whereEmail($email)->first();
     }
+
+    public function changeEmail(User $user, string $email): bool
+    {
+        if ($user->email === $email) {
+            return false;
+        }
+
+        if ($this->getUserByEmail($email)) {
+            return false;
+        }
+
+        $user->update(['email' => $email]);
+        return true;
+    }
+
+    public function changeName(User $user, string $name): bool
+    {
+        if ($user->name === $name) {
+            return false;
+        }
+
+        $user->update(['name' => $name]);
+        return true;
+    }
 }

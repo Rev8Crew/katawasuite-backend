@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\User\Services\UserService;
 use Modules\User\Services\UserServiceInterface;
+use Modules\User\Services\UserSocialService;
+use Modules\User\Services\UserSocialServiceInterface;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -40,6 +42,7 @@ class UserServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
 
         $this->app->bind(UserServiceInterface::class, UserService::class);
+        $this->app->bind(UserSocialServiceInterface::class, UserSocialService::class);
     }
 
     /**

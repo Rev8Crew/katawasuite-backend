@@ -2,12 +2,14 @@
 
 namespace Modules\User\Entities;
 
+use App\Enums\ActiveStatusEnum;
 use App\Helpers\ImageHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property int         $id
@@ -21,7 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +33,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
+        'is_active',
+        'phone',
     ];
 
     /**
@@ -51,6 +56,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $attributes = [
+        'is_active' => ActiveStatusEnum::Active->value
     ];
 
     /**

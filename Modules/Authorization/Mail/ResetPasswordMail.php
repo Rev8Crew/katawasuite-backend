@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 use Modules\User\Entities\User;
 
-class ActivationEmailMail extends Mailable implements ShouldQueue
+class ResetPasswordMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -23,7 +23,7 @@ class ActivationEmailMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: trans('authorization::authorization.activation_email_subject'),
+            subject: trans('authorization::authorization.reset_password_subject'),
         );
     }
 
@@ -32,7 +32,7 @@ class ActivationEmailMail extends Mailable implements ShouldQueue
         $token = $this->token;
 
         return new Content(
-            view: 'authorization::emails.activation-email',
+            view: 'authorization::emails.reset-password',
             with: [
                 'url' => URL::route('auth.verify', compact('token'))
             ]

@@ -9,6 +9,10 @@ enum AuthProviderEnum: string
     case Vk = 'vkontakte';
     case Telegram = 'telegram';
 
+
+    /**
+     * @return AuthProviderEnum[]
+     */
     public static function withNameAttribute(): array
     {
         return [

@@ -4,7 +4,7 @@
     "description": "website",
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "aedart/athenaeum-config": "^6.8",
         "encore/laravel-admin": "^1.8",
         "enlightn/enlightn": "^2.1",

@@ -20,11 +20,5 @@ interface AuthServiceInterface
      */
     public function sendResetPasswordEmail(User $user, string $token): void;
 
-    public function changeEmail(User $user, string $email);
-
-    public function changeName(User $user, string $name): bool;
-
-    public function changePassword(User $user, string $old, string $new): bool;
-
     public function socialAuth(SocialiteUser $socialiteUser, AuthProviderEnum $provider): User;
 }

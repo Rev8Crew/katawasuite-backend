@@ -2,78 +2,51 @@
 
 namespace Modules\Authorization\Http\Controllers;
 
+use App\Enums\ActiveStatusEnum;
+use App\Models\Common\Response;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Authorization\Http\Requests\LoginRequest;
+use Modules\User\Entities\User;
+use Modules\User\Http\Resources\UserResource;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class AuthorizationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
+    public function login(LoginRequest $request): Response
     {
-        return view('authorization::index');
+        $response = new Response();
+
+        $user = User::whereEmail($request->input('email'))->first();
+        if ($user && $user->is_active !== ActiveStatusEnum::Active->value) {
+            return $response->withError(SymfonyResponse::HTTP_BAD_REQUEST, trans('authorization.active'));
+        }
+
+        if (!auth()->attempt($request->only('email', 'password'))) {
+            return $response->withError(SymfonyResponse::HTTP_BAD_REQUEST, trans('authorization.failed'));
+        }
+
+        /**
+         * @var User $user
+         */
+        $user = $request->user();
+        $token = $user->createToken('web');
+
+        $resource = new UserResource($user);
+        $resource->setToken($token->plainTextToken);
+
+        return $response->withData($resource);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('authorization::create');
-    }
+    public function me(): Response {
+        $response = new Response();
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $user = request()->user();
+        //$user->load(['notifications']);
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('authorization::show');
-    }
+        $resource = UserResource::make($user);
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('authorization::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        return $response->withData($resource);
     }
 }

@@ -10,7 +10,11 @@ interface UserServiceInterface
 {
     public function create(RegisterDto $dto): User;
 
-    public function changePassword(User $user, string $password): bool;
-
     public function getUserByEmail(string $email): ?User;
+
+    public function changeEmail(User $user, string $email): bool;
+
+    public function changeName(User $user, string $name): bool;
+
+    public function changePassword(User $user, string $password): bool;
 }

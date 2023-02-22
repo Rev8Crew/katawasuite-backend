@@ -42,7 +42,6 @@ class AuthorizationServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
-        $this->app->bind(AuthSocialServiceInterface::class, AuthSocialService::class);
     }
 
     /**

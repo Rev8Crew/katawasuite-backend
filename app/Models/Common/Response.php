@@ -2,11 +2,12 @@
 
 namespace App\Models\Common;
 
-use App\Enums\ResponseStatus;
+use App\Enums\ResponseStatusEnum;
 use App\Traits\Makeable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
@@ -20,7 +21,7 @@ class Response implements Arrayable
 {
     use Makeable;
 
-    protected ResponseStatus $status;
+    protected ResponseStatusEnum $status;
 
     /**
      *  Response data
@@ -75,7 +76,7 @@ class Response implements Arrayable
         $this->memoryUsageStart = memory_get_usage();
         $this->executionTime = microtime(true);
 
-        $this->status = ResponseStatus::create(ResponseStatus::UNKNOWN);
+        $this->status = ResponseStatusEnum::Unknown;
         $this->date = Carbon::now();
     }
 
@@ -90,7 +91,7 @@ class Response implements Arrayable
     {
 
         $this->hasErrors = true;
-        $this->status = ResponseStatus::create(ResponseStatus::ERROR);
+        $this->status = ResponseStatusEnum::Error;
 
         $this->errors[] = [
             'code' => $errorCode,
@@ -118,7 +119,7 @@ class Response implements Arrayable
     public function withData($data): Response
     {
         $this->data = $data;
-        $this->status = ResponseStatus::create(ResponseStatus::SUCCESS);
+        $this->status = ResponseStatusEnum::Success;
 
         return $this;
     }
@@ -130,7 +131,7 @@ class Response implements Arrayable
      */
     public function withStatus(int $status): Response
     {
-        $this->status = ResponseStatus::create($status);
+        $this->status = ResponseStatusEnum::from($status);
         return $this;
     }
 
@@ -177,7 +178,7 @@ class Response implements Arrayable
     {
         return [
             'data' => $this->data,
-            'status' => $this->status->getValue(),
+            'status' => $this->status->value,
             'hasErrors' => $this->hasErrors,
             'errors' => $this->errors,
             'validationErrors' => $this->validationErrors,

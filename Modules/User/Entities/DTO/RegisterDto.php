@@ -6,31 +6,14 @@ use App\Enums\ActiveStatusEnum;
 
 class RegisterDto
 {
-    public string $name;
-    public ?string $email;
-
-    public ?string $password;
-    public ?string $phone;
-
-    public ?ActiveStatusEnum $status;
-    public ?bool $verified;
-
     public function __construct(
-        string $name,
-        ?string $email,
-        ?string $password = null,
-        ?string $phone = null,
-        ?ActiveStatusEnum $status = null,
-        ?bool $verified = false
-    ) {
-
-        $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
-        $this->phone = $phone;
-        $this->status = $status;
-        $this->verified = $verified;
-    }
+        public string $name,
+        public ?string $email,
+        public ?string $password = null,
+        public ?string $phone = null,
+        public ?ActiveStatusEnum $status = null,
+        public ?bool $verified = false
+    ) {}
 
     /**
      * @return string

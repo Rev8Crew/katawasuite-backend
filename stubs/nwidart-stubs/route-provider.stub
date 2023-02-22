@@ -4,6 +4,7 @@ namespace $NAMESPACE$;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Providers\RouteServiceProvider as AppRouteServiceProvider;
 
 class $CLASS$ extends ServiceProvider
 {
@@ -48,6 +49,7 @@ class $CLASS$ extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
+            ->prefix(AppRouteServiceProvider::WEB_PREFIX)
             ->namespace($this->moduleNamespace)
             ->group(module_path('$MODULE$', '$WEB_ROUTES_PATH$'));
     }
@@ -61,7 +63,8 @@ class $CLASS$ extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
+        $prefix = AppRouteServiceProvider::API_PREFIX . '/' . AppRouteServiceProvider::API_VERSION;
+        Route::prefix($prefix)
             ->middleware('api')
             ->namespace($this->moduleNamespace)
             ->group(module_path('$MODULE$', '$API_ROUTES_PATH$'));
