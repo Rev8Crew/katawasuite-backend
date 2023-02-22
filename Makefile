@@ -77,7 +77,7 @@ command:
 	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
 
 command_prod:
-	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
+	docker-compose -f docker-compose.prod.yml exec web /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
 
 clear_docker:
 	docker stop $(docker ps -a -q)
