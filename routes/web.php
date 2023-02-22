@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\TestController;
+use App\Http\Middleware\AdminEmailMiddleware;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
@@ -26,21 +29,21 @@ Route::domain(config('app.subdomains.app'))->get('/', function () {
  * @internal   Just for a test
  * @deprecated Remove this routes group
  */
-Route::prefix('test')->group(static function () {
-    Route::get('/database', [\App\Http\Controllers\TestController::class, 'database'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static function () {
+    Route::get('/database', [TestController::class, 'database'])
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    Route::get('/queue', [\App\Http\Controllers\TestController::class, 'queue'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::get('/queue', [TestController::class, 'queue'])
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    Route::any('/dump', [\App\Http\Controllers\TestController::class, 'dump'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::any('/dump', [TestController::class, 'dump'])
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    Route::post('/upload', [\App\Http\Controllers\TestController::class, 'upload'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::post('/upload', [TestController::class, 'upload'])
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    Route::get('/url', [\App\Http\Controllers\TestController::class, 'url'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    Route::get('/url', [TestController::class, 'url'])
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 
     Route::get('/health', HealthCheckResultsController::class);
 });

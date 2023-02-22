@@ -3,8 +3,8 @@
 namespace Modules\User\Entities;
 
 use App\Helpers\ImageHelper;
-use App\Models\File;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -69,5 +69,10 @@ class User extends Authenticatable
         }
 
         return $image ?? ImageHelper::getAvatarImage($this->name);
+    }
+
+    public function socials(): HasMany
+    {
+        return $this->hasMany(UserSocial::class, 'user_id', 'id');
     }
 }

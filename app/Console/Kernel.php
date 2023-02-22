@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyTenMinutes();
 
         $schedule->command(DispatchQueueCheckJobsCommand::class)->everyFiveMinutes();
-        $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyFiveMinutes();
+        $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
     }
 
     /**

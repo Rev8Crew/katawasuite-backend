@@ -206,5 +206,7 @@ return [
      */
     'subdomains' => [
         'app' => env('APP_SUBDOMAIN', '')
-    ]
+    ],
+
+    'admin_emails' => explode(';', env('ADMIN_EMAILS', ''))
 ];
