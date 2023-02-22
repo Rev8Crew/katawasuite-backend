@@ -2,6 +2,8 @@
 
 namespace Modules\User\Entities;
 
+use App\Helpers\ImageHelper;
+use App\Models\File;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,4 +52,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Return URL of the image
+     * @return string
+     */
+    public function getImageAttribute() : string {
+        $image = null;
+
+        if (
+            !$image &&
+            $this->socials->count() === 1 &&
+            $this->socials->first()->avatar !== null
+        ) {
+            $image = $this->socials->first()->avatar;
+        }
+
+        return $image ?? ImageHelper::getAvatarImage($this->name);
+    }
 }
