@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,6 @@ Route::prefix('test')->group(static function () {
 
     Route::get('/url', [\App\Http\Controllers\TestController::class, 'url'])
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
+    Route::get('/health', HealthCheckResultsController::class);
 });

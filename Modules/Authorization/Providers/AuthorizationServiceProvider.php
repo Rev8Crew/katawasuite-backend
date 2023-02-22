@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Authorization\Services\AuthService;
 use Modules\Authorization\Services\AuthServiceInterface;
+use Modules\Authorization\Services\AuthSocialService;
+use Modules\Authorization\Services\AuthSocialServiceInterface;
 
 class AuthorizationServiceProvider extends ServiceProvider
 {
@@ -40,6 +42,7 @@ class AuthorizationServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
+        $this->app->bind(AuthSocialServiceInterface::class, AuthSocialService::class);
     }
 
     /**
