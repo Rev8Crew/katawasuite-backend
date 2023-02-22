@@ -16,3 +16,8 @@ cd {{ env('DEPLOY_PATH') }}
 make restart_prod
 @endtask
 
+@task('deploy_build', ['on' => 'production'])
+cd {{ env('DEPLOY_PATH') }}
+docker-compose -f docker-compose.prod.yml build
+@endtask
+
