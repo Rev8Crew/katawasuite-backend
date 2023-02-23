@@ -11,6 +11,8 @@
 |
 */
 
-Route::prefix('user')->group(function() {
-    Route::get('/', 'UserController@index');
+use Modules\User\Http\Controllers\UserController;
+
+Route::prefix('users')->middleware('auth:sanctum')->name('users.')->group(function () {
+    Route::post('/get-social-providers', [UserController::class, 'getSocialProviders']);
 });
