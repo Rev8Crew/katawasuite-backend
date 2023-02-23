@@ -3,69 +3,37 @@
 namespace App\Models\Common;
 
 use App\Enums\ResponseStatusEnum;
+use App\Helpers\BytesForHuman;
 use App\Traits\Makeable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
-/**
- * Class Response
- * Unified Response Interface for any response
- *
- * @package App\Models\Response
- */
 class Response implements Arrayable
 {
     use Makeable;
 
     protected ResponseStatusEnum $status;
 
-    /**
-     *  Response data
-     * @var mixed
-     */
-    protected $data = [];
+    protected JsonResource|Collection|array $data = [];
 
-    /**
-     * @var bool
-     */
     protected bool $hasErrors = false;
 
-    /**
-     *  Include code and error message
-     * @var array
-     */
     protected array $errors = [];
 
-    /**
-     * @var array
-     */
     protected array $validationErrors = [];
 
-    /**
-     *  request execution time
-     * @var int
-     */
     protected int $executionTime = 0;
 
-    /**
-     * Memory usage.
-     *
-     * @var float|int
-     */
-    protected $memoryUsageStart;
+    protected int $memoryUsageStart;
 
-    /** @var float|int */
-    protected $memoryUsageEnd;
+    protected string $memoryPeakUsage;
 
-    /** @var float|int */
-    protected $memoryPeakUsage;
-
-    /** @var Carbon */
-    protected $date;
+    protected Carbon $date;
 
     /**
      * Response constructor.
@@ -121,6 +89,8 @@ class Response implements Arrayable
         $this->data = $data;
         $this->status = ResponseStatusEnum::Success;
 
+        $this->memoryPeakUsage = BytesForHuman::format(memory_get_usage() - $this->memoryUsageStart);
+
         return $this;
     }
 
@@ -155,14 +125,14 @@ class Response implements Arrayable
      */
     public function success(string $message = ''): Response
     {
-        return $this->withStatus(ResponseStatus::SUCCESS)->withMessage($message);
+        return $this->withStatus(ResponseStatusEnum::Success->value)->withMessage($message);
     }
 
     public function validation(Validator $validator): Response
     {
         if ($validator->fails()) {
             $this->withError(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, "Validation Errors");
-            $this->withStatus(ResponseStatus::ERROR);
+            $this->withStatus(ResponseStatusEnum::Error->value);
 
             foreach ($validator->errors()->getMessages() as $field => $error) {
                 $this->validationErrors[$field] = $error;
@@ -185,7 +155,7 @@ class Response implements Arrayable
             'execution_time' => microtime(true) - $this->executionTime,
             'memory_start_usage' => $this->memoryUsageStart,
             'memory_peak_usage' => $this->memoryPeakUsage,
-            'memory_end_usage' => $this->memoryUsageEnd,
+            'memory_end_usage' => BytesForHuman::format(memory_get_usage() - $this->memoryUsageStart),
             'date' => $this->date->format('Y-m-d H:i:s'),
         ];
     }

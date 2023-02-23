@@ -25,14 +25,14 @@ enum AuthProviderEnum: string
         return [
             [
                 'id' => self::Google,
-                'label' => trans('authorization.provider_google'),
-                'url' => route('authorization.providers.redirect', ['provider' => 'google']),
+                'label' => trans('authorization::authorization.provider_google'),
+                'url' => route('auth.providers.redirect', ['provider' => 'google']),
                 'icon' => 'google'
             ],
             [
                 'id' => self::Vk,
-                'label' => trans('auth.provider_vk'),
-                'url' => route('authorization.providers.redirect', ['provider' => 'vkontakte']),
+                'label' => trans('authorization::authorization.provider_vk'),
+                'url' => route('auth.providers.redirect', ['provider' => 'vkontakte']),
                 'icon' => 'vk'
             ],
             /*            [

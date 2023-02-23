@@ -35,10 +35,31 @@ return [
             'root'   => storage_path('app'),
         ],
 
+        'admin' => [
+            'driver' => 'local',
+            'root' => storage_path('app/custom/admin'),
+            'url' => env('APP_URL').'/storage/admin',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver'     => 'local',
             'root'       => storage_path('app/public'),
             'url'        => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        'fileStore' => [
+            'driver'     => 'local',
+            'root'       => storage_path('app/custom/files'),
+            'url'        => env('APP_URL') . '/storage/files',
+            'visibility' => 'public',
+        ],
+
+        'custom' => [
+            'driver' => 'local',
+            'root' => storage_path('app/custom'),
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 

@@ -24,6 +24,7 @@ coverage*
 /storage/*.key
 /public/hot
 /public/storage
+/public/app/
 docker-compose.override.yml
 npm-debug.log
 yarn-error.log
