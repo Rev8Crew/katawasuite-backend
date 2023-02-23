@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
 
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyTwoMinutes();
-        $schedule->command('enlightn --report')->weekly();
+        //$schedule->command('enlightn --report')->weekly();
     }
 
     /**
