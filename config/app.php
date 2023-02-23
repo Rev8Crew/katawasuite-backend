@@ -208,5 +208,8 @@ return [
         'app' => env('APP_SUBDOMAIN', '')
     ],
 
-    'admin_emails' => explode(';', env('ADMIN_EMAILS', ''))
+    'admin_emails' => explode(';', env('ADMIN_EMAILS', '')),
+
+    'admin_default_email' => env('ADMIN_DEFAULT_EMAIL', ''),
+    'admin_default_password' => env('ADMIN_DEFAULT_PASSWORD', '')
 ];

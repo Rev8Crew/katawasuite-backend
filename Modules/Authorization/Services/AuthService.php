@@ -9,6 +9,7 @@ use Laravel\Socialite\Two\User as SocialiteUser;
 use Modules\Authorization\Mail\ActivationEmailMail;
 use Modules\Authorization\Mail\ResetPasswordMail;
 use Modules\User\Entities\DTO\RegisterDto;
+use Modules\User\Entities\DTO\RegisterSocialDto;
 use Modules\User\Entities\User;
 use Modules\User\Entities\UserSocial;
 use Modules\User\Enums\AuthProviderEnum;
@@ -18,8 +19,8 @@ use Modules\User\Services\UserSocialServiceInterface;
 class AuthService implements AuthServiceInterface
 {
     public function __construct(
-        private UserServiceInterface $userService,
-        private UserSocialServiceInterface $socialService
+        private readonly UserServiceInterface $userService,
+        private readonly UserSocialServiceInterface $socialService
     ) {}
 
     public function sendActivationEmail(User $user, string $token): void
@@ -44,15 +45,17 @@ class AuthService implements AuthServiceInterface
         if ($existSocial === null) {
             $registerDto = new RegisterDto( $name, $email, null, null, ActiveStatusEnum::Active, true);
 
-            $existSocial = new UserSocial([
-                'provider' => $provider,
-                'provider_id' => $socialiteUser->id,
-                'name' => $socialiteUser->getName(),
-                'avatar' => $socialiteUser->getAvatar(),
-                'email' => $email,
-            ]);
+            $existSocial = $this->socialService->create(
+                new RegisterSocialDto(
+                    $provider->value,
+                    $socialiteUser->id,
+                    $socialiteUser->getName(),
+                    $socialiteUser->getAvatar(),
+                    $email
+                )
+            );
 
-            $user = $email ? User::whereEmail($email)->first() : null;
+            $user = $this->userService->getUserByEmail($email ?? '');
 
             if ($user === null) {
                 $user = $this->userService->create($registerDto);
@@ -60,8 +63,7 @@ class AuthService implements AuthServiceInterface
 
         } else {
             if ($socialiteUser->getAvatar()) {
-                $existSocial->avatar = $socialiteUser->getAvatar();
-                $existSocial->save();
+                $this->socialService->changeAvatar($existSocial, $socialiteUser->getAvatar());
             }
 
             $user = $existSocial->user;
@@ -69,7 +71,6 @@ class AuthService implements AuthServiceInterface
 
         if (false === $existSocial->exists) {
             $user->socials()->save($existSocial);
-
             $user->unsetRelation('socials');
         }
 

@@ -27,12 +27,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-
         $schedule->command(DispatchQueueCheckJobsCommand::class)->everyMinute();
         $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
 
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyTwoMinutes();
+        $schedule->command('enlightn --report')->weekly();
     }
 
     /**

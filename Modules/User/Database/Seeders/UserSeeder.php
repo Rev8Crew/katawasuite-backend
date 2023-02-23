@@ -13,8 +13,8 @@ class UserSeeder extends Seeder
         $root = User::create([
             'id' => 1,
             'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => \Hash::make('admin'),
+            'email' => config('app.admin_default_email'),
+            'password' => \Hash::make(config('app.admin_default_password')),
             'email_verified_at' => Carbon::now(),
             'phone' => null,
         ]);

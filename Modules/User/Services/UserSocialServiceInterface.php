@@ -19,4 +19,6 @@ interface UserSocialServiceInterface
     public function findByProvider(AuthProviderEnum $provider, int $providerUserId): ?UserSocial;
 
     public function create(RegisterSocialDto $dto): UserSocial;
+
+    public function changeAvatar(UserSocial $userSocial, string $avatar): bool;
 }
