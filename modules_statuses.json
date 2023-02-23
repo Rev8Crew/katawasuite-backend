@@ -1,5 +1,7 @@
 {
     "Auth": true,
     "Authorization": true,
-    "User": true
+    "User": true,
+    "Game": true,
+    "File": true
 }

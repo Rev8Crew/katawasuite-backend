@@ -19,6 +19,7 @@ class UserSocial extends Model
      */
     protected $fillable = [
         'provider',
+        'provider_id',
         'email',
         'name',
         'avatar',

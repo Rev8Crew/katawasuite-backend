@@ -1,27 +1,23 @@
 <?php
 
-namespace Modules\User\Providers;
+namespace Modules\File\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-use Modules\User\Services\UserFavoriteGamesService;
-use Modules\User\Services\UserFavoriteGamesServiceInterface;
-use Modules\User\Services\UserService;
-use Modules\User\Services\UserServiceInterface;
-use Modules\User\Services\UserSocialService;
-use Modules\User\Services\UserSocialServiceInterface;
+use Modules\File\Services\FileService;
+use Modules\File\Services\FileServiceInterface;
 
-class UserServiceProvider extends ServiceProvider
+class FileServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'User';
+    protected $moduleName = 'File';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'user';
+    protected $moduleNameLower = 'file';
 
     /**
      * Boot the application events.
@@ -43,9 +39,7 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
 
-        $this->app->bind(UserServiceInterface::class, UserService::class);
-        $this->app->bind(UserSocialServiceInterface::class, UserSocialService::class);
-        $this->app->bind(UserFavoriteGamesServiceInterface::class, UserFavoriteGamesService::class);
+        $this->app->bind(FileServiceInterface::class, FileService::class);
     }
 
     /**
