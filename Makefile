@@ -86,7 +86,7 @@ pint:
 	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c './vendor/bin/pint'
 
 ide-helper:
-	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c 'php artisan ide-helper:model -N'
+	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c 'php artisan ide-helper:model -W'
 
 phpstan:
 	./vendor/bin/phpstan analyse

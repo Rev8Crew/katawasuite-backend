@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Mail;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,9 +12,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+
     }
 
     /**
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $driver = app()->environment('production') ? \Mail::getDefaultDriver() : 'log';
+        \Mail::setDefaultDriver($driver);
     }
 }

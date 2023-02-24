@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class CommonController extends Controller
 {
@@ -19,7 +20,7 @@ class CommonController extends Controller
         $path = storage_path('app'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.$filename);
 
         if (! File::exists($path)) {
-            abort(404);
+            abort(SymfonyResponse::HTTP_NOT_FOUND);
         }
 
         $file = File::get($path);

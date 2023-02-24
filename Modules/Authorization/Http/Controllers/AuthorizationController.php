@@ -216,7 +216,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         $authProvider = AuthProviderEnum::tryFrom($provider);
 
         if (! $authProvider) {
-            abort(404);
+            abort(SymfonyResponse::HTTP_NOT_FOUND);
         }
 
         return \Socialite::driver($authProvider->value)->redirect();
@@ -227,18 +227,18 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         $authProvider = AuthProviderEnum::tryFrom($provider);
 
         if (! $authProvider) {
-            abort(404);
+            abort(SymfonyResponse::HTTP_NOT_FOUND);
         }
 
         /** @var \Laravel\Socialite\Two\User $authUser */
         $authUser = Socialite::driver($authProvider->value)->user();
 
         if (!($authUser instanceof \Laravel\Socialite\Two\User)) {
-            abort(500, trans('authorization::authorization.oauth_v2'));
+            abort(SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR, trans('authorization::authorization.oauth_v2'));
         }
 
         if (Str::of($authUser->getEmail())->isEmpty()) {
-            abort(422, trans('authorization::authorization.oauth_empty_email'));
+            abort(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, trans('authorization::authorization.oauth_empty_email'));
         }
 
         $token = $this->authService->socialAuth($authUser, $authProvider)->createToken('web');

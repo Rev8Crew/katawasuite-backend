@@ -18,7 +18,6 @@ class FeedbackService implements FeedbackServiceInterface
 
     public function sendFeedbackToEmail(Feedback $feedback): void
     {
-        $driver = app()->environment('production') ? Mail::getDefaultDriver() : 'log';
-        Mail::mailer($driver)->send(new NewFeedbackMail($feedback));
+        Mail::send(new NewFeedbackMail($feedback));
     }
 }

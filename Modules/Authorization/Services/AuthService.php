@@ -26,14 +26,12 @@ class AuthService implements AuthServiceInterface
 
     public function sendActivationEmail(User $user, string $token): void
     {
-        $driver = app()->environment('production') ? Mail::getDefaultDriver() : 'log';
-        Mail::mailer($driver)->send(new ActivationEmailMail($user, $token));
+        Mail::send(new ActivationEmailMail($user, $token));
     }
 
     public function sendResetPasswordEmail(User $user, string $token): void
     {
-        $driver = app()->environment('production') ? Mail::getDefaultDriver() : 'log';
-        Mail::mailer($driver)->send(new ResetPasswordMail($user, $token));
+        Mail::send(new ResetPasswordMail($user, $token));
     }
 
     public function socialAuth(SocialiteUser $socialiteUser, AuthProviderEnum $provider): User

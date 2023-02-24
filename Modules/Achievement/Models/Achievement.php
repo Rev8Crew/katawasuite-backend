@@ -39,6 +39,8 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Achievement\Models\AchievementReward> $rewards
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $users
  * @mixin \Eloquent
  */
 class Achievement extends Model

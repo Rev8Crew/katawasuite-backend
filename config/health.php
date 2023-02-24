@@ -33,7 +33,7 @@ return [
      */
     'notifications' => [
         /*
-         * Notifications will only get sent if this option is set to `true`.
+         * Notification will only get sent if this option is set to `true`.
          */
         'enabled' => env('HEALTH_ENABLE_NOTIFICATIONS', false),
 

@@ -43,7 +43,7 @@ class TimeTrackerController extends Controller
     public function timeByGame(GameSyncRequest $request): Response
     {
         $response = Response::make();
-        $time = $this->timeTrackerService->getTimeSpentByUserForGame($request->user()->id, $request->input('game_id'));
+        $time = $this->timeTrackerService->getTimeSpentByUserForGame($request->user(), $request->input('game_id'));
 
         return $response->withData(['time' => $time]);
     }

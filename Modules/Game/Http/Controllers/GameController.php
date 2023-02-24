@@ -45,7 +45,7 @@ class GameController extends Controller
         try {
             $game = $this->gameService->getGameByShort($short);
         } catch (ModelNotFoundException $exception) {
-            abort(404);
+            abort(SymfonyResponse::HTTP_NOT_FOUND);
         }
 
         return view('game::games', compact('game'));
