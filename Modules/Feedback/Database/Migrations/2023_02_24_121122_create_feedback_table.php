@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('email')->index();
 
             $table->text('text');
+            $table->string('relation')->default(\Modules\Feedback\Enums\FeedbackRelationEnum::Site->value);
 
             $table->unsignedBigInteger('user_id');
 

@@ -2,11 +2,10 @@
 
 namespace Modules\User\Http\Resources;
 
-use App\Models\User;
-use App\Modules\Notifications\Resources\NotificationResource;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\User\Entities\User;
 
 /** @mixin User */
 class UserResource extends JsonResource

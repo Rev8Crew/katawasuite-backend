@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\User\Services;
 
-use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Game\Entities\Game;
+use Modules\User\Entities\User;
 
 interface UserFavoriteGamesServiceInterface
 {

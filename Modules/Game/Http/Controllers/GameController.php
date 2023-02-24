@@ -4,7 +4,7 @@ namespace Modules\Game\Http\Controllers;
 
 use App\Models\Common\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Game\Entities\Game;
 use Modules\Game\Http\Requests\GameSyncRequest;
 use Modules\Game\Http\Resources\GameResource;

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Modules\User\Entities\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -52,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
             $user = $request->user();
 
             return Limit::perMinute(60)
-                ->by((string) ($user instanceof \App\Models\User ? $user->id : $request->ip()));
+                ->by((string) ($user instanceof User ? $user->id : $request->ip()));
         });
     }
 }

@@ -3,7 +3,7 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Models\Common\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\User\Http\Resources\UserSocialResource;
 use Modules\User\Services\UserServiceInterface;
 use Modules\User\Services\UserSocialServiceInterface;
@@ -11,7 +11,6 @@ use Modules\User\Services\UserSocialServiceInterface;
 class UserController extends Controller
 {
     public function __construct(
-        private readonly UserServiceInterface $userService,
         private readonly UserSocialServiceInterface $userSocialService
     ) {
     }

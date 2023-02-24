@@ -39,5 +39,5 @@ Route::get('/', static fn () => redirect()->route('app', ['any' => 'home']));
 /**
  * Ресурсы хранятся в public/app/*, поэтому без префикса app не будет работать
  */
-Route::domain(config('app.subdomains.app'))->get('/{any}', static fn () => redirect()->route('app', ['any' => 'home']));
-Route::domain(config('app.subdomains.app'))->get('/app/{any}', [CommonController::class, 'app'])->where('any', '^(?!api|web).*$')->name('app');
+Route::domain((string)config('app.subdomains.app'))->get('/{any}', static fn () => redirect()->route('app', ['any' => 'home']));
+Route::domain((string)config('app.subdomains.app'))->get('/app/{any}', [CommonController::class, 'app'])->where('any', '^(?!api|web).*$')->name('app');

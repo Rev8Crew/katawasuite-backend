@@ -15,16 +15,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\Achievement\Models\Achievement;
 use Modules\File\Entities\File;
 
-/**
- * @property int         $id
- * @property string      $name
- * @property string      $email
- * @property string      $password
- * @property Carbon|null $email_verified_at
- * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
@@ -90,7 +80,6 @@ class User extends Authenticatable
         $image = null;
 
         if (
-            ! $image &&
             $this->socials->count() === 1 &&
             $this->socials->first()->avatar !== null
         ) {

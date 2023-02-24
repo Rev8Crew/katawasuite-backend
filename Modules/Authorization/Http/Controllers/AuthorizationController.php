@@ -7,7 +7,7 @@ use App\Models\Common\Response;
 use Carbon\Carbon;
 use Crypt;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Authorization\Http\Requests\ChangeCredentialsRequest;
 use Modules\Authorization\Http\Requests\ChangePasswordRequest;
@@ -25,7 +25,7 @@ use Str;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
-class AuthorizationController extends Controller
+class AuthorizationController extends \App\Http\Controllers\Controller
 {
     public function __construct(
         private readonly AuthServiceInterface $authService,
@@ -147,7 +147,7 @@ class AuthorizationController extends Controller
         $response = Response::make();
         $user = $request->user();
 
-        if (! $this->userService->changePassword($user, $request->input('old'), $request->input('new_password'))) {
+        if (! $this->userService->changePassword($user, $request->input('new_password'))) {
             return $response->withError(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, trans('auth.oldPasswordConfirmation'));
         }
 

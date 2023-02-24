@@ -20,6 +20,7 @@ class TimeTrackerService implements TimeTrackerServiceInterface
             ->get();
 
         $time = 0;
+        /** @var TimeTracker $tracker */
         foreach ($trackers as $tracker) {
             $time += $tracker->end - $tracker->start;
         }

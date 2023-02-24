@@ -28,7 +28,7 @@ class Response implements Arrayable
 
     protected array $validationErrors = [];
 
-    protected int $executionTime = 0;
+    protected float $executionTime = 0;
 
     protected int $memoryUsageStart;
 

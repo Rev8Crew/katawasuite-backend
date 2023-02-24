@@ -7,7 +7,7 @@ namespace Modules\Feedback\Services;
 use Illuminate\Support\Facades\Mail;
 use Modules\Feedback\Entities\DTO\FeedbackCreateDto;
 use Modules\Feedback\Entities\Feedback;
-use Modules\Feedback\Mail\newFeedbackMail;
+use Modules\Feedback\Mail\NewFeedbackMail;
 
 class FeedbackService implements FeedbackServiceInterface
 {

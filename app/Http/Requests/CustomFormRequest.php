@@ -15,7 +15,7 @@ class CustomFormRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $response = Response::make();
-        throw (new ValidationException($validator, \response($response->validation($validator))))
+        throw (new ValidationException($validator, \response($response->validation($validator)->toArray())))
             ->errorBag($this->errorBag)
             ->redirectTo($this->getRedirectUrl());
     }

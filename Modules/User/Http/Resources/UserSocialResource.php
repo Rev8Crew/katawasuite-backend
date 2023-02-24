@@ -8,8 +8,6 @@ use Modules\User\Entities\UserSocial;
 /** @mixin UserSocial */
 class UserSocialResource extends JsonResource
 {
-    private string $_token = '';
-
     public function toArray($request): array
     {
         return [

@@ -9,7 +9,7 @@ class AdminEmailMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $user = \Auth::user();
+        $user = $request->user();
 
         if (! $user || in_array($user->email, config('app.admin_emails'), true)) {
             abort(403);

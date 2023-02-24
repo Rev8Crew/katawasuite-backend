@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker pint
+.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker pint ide-helper phpstan
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -84,6 +84,12 @@ command_prod:
 
 pint:
 	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c './vendor/bin/pint'
+
+ide-helper:
+	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c 'php artisan ide-helper:model -N'
+
+phpstan:
+	./vendor/bin/phpstan analyse
 
 clear_docker:
 	docker stop $(docker ps -a -q)

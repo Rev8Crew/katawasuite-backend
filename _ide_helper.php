@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.52.0.
+ * Generated for Laravel 9.52.4.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -9821,8 +9821,6 @@
                     /**
          * 
          *
-         * @param $delay
-         * @param $payload
          * @param null $queue
          * @param int $attempts
          * @return mixed 
@@ -9837,9 +9835,7 @@
                     /**
          * 
          *
-         * @param string $payload
          * @param null $queue
-         * @param array $options
          * @return mixed 
          * @throws AMQPProtocolChannelException
          * @static 
@@ -9852,7 +9848,6 @@
                     /**
          * 
          *
-         * @return \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\AbstractConnection 
          * @static 
          */ 
         public static function getConnection()
@@ -9863,7 +9858,6 @@
                     /**
          * 
          *
-         * @return \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\AMQPChannel 
          * @static 
          */ 
         public static function getChannel()
@@ -9874,7 +9868,6 @@
                     /**
          * Job class to use.
          *
-         * @return string 
          * @throws Throwable
          * @static 
          */ 
@@ -9887,7 +9880,6 @@
          * Gets a queue/destination, by default the queue option set on the connection.
          *
          * @param null $queue
-         * @return string 
          * @static 
          */ 
         public static function getQueue($queue = null)
@@ -9900,8 +9892,6 @@
          * 
          * Returns false when when the exchange is missing.
          *
-         * @param string $exchange
-         * @return bool 
          * @throws AMQPProtocolChannelException
          * @static 
          */ 
@@ -9913,40 +9903,29 @@
                     /**
          * Declare a exchange in rabbitMQ, when not already declared.
          *
-         * @param string $name
-         * @param string $type
-         * @param bool $durable
-         * @param bool $autoDelete
-         * @param array $arguments
-         * @return void 
          * @static 
          */ 
         public static function declareExchange($name, $type = 'direct', $durable = true, $autoDelete = false, $arguments = [])
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->declareExchange($name, $type, $durable, $autoDelete, $arguments);
+                        return $instance->declareExchange($name, $type, $durable, $autoDelete, $arguments);
         }
                     /**
          * Delete a exchange from rabbitMQ, only when present in RabbitMQ.
          *
-         * @param string $name
-         * @param bool $unused
-         * @return void 
          * @throws AMQPProtocolChannelException
          * @static 
          */ 
         public static function deleteExchange($name, $unused = false)
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->deleteExchange($name, $unused);
+                        return $instance->deleteExchange($name, $unused);
         }
                     /**
          * Checks if the given queue already present/defined in RabbitMQ.
          * 
          * Returns false when when the queue is missing.
          *
-         * @param string|null $name
-         * @return bool 
          * @throws AMQPProtocolChannelException
          * @static 
          */ 
@@ -9958,95 +9937,74 @@
                     /**
          * Declare a queue in rabbitMQ, when not already declared.
          *
-         * @param string $name
-         * @param bool $durable
-         * @param bool $autoDelete
-         * @param array $arguments
-         * @return void 
          * @static 
          */ 
         public static function declareQueue($name, $durable = true, $autoDelete = false, $arguments = [])
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->declareQueue($name, $durable, $autoDelete, $arguments);
+                        return $instance->declareQueue($name, $durable, $autoDelete, $arguments);
         }
                     /**
          * Delete a queue from rabbitMQ, only when present in RabbitMQ.
          *
-         * @param string $name
-         * @param bool $if_unused
-         * @param bool $if_empty
-         * @return void 
          * @throws AMQPProtocolChannelException
          * @static 
          */ 
         public static function deleteQueue($name, $if_unused = false, $if_empty = false)
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->deleteQueue($name, $if_unused, $if_empty);
+                        return $instance->deleteQueue($name, $if_unused, $if_empty);
         }
                     /**
          * Bind a queue to an exchange.
          *
-         * @param string $queue
-         * @param string $exchange
-         * @param string $routingKey
-         * @return void 
          * @static 
          */ 
         public static function bindQueue($queue, $exchange, $routingKey = '')
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->bindQueue($queue, $exchange, $routingKey);
+                        return $instance->bindQueue($queue, $exchange, $routingKey);
         }
                     /**
          * Purge the queue of messages.
          *
-         * @param string|null $queue
-         * @return void 
          * @static 
          */ 
         public static function purge($queue = null)
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->purge($queue);
+                        return $instance->purge($queue);
         }
                     /**
          * Acknowledge the message.
          *
-         * @param \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQJob $job
-         * @return void 
          * @static 
          */ 
         public static function ack($job)
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->ack($job);
+                        return $instance->ack($job);
         }
                     /**
          * Reject the message.
          *
-         * @param \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQJob $job
-         * @param bool $requeue
-         * @return void 
          * @static 
          */ 
         public static function reject($job, $requeue = false)
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->reject($job, $requeue);
+                        return $instance->reject($job, $requeue);
         }
                     /**
          * Close the connection to RabbitMQ.
          *
-         * @return void 
          * @throws Exception
          * @static 
          */ 
         public static function close()
         {
                         /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
-                        $instance->close();
+                        return $instance->close();
         }
                     /**
          * Get the backoff for an object-based queue handler.
@@ -17933,6 +17891,46 @@
         class Str {
          
     }
+            /**
+     * 
+     *
+     * @template TKey of array-key
+     * @template TValue
+     * @implements \ArrayAccess<TKey, TValue>
+     * @implements \Illuminate\Support\Enumerable<TKey, TValue>
+     */ 
+        class Collection {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @param string $description
+         * @static 
+         */ 
+        public static function ray($description = '')
+        {
+                        return \Illuminate\Support\Collection::ray($description);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Stringable {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @param string $description
+         * @static 
+         */ 
+        public static function ray($description = '')
+        {
+                        return \Illuminate\Support\Stringable::ray($description);
+        }
+         
+    }
      
 }
 
@@ -19542,6 +19540,60 @@
         {
                         return \Illuminate\Routing\Router::component($uri, $component, $data, $options);
         }
+         
+    }
+     
+}
+
+    namespace Illuminate\Testing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Http\Response
+     */ 
+        class TestResponse {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @static 
+         */ 
+        public static function ray()
+        {
+                        return \Illuminate\Testing\TestResponse::ray();
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Database\Query { 
+            /**
+     * 
+     *
+     */ 
+        class Builder {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @static 
+         */ 
+        public static function ray()
+        {
+                        return \Illuminate\Database\Query\Builder::ray();
+        }
+         
+    }
+     
+}
+
+    namespace Nwidart\Modules { 
+            /**
+     * 
+     *
+     */ 
+        class Collection {
          
     }
      
@@ -23355,6 +23407,17 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
                                 return $instance->macroCall($method, $parameters);
+            }
+             
+                /**
+             * 
+             *
+             * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+             * @static 
+             */ 
+            public static function ray()
+            {
+                                return \Illuminate\Database\Query\Builder::ray();
             }
                     }
             class Event extends \Illuminate\Support\Facades\Event {}

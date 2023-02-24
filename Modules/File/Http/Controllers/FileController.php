@@ -2,7 +2,7 @@
 
 namespace Modules\File\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class FileController extends Controller
 {

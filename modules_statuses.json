@@ -6,5 +6,7 @@
     "File": true,
     "Feedback": true,
     "Statistic": true,
-    "Achievement": true
+    "Achievement": true,
+    "Vk": true,
+    "Notifications": true
 }

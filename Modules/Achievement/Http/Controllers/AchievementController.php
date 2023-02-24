@@ -4,7 +4,7 @@ namespace Modules\Achievement\Http\Controllers;
 
 use App\Helpers\RequestHelper;
 use App\Models\Common\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Achievement\Http\Requests\CompleteByShortRequest;
 use Modules\Achievement\Http\Resources\AchievementResource;
 use Modules\Achievement\Services\AchievementServiceInterface;

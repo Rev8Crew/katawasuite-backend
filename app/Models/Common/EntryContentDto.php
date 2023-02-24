@@ -97,7 +97,7 @@ class EntryContentDto
 
     public function __construct(IncomingEntry $entry)
     {
-        $this->requestType = $entry->type ?? null;
+        $this->requestType = $entry->type;
         $this->responseStatus = $entry->content['response_status'] ?? null;
 
         $this->ip = $entry->content['ip'] ?? null;

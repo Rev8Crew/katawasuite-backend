@@ -11,6 +11,9 @@ enum RewardTypeEnum: string
     case Sound = 'sound';
     case Video = 'video';
 
+    /**
+     * @return string[]|array<string, string>
+     */
     public static function labels(): array
     {
         return [

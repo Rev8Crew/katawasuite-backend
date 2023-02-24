@@ -3,7 +3,7 @@
 namespace Modules\Feedback\Http\Controllers;
 
 use App\Models\Common\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Feedback\Entities\DTO\FeedbackCreateDto;
 use Modules\Feedback\Http\Requests\FeedbackSendRequest;
 use Modules\Feedback\Services\FeedbackServiceInterface;

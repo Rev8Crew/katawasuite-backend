@@ -2,7 +2,7 @@
 
 namespace Modules\Statistic\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class StatisticController extends Controller
 {
