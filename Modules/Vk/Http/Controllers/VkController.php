@@ -2,18 +2,15 @@
 
 namespace Modules\Vk\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Common\Response;
 use Carbon\Carbon;
 use Http;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class VkController extends Controller
 {
     /**
      *  Получаем все записи со стены сообщества в ВК (https://vk.com/katawa.suite)
-     * @return Response
      */
     public function wall(): Response
     {

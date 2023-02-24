@@ -23,11 +23,10 @@ class AchievementDatabaseSeeder extends Seeder
         AchievementServiceInterface $achievementService,
         RewardServiceInterface $rewardService,
         UserServiceInterface $userService
-    )
-    {
+    ) {
         Model::unguard();
 
-        $dto =new AchievementCreateDto(
+        $dto = new AchievementCreateDto(
             name: 'Я новенький!',
             description: 'Завершите хотя бы один рут в оригинальном моде Katawa Shoujo',
             short: 'ks_original_start',
@@ -37,7 +36,7 @@ class AchievementDatabaseSeeder extends Seeder
         $achievement = $achievementService->create($dto);
         $reward = $rewardService->create(
             rewardType: RewardTypeEnum::Text,
-            value: "Поздравляем, это оч круто, продолжайте в том же духе",
+            value: 'Поздравляем, это оч круто, продолжайте в том же духе',
             achievementId: $achievement->id,
         );
 

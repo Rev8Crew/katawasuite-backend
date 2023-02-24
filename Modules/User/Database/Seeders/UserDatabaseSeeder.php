@@ -18,7 +18,7 @@ class UserDatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
-            UserFavoriteGamesSeeder::class
+            UserFavoriteGamesSeeder::class,
         ]);
     }
 }

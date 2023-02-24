@@ -14,10 +14,10 @@
 use Modules\Notification\Http\Controllers\NotificationController;
 
 Route::prefix('notifications')->middleware('auth:sanctum')->name('notifications.')->group(function () {
-    Route::get('unsubscribe/{code}/{token}', [ NotificationController::class, 'unsubscribe'])->name('unsubscribe');
+    Route::get('unsubscribe/{code}/{token}', [NotificationController::class, 'unsubscribe'])->name('unsubscribe');
 
-    Route::post('get-releases-by-user', [ NotificationController::class, 'getReleasesByUser'])->name('get-releases-by-user');
+    Route::post('get-releases-by-user', [NotificationController::class, 'getReleasesByUser'])->name('get-releases-by-user');
 
-    Route::post('subscribe-to-all', [ NotificationController::class, 'subscribeToAll'])->name('subscribe-to-all');
-    Route::post('unsubscribe-to-all', [ NotificationController::class, 'unsubscribeToAll'])->name('unsubscribe-to-all');
+    Route::post('subscribe-to-all', [NotificationController::class, 'subscribeToAll'])->name('subscribe-to-all');
+    Route::post('unsubscribe-to-all', [NotificationController::class, 'unsubscribeToAll'])->name('unsubscribe-to-all');
 });

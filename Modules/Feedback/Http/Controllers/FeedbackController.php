@@ -2,8 +2,8 @@
 
 namespace Modules\Feedback\Http\Controllers;
 
-use App\Models\Common\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Common\Response;
 use Modules\Feedback\Entities\DTO\FeedbackCreateDto;
 use Modules\Feedback\Http\Requests\FeedbackSendRequest;
 use Modules\Feedback\Services\FeedbackServiceInterface;

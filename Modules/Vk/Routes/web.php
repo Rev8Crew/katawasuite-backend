@@ -13,6 +13,6 @@
 
 use Modules\Vk\Http\Controllers\VkController;
 
-Route::prefix('vk')->group(function() {
+Route::prefix('vk')->group(function () {
     Route::any('wall', [VkController::class, 'wall']);
 });

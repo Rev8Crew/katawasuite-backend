@@ -4,7 +4,6 @@ namespace Modules\User\Entities;
 
 use App\Enums\ActiveStatusEnum;
 use App\Helpers\ImageHelper;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Achievement\Models\Achievement;
 use Modules\File\Entities\File;
+use Modules\Notification\Models\Notification;
 
 /**
  * Modules\User\Entities\User
@@ -38,6 +38,7 @@ use Modules\File\Entities\File;
  * @property-read int|null $socials_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -51,10 +52,7 @@ use Modules\File\Entities\File;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Achievement> $achievements
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Entities\UserSocial> $socials
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -115,6 +113,11 @@ class User extends Authenticatable
     public function imageFile(): BelongsTo
     {
         return $this->belongsTo(File::class, 'image_id');
+    }
+
+    public function notifications(): BelongsToMany
+    {
+        return  $this->belongsToMany(Notification::class)->withTimestamps();
     }
 
     public function getImageAttribute(): string

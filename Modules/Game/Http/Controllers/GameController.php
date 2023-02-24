@@ -2,9 +2,9 @@
 
 namespace Modules\Game\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Common\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Controllers\Controller;
 use Modules\Game\Entities\Game;
 use Modules\Game\Http\Requests\GameSyncRequest;
 use Modules\Game\Http\Resources\GameResource;

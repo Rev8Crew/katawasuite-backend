@@ -5,6 +5,7 @@ namespace Modules\User\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Notification\Http\Resources\NotificationResource;
 use Modules\User\Entities\User;
 
 /** @mixin User */
@@ -24,10 +25,10 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i:s'),
-            'token' => $this->when((bool)$this->_token, $this->_token),
+            'token' => $this->when((bool) $this->_token, $this->_token),
             'image' => $this->image,
 
-            //'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
+            'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
 
             'ach_created' => $this->whenPivotLoaded('achievement_user', function () {
                 return $this->pivot->created_at->translatedFormat('d F Y');

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GameDatabaseSeeder::class,
             UserDatabaseSeeder::class,
-            AchievementDatabaseSeeder::class
+            AchievementDatabaseSeeder::class,
         ]);
     }
 }

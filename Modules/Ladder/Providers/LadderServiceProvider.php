@@ -3,19 +3,18 @@
 namespace Modules\Ladder\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Modules\Ladder\Services\LadderService;
 use Modules\Ladder\Services\LadderServiceInterface;
 
 class LadderServiceProvider extends ServiceProvider
 {
     /**
-     * @var string $moduleName
+     * @var string
      */
     protected $moduleName = 'Ladder';
 
     /**
-     * @var string $moduleNameLower
+     * @var string
      */
     protected $moduleNameLower = 'ladder';
 
@@ -49,7 +48,7 @@ class LadderServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
+        $langPath = resource_path('lang/modules/'.$this->moduleNameLower);
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);

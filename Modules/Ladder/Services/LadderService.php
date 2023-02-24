@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Ladder\Services;
@@ -15,22 +16,19 @@ use Modules\Statistic\Services\TimeTrackerServiceInterface;
 
 class LadderService implements LadderServiceInterface
 {
-
     public function __construct(
         private readonly AchievementServiceInterface $achievementService,
         private readonly TimeTrackerServiceInterface $timeTrackerService
-    )
-    {
+    ) {
     }
 
     public function getNewYearLadder2022(): Collection
     {
         return $this->achievementService->getUsersByAchievements()->map(function (\stdClass $row) {
-            return (array)$row;
+            return (array) $row;
         })->map(function (array $row) {
-            return array_merge($row, ['time' => $this->timeTrackerService->getTimeSpentByUserForGame($row["user_id"])]);
+            return array_merge($row, ['time' => $this->timeTrackerService->getTimeSpentByUserForGame($row['user_id'])]);
         });
-
     }
 
     public function getNewYearStats2022(): Collection
@@ -53,7 +51,7 @@ class LadderService implements LadderServiceInterface
                 'users.name as user_name',
                 'games.name as game_name',
                 'games.id as game_id',
-                DB::raw('end-start as difference')
+                DB::raw('end-start as difference'),
             ])
             ->from('time_trackers')
             ->join('users', 'users.id', '=', 'time_trackers.user_id')
@@ -61,8 +59,8 @@ class LadderService implements LadderServiceInterface
             ->where('end', '>', 0)
             ->orderByDesc('difference')
             ->groupBy(['users.name', 'games.name', 'games.id', 'start', 'end'])->limit(10)->get()
-            ->map(fn(\stdClass $item) => array_merge((array)$item, [
-                'difference' => CarbonInterval::seconds($item->difference)->cascade()->forHumans()
+            ->map(fn (\stdClass $item) => array_merge((array) $item, [
+                'difference' => CarbonInterval::seconds($item->difference)->cascade()->forHumans(),
             ]));
 
         return collect([
@@ -88,7 +86,7 @@ class LadderService implements LadderServiceInterface
             ->select([
                 'games.id as game_id',
                 'games.name as game_name',
-                \DB::raw('count(*) as counted')
+                \DB::raw('count(*) as counted'),
             ])
             ->from('user_statistics')
             ->join('games', 'user_statistics.game_id', '=', 'games.id')

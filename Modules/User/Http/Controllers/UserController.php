@@ -2,10 +2,9 @@
 
 namespace Modules\User\Http\Controllers;
 
-use App\Models\Common\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Common\Response;
 use Modules\User\Http\Resources\UserSocialResource;
-use Modules\User\Services\UserServiceInterface;
 use Modules\User\Services\UserSocialServiceInterface;
 
 class UserController extends Controller

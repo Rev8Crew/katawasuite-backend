@@ -2,7 +2,6 @@
 
 namespace Modules\User\Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Modules\Game\Services\GameServiceInterface;
 use Modules\User\Entities\UserFavoriteGames;
@@ -18,8 +17,8 @@ class UserFavoriteGamesSeeder extends Seeder
     public function run(UserServiceInterface $userService, GameServiceInterface $gameService)
     {
         UserFavoriteGames::create([
-           'user_id' => $userService->getUserByEmail(config('app.admin_default_email'))->id,
-           'game_id' => $gameService->getGameByShort('ks')->id
+            'user_id' => $userService->getUserByEmail(config('app.admin_default_email'))->id,
+            'game_id' => $gameService->getGameByShort('ks')->id,
         ]);
     }
 }

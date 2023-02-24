@@ -7,7 +7,6 @@ use App\Models\Common\Response;
 use Carbon\Carbon;
 use Crypt;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Authorization\Http\Requests\ChangeCredentialsRequest;
 use Modules\Authorization\Http\Requests\ChangePasswordRequest;
@@ -112,7 +111,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         $response = Response::make();
 
         $user = request()->user();
-        //$user->load(['notifications']);
+        $user->load(['notifications']);
 
         $resource = UserResource::make($user);
 
@@ -233,7 +232,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         /** @var \Laravel\Socialite\Two\User $authUser */
         $authUser = Socialite::driver($authProvider->value)->user();
 
-        if (!($authUser instanceof \Laravel\Socialite\Two\User)) {
+        if (! ($authUser instanceof \Laravel\Socialite\Two\User)) {
             abort(SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR, trans('authorization::authorization.oauth_v2'));
         }
 

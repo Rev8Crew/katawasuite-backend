@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Notification\Services;
@@ -12,7 +13,6 @@ use Modules\User\Entities\User;
 
 class NotificationReleaseService implements NotificationReleaseServiceInterface
 {
-
     public function release(NotificationRelease $release): void
     {
         $release->load('notification.users');

@@ -20,8 +20,7 @@ class sendNotificationMail extends Mailable implements ShouldQueue
     public function __construct(
         public User $user,
         public NotificationRelease $release
-    )
-    {
+    ) {
     }
 
     public function envelope(): Envelope

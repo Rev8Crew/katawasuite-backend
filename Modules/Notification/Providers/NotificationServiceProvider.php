@@ -3,7 +3,6 @@
 namespace Modules\Notification\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Modules\Notification\Services\NotificationReleaseService;
 use Modules\Notification\Services\NotificationReleaseServiceInterface;
 use Modules\Notification\Services\NotificationService;
@@ -12,12 +11,12 @@ use Modules\Notification\Services\NotificationServiceInterface;
 class NotificationServiceProvider extends ServiceProvider
 {
     /**
-     * @var string $moduleName
+     * @var string
      */
     protected $moduleName = 'Notification';
 
     /**
-     * @var string $moduleNameLower
+     * @var string
      */
     protected $moduleNameLower = 'notifications';
 
@@ -52,7 +51,7 @@ class NotificationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
+        $langPath = resource_path('lang/modules/'.$this->moduleNameLower);
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);

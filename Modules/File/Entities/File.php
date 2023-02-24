@@ -20,6 +20,7 @@ use Modules\User\Entities\User;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|File newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|File newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|File query()
@@ -32,6 +33,7 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|File whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|File whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|File whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class File extends Model

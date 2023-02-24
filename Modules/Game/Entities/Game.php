@@ -32,6 +32,7 @@ use Modules\File\Entities\File;
  * @property-read string $thumbnail_high
  * @property-read string $thumbnail_small
  * @property-read File|null $imageFile
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Game active()
  * @method static \Illuminate\Database\Eloquent\Builder|Game newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Game newQuery()
@@ -49,6 +50,7 @@ use Modules\File\Entities\File;
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereShortDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereWidth($value)
+ *
  * @mixin \Eloquent
  */
 class Game extends Model

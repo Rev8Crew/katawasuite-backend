@@ -3,17 +3,16 @@
 namespace Modules\Vk\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class VkServiceProvider extends ServiceProvider
 {
     /**
-     * @var string $moduleName
+     * @var string
      */
     protected $moduleName = 'Vk';
 
     /**
-     * @var string $moduleNameLower
+     * @var string
      */
     protected $moduleNameLower = 'vk';
 
@@ -45,7 +44,7 @@ class VkServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
+        $langPath = resource_path('lang/modules/'.$this->moduleNameLower);
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);

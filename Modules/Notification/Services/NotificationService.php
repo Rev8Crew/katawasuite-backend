@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Notification\Services;
@@ -11,7 +12,6 @@ use Webmozart\Assert\Assert;
 
 class NotificationService implements NotificationServiceInterface
 {
-
     public function getAll(): Collection
     {
         return Notification::where('is_active', ActiveStatusEnum::Active->value)->get();
