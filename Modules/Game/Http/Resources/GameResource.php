@@ -17,7 +17,7 @@ class GameResource extends JsonResource
             'dir' => $this->dir,
             'description' => $this->description,
             'short_description' => $this->short_description,
-            'team_id' => $this->team_id,
+
             'parent_id' => $this->parent_id,
 
             'width' => $this->width,
@@ -25,7 +25,6 @@ class GameResource extends JsonResource
 
             'restriction' => $this->restriction,
 
-            'icon_s' => $this->icon_small,
             'icon_b' => $this->icon_high,
 
             'thumb_s' => $this->thumbnail_small,

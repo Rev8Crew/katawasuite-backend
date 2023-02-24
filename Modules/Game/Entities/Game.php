@@ -10,6 +10,47 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Modules\File\Entities\File;
 
+/**
+ * Modules\Game\Entities\Game
+ *
+ * @property int $id
+ * @property int $parent_id
+ * @property string|null $description
+ * @property string|null $short_description
+ * @property string $name
+ * @property string $short
+ * @property string|null $width
+ * @property string|null $height
+ * @property int $is_active
+ * @property int|null $image_id
+ * @property int|null $restriction
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $dir
+ * @property-read string $icon_high
+ * @property-read string|null $image
+ * @property-read string $thumbnail_high
+ * @property-read string $thumbnail_small
+ * @property-read File|null $imageFile
+ * @method static \Illuminate\Database\Eloquent\Builder|Game active()
+ * @method static \Illuminate\Database\Eloquent\Builder|Game newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Game newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Game query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereHeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereRestriction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereShortDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereWidth($value)
+ * @mixin \Eloquent
+ */
 class Game extends Model
 {
     use ActiveScope;

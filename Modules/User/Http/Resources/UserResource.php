@@ -24,7 +24,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i:s'),
-            'token' => $this->when($this->_token, $this->_token),
+            'token' => $this->when((bool)$this->_token, $this->_token),
             'image' => $this->image,
 
             //'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),

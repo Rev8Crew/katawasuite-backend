@@ -233,7 +233,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         /** @var \Laravel\Socialite\Two\User $authUser */
         $authUser = Socialite::driver($authProvider->value)->user();
 
-        if ($authUser instanceof \Laravel\Socialite\Two\User === false) {
+        if (!($authUser instanceof \Laravel\Socialite\Two\User)) {
             abort(500, trans('authorization::authorization.oauth_v2'));
         }
 
