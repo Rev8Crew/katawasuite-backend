@@ -1,0 +1,11 @@
+{
+    "name": "Ladder",
+    "alias": "ladder",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Ladder\\Providers\\LadderServiceProvider"
+    ],
+    "files": []
+}
