@@ -31,7 +31,7 @@ class GameResource extends JsonResource
             'thumb_b' => $this->thumbnail_high,
 
             'image' => $this->image,
-            'url' => route('game.play', ['short' => $this->short]).'#'.$this->short,
+            'url' => route('games.play', ['short' => $this->short]).'#'.$this->short,
             'is_active' => $this->is_active,
 
             'created_at' => $this->created_at,

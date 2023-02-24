@@ -34,7 +34,6 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
  *
- * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $users
  *
  * @mixin \Eloquent
  */

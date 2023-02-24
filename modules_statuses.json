@@ -8,6 +8,6 @@
     "Statistic": true,
     "Achievement": true,
     "Vk": true,
-    "Notifications": true,
+    "Notification": true,
     "Ladder": true
 }

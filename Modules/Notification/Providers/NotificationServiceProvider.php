@@ -18,7 +18,7 @@ class NotificationServiceProvider extends ServiceProvider
     /**
      * @var string
      */
-    protected $moduleNameLower = 'notifications';
+    protected $moduleNameLower = 'notification';
 
     /**
      * Boot the application events.
