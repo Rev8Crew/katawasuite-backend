@@ -3,8 +3,6 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Models\Common\Response;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\User\Http\Resources\UserSocialResource;
 use Modules\User\Services\UserServiceInterface;
@@ -15,7 +13,8 @@ class UserController extends Controller
     public function __construct(
         private readonly UserServiceInterface $userService,
         private readonly UserSocialServiceInterface $userSocialService
-    ) {}
+    ) {
+    }
 
     public function getSocialProviders(): Response
     {

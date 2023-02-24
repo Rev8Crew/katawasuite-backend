@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\User\Enums;
@@ -9,14 +10,13 @@ enum AuthProviderEnum: string
     case Vk = 'vkontakte';
     case Telegram = 'telegram';
 
-
     /**
      * @return AuthProviderEnum[]
      */
     public static function withNameAttribute(): array
     {
         return [
-            self::Vk
+            self::Vk,
         ];
     }
 
@@ -27,13 +27,13 @@ enum AuthProviderEnum: string
                 'id' => self::Google,
                 'label' => trans('authorization::authorization.provider_google'),
                 'url' => route('auth.providers.redirect', ['provider' => 'google']),
-                'icon' => 'google'
+                'icon' => 'google',
             ],
             [
                 'id' => self::Vk,
                 'label' => trans('authorization::authorization.provider_vk'),
                 'url' => route('auth.providers.redirect', ['provider' => 'vkontakte']),
-                'icon' => 'vk'
+                'icon' => 'vk',
             ],
             /*            [
                             'id' => self::TELEGRAM,

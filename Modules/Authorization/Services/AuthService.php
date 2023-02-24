@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Authorization\Services;
@@ -11,7 +12,6 @@ use Modules\Authorization\Mail\ResetPasswordMail;
 use Modules\User\Entities\DTO\RegisterDto;
 use Modules\User\Entities\DTO\RegisterSocialDto;
 use Modules\User\Entities\User;
-use Modules\User\Entities\UserSocial;
 use Modules\User\Enums\AuthProviderEnum;
 use Modules\User\Services\UserServiceInterface;
 use Modules\User\Services\UserSocialServiceInterface;
@@ -21,7 +21,8 @@ class AuthService implements AuthServiceInterface
     public function __construct(
         private readonly UserServiceInterface $userService,
         private readonly UserSocialServiceInterface $socialService
-    ) {}
+    ) {
+    }
 
     public function sendActivationEmail(User $user, string $token): void
     {
@@ -37,13 +38,13 @@ class AuthService implements AuthServiceInterface
 
     public function socialAuth(SocialiteUser $socialiteUser, AuthProviderEnum $provider): User
     {
-        $name = $this->socialService->canUseNameAttribute($provider) || !$socialiteUser->getNickname() ? $socialiteUser->getName() : $socialiteUser->getNickname();
+        $name = $this->socialService->canUseNameAttribute($provider) || ! $socialiteUser->getNickname() ? $socialiteUser->getName() : $socialiteUser->getNickname();
         $email = $socialiteUser->getEmail();
 
         $existSocial = $this->socialService->findByProvider($provider, $socialiteUser->id);
 
         if ($existSocial === null) {
-            $registerDto = new RegisterDto( $name, $email, null, null, ActiveStatusEnum::Active, true);
+            $registerDto = new RegisterDto($name, $email, null, null, ActiveStatusEnum::Active, true);
 
             $existSocial = $this->socialService->create(
                 new RegisterSocialDto(
@@ -60,7 +61,6 @@ class AuthService implements AuthServiceInterface
             if ($user === null) {
                 $user = $this->userService->create($registerDto);
             }
-
         } else {
             if ($socialiteUser->getAvatar()) {
                 $this->socialService->changeAvatar($existSocial, $socialiteUser->getAvatar());
@@ -75,6 +75,7 @@ class AuthService implements AuthServiceInterface
         }
 
         \Auth::login($user);
+
         return $user;
     }
 }

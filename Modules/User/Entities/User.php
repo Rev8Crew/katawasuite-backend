@@ -5,11 +5,15 @@ namespace Modules\User\Entities;
 use App\Enums\ActiveStatusEnum;
 use App\Helpers\ImageHelper;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Achievement\Models\Achievement;
+use Modules\File\Entities\File;
 
 /**
  * @property int         $id
@@ -26,6 +30,9 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens;
 
     public const TABLE = 'users';
+
+    protected $table = self::TABLE;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,18 +67,30 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'is_active' => ActiveStatusEnum::Active->value
+        'is_active' => ActiveStatusEnum::Active->value,
     ];
 
-    /**
-     * Return URL of the image
-     * @return string
-     */
-    public function getImageAttribute() : string {
+    public function socials(): HasMany
+    {
+        return $this->hasMany(UserSocial::class, 'user_id', 'id');
+    }
+
+    public function achievements(): BelongsToMany
+    {
+        return $this->belongsToMany(Achievement::class, 'achievement_user')->withTimestamps();
+    }
+
+    public function imageFile(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'image_id');
+    }
+
+    public function getImageAttribute(): string
+    {
         $image = null;
 
         if (
-            !$image &&
+            ! $image &&
             $this->socials->count() === 1 &&
             $this->socials->first()->avatar !== null
         ) {
@@ -79,10 +98,5 @@ class User extends Authenticatable
         }
 
         return $image ?? ImageHelper::getAvatarImage($this->name);
-    }
-
-    public function socials(): HasMany
-    {
-        return $this->hasMany(UserSocial::class, 'user_id', 'id');
     }
 }

@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker
+.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker pint
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -81,6 +81,9 @@ command:
 
 command_prod:
 	docker-compose -f docker-compose.prod.yml exec web /bin/sh -c '$(filter-out $@,$(MAKECMDGOALS))'
+
+pint:
+	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c './vendor/bin/pint'
 
 clear_docker:
 	docker stop $(docker ps -a -q)

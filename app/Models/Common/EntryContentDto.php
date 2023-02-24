@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models\Common;
@@ -7,7 +8,6 @@ use Laravel\Telescope\EntryType;
 use Laravel\Telescope\IncomingEntry;
 
 /**
- *
  * [.
 {
 "Laravel\\Telescope\\IncomingEntry": {
@@ -110,7 +110,7 @@ class EntryContentDto
         $this->payload = $entry->content['payload'] ?? null;
         $this->response = $entry->content['response'] ?? null;
 
-        $this->duration = isset($entry->content['duration']) ? (int)$entry->content['duration'] : null;
+        $this->duration = isset($entry->content['duration']) ? (int) $entry->content['duration'] : null;
     }
 
     public function isRequest(): bool

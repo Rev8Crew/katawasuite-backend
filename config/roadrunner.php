@@ -1,9 +1,9 @@
 <?php
 
-use Spiral\RoadRunnerLaravel\Events;
-use Spiral\RoadRunnerLaravel\Defaults;
-use Spiral\RoadRunnerLaravel\Listeners;
 use Spiral\RoadRunner\Environment\Mode;
+use Spiral\RoadRunnerLaravel\Defaults;
+use Spiral\RoadRunnerLaravel\Events;
+use Spiral\RoadRunnerLaravel\Listeners;
 
 return [
     /*

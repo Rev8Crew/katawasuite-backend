@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Game\Services;
@@ -13,7 +14,7 @@ interface GameServiceInterface
     /**
      * @return Game[]|Collection
      */
-    public function getAllGames() : Collection;
+    public function getAllGames(): Collection;
 
     public function getGameByShort(string $short): Game;
 

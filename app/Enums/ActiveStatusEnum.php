@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Enums;
@@ -12,7 +13,7 @@ enum ActiveStatusEnum: int
     {
         return [
             self::Active->value => 'success',
-            self::Inactive->value => 'danger'
+            self::Inactive->value => 'danger',
         ];
     }
 
@@ -20,7 +21,7 @@ enum ActiveStatusEnum: int
     {
         return [
             self::Active->value => 'Активно',
-            self::Inactive->value => 'Неактивно'
+            self::Inactive->value => 'Неактивно',
         ];
     }
 }

@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class.'@handle',
             \SocialiteProviders\Telegram\TelegramExtendSocialite::class.'@handle',
-        ]
+        ],
     ];
 
     /**
@@ -37,8 +37,6 @@ class EventServiceProvider extends ServiceProvider
 
     /**
      * Determine if events and listeners should be automatically discovered.
-     *
-     * @return bool
      */
     public function shouldDiscoverEvents(): bool
     {

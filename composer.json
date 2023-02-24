@@ -32,15 +32,16 @@
         "vluzrmos/language-detector": "^2.3"
     },
     "require-dev": {
-      "roave/security-advisories": "dev-latest",
-      "barryvdh/laravel-ide-helper": "^2.13",
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.21.0",
         "laravel/envoy": "^2.8",
+        "laravel/pint": "^1.6",
         "laravel/sail": "^1.19.0",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^6.4",
         "phpstan/phpstan": "^1.9.14",
         "phpunit/phpunit": "^9.5.28",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^1.6"
     },
     "autoload": {

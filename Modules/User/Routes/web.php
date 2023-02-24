@@ -12,7 +12,15 @@
 */
 
 use Modules\User\Http\Controllers\UserController;
+use Modules\User\Http\Controllers\UserFavoriteGamesController;
 
 Route::prefix('users')->middleware('auth:sanctum')->name('users.')->group(function () {
     Route::post('/get-social-providers', [UserController::class, 'getSocialProviders']);
+
+    Route::prefix('favorites')->name('favorites.')->group(function () {
+        Route::post('add-to-favorites', [UserFavoriteGamesController::class, 'addToFavorites'])->name('add');
+        Route::post('remove-from-favorites', [UserFavoriteGamesController::class, 'removeFromFavorites'])->name('remove');
+
+        Route::post('/', [UserFavoriteGamesController::class, 'getUserFavorites'])->name('all');
+    });
 });

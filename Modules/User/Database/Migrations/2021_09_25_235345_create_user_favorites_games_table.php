@@ -8,7 +8,7 @@ class CreateUserFavoritesGamesTable extends Migration
 {
     public function up()
     {
-        Schema::create(\Modules\User\Entities\UserFavoritesGame::TABLE, function (Blueprint $table) {
+        Schema::create(\Modules\User\Entities\UserFavoriteGames::TABLE, function (Blueprint $table) {
             $table->bigIncrements('id');
 
             //
@@ -16,7 +16,7 @@ class CreateUserFavoritesGamesTable extends Migration
             $table->unsignedBigInteger('game_id');
 
             $table->foreign('user_id')->references('id')->on(\Modules\User\Entities\User::TABLE)->onDelete('CASCADE');
-            $table->foreign('game_id')->references('id')->on(\Modules\Game\Models\Game::TABLE)->onDelete('CASCADE');
+            $table->foreign('game_id')->references('id')->on(\Modules\Game\Entities\Game::TABLE)->onDelete('CASCADE');
 
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ class CreateUserFavoritesGamesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(\Modules\User\Entities\UserFavoritesGame::TABLE);
+        Schema::dropIfExists(\Modules\User\Entities\UserFavoriteGames::TABLE);
     }
 }

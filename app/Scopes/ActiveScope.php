@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait ActiveScope
 {
-    public function scopeActive(Builder $query) {
+    public function scopeActive(Builder $query)
+    {
         $query->where('is_active', ActiveStatusEnum::Active->value);
     }
 }

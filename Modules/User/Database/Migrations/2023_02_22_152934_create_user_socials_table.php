@@ -4,10 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
-        Schema::create('user_socials', function (Blueprint $table) {
+        Schema::create(\Modules\User\Entities\UserSocial::TABLE, function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->unsignedBigInteger('user_id')->nullable();
@@ -26,6 +27,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('user_socials');
+        Schema::dropIfExists(\Modules\User\Entities\UserSocial::TABLE);
     }
 };

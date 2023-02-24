@@ -20,11 +20,6 @@ Route::prefix('games')->middleware('auth:sanctum')->name('games.')->group(functi
 
     Route::post('sync', [GameController::class, 'sync'])->name('sync');
 
-    Route::post('add-to-favorites', [GameController::class, 'addToFavorites'])->name('add_to_favorites');
-    Route::post('remove-from-favorites', [GameController::class, 'removeFromFavorites'])->name('remove_from_favorites');
-
-    Route::post('favorites', [GameController::class, 'getUserFavorites'])->name('favorites');
-
     // В самом конце
     Route::post('/{short}', [GameController::class, 'show'])->name('show');
 });

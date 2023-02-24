@@ -12,9 +12,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UserResource extends JsonResource
 {
     private string $_token = '';
+
     /**
-     * @param Request $request
-     * @return array
+     * @param  Request  $request
      */
     public function toArray($request): array
     {
@@ -25,14 +25,14 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i:s'),
-            'token' => $this->when( $this->_token, $this->_token),
+            'token' => $this->when($this->_token, $this->_token),
             'image' => $this->image,
 
             //'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
 
             'ach_created' => $this->whenPivotLoaded('achievement_user', function () {
                 return $this->pivot->created_at->translatedFormat('d F Y');
-            })
+            }),
         ];
     }
 

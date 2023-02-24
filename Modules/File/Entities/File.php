@@ -11,6 +11,8 @@ class File extends Model
 {
     public const TABLE = 'files';
 
+    protected $table = self::TABLE;
+
     protected $fillable = [
         'path',
         'url',
@@ -20,7 +22,7 @@ class File extends Model
     ];
 
     protected $attributes = [
-        'is_active' => ActiveStatusEnum::Active->value
+        'is_active' => ActiveStatusEnum::Active->value,
     ];
 
     public function user(): BelongsTo

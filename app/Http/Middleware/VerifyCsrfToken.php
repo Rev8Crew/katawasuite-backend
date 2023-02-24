@@ -14,6 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'vnds/json',
         'vnds/convert/*',
-        'web/vk/*'
+        'web/vk/*',
     ];
 }

@@ -10,14 +10,44 @@
  */
 
 
+namespace Modules\Feedback\Entities{
+/**
+ * Modules\Feedback\Entities\Feedback
+ *
+ * @property-read \Modules\User\Entities\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback query()
+ */
+	class Feedback extends \Eloquent {}
+}
+
 namespace Modules\File\Entities{
 /**
  * Modules\File\Entities\File
  *
+ * @property int $id
+ * @property string|null $path
+ * @property string|null $url
+ * @property string|null $name
+ * @property string|null $mime
+ * @property int $is_active
+ * @property int|null $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Modules\User\Entities\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|File newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|File newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|File query()
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereMime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|File whereUserId($value)
  */
 	class File extends \Eloquent {}
 }
@@ -26,10 +56,22 @@ namespace Modules\Game\Entities{
 /**
  * Modules\Game\Entities\Game
  *
+ * @property int $id
+ * @property int $parent_id
+ * @property string|null $description
+ * @property string|null $short_description
+ * @property string $name
+ * @property string $short
+ * @property string|null $width
+ * @property string|null $height
+ * @property int $is_active
+ * @property int|null $image_id
+ * @property int|null $restriction
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $dir
  * @property-read string $icon_high
  * @property-read string|null $image
- * @property-read string $name
  * @property-read string $thumbnail_high
  * @property-read string $thumbnail_small
  * @property-read \Modules\File\Entities\File|null $imageFile
@@ -37,8 +79,34 @@ namespace Modules\Game\Entities{
  * @method static \Illuminate\Database\Eloquent\Builder|Game newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Game newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Game query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereHeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereRestriction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereShortDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Game whereWidth($value)
  */
 	class Game extends \Eloquent {}
+}
+
+namespace Modules\Statistic\Models{
+/**
+ * Modules\Statistic\Models\TimeTracker
+ *
+ * @property-read \Modules\Game\Entities\Game|null $game
+ * @property-read \Modules\User\Entities\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker query()
+ */
+	class TimeTracker extends \Eloquent {}
 }
 
 namespace Modules\User\Entities{
@@ -81,26 +149,40 @@ namespace Modules\User\Entities{
 
 namespace Modules\User\Entities{
 /**
- * Modules\User\Entities\UserFavoritesGame
+ * Modules\User\Entities\UserFavoriteGames
  *
  * @property-read \Modules\Game\Entities\Game|null $game
- * @property-read \Modules\User\Entities\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|UserFavoritesGame newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserFavoritesGame newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserFavoritesGame query()
+ * @property-read \Modules\User\Entities\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames query()
  */
-	class UserFavoritesGame extends \Eloquent {}
+	class UserFavoriteGames extends \Eloquent {}
 }
 
 namespace Modules\User\Entities{
 /**
  * Modules\User\Entities\UserGameSave
  *
- * @property-read \Modules\Game\Entities\Game|null $game
- * @property-read \Modules\User\Entities\User|null $user
+ * @property int $id
+ * @property array|null $data
+ * @property int|null $slot
+ * @property int $user_id
+ * @property int $game_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Modules\Game\Entities\Game $game
+ * @property-read \Modules\User\Entities\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereGameId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereSlot($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereUserId($value)
  */
 	class UserGameSave extends \Eloquent {}
 }

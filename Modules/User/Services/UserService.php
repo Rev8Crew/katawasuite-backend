@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\User\Services;
@@ -10,7 +11,6 @@ use Modules\User\Entities\User;
 
 class UserService implements UserServiceInterface
 {
-
     public function create(RegisterDto $dto): User
     {
         $array = [
@@ -39,7 +39,8 @@ class UserService implements UserServiceInterface
 
     public function changePassword(User $user, string $password): bool
     {
-        $user->password =Hash::make($password);
+        $user->password = Hash::make($password);
+
         return $user->save();
     }
 
@@ -59,6 +60,7 @@ class UserService implements UserServiceInterface
         }
 
         $user->fill(['email' => $email, 'email_verified_at' => null])->save();
+
         return true;
     }
 
@@ -69,6 +71,7 @@ class UserService implements UserServiceInterface
         }
 
         $user->update(['name' => $name]);
+
         return true;
     }
 }

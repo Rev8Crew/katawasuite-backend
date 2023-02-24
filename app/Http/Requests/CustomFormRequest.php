@@ -10,12 +10,11 @@ use Illuminate\Validation\ValidationException;
 class CustomFormRequest extends FormRequest
 {
     /**
-     * @param Validator $validator
      * @return Response|void
      */
     protected function failedValidation(Validator $validator)
     {
-        $response = new Response();
+        $response = Response::make();
         throw (new ValidationException($validator, \response($response->validation($validator))))
             ->errorBag($this->errorBag)
             ->redirectTo($this->getRedirectUrl());

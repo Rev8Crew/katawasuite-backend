@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Game\Services;
@@ -11,7 +12,6 @@ use Modules\User\Entities\UserGameSave;
 
 class GameService implements GameServiceInterface
 {
-
     public function getAllGames(): Collection
     {
         return Game::active()->get();
@@ -31,7 +31,7 @@ class GameService implements GameServiceInterface
     {
         $saves = collect(json_decode($data, true, 512, JSON_THROW_ON_ERROR));
 
-        $saves = $saves->map( function ($item) use ($game, $user) {
+        $saves = $saves->map(function ($item) use ($game, $user) {
             return [
                 'data' => json_encode($item['data'], JSON_UNESCAPED_UNICODE),
                 'slot' => $item['_slot'],

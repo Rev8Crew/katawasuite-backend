@@ -5,6 +5,7 @@ namespace Modules\Authorization\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -18,12 +19,14 @@ class ActivationEmailMail extends Mailable implements ShouldQueue
     public function __construct(
         public User $user,
         public string $token
-    ) {}
+    ) {
+    }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: trans('authorization::authorization.activation_email_subject'),
+            to: new Address($this->user->email, $this->user->name),
+            subject: trans('authorization::authorization.activation_email_subject')
         );
     }
 
@@ -34,7 +37,7 @@ class ActivationEmailMail extends Mailable implements ShouldQueue
         return new Content(
             view: 'authorization::emails.activation-email',
             with: [
-                'url' => URL::route('auth.verify', compact('token'))
+                'url' => URL::route('auth.verify', compact('token')),
             ]
         );
     }

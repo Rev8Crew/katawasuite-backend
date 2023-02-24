@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 
@@ -17,9 +16,9 @@ class CommonController extends Controller
     public function storage($filename): \Illuminate\Http\Response
     {
         // Add folder path here instead of storing in the database.
-        $path = storage_path('app' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . $filename);
+        $path = storage_path('app'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.$filename);
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             abort(404);
         }
 
@@ -27,7 +26,7 @@ class CommonController extends Controller
         $type = File::mimeType($path);
 
         $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
+        $response->header('Content-Type', $type);
 
         return $response;
     }

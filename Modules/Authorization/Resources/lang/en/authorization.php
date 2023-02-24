@@ -16,7 +16,7 @@ return [
     'activation_email_subject' => 'Activation account Katawa-Suite',
     'reset_password_subject' => 'Password reset',
 
-    'failed'   => 'These credentials do not match our records.',
+    'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
@@ -43,5 +43,5 @@ return [
     'provider_telegram' => 'Telegram',
 
     'oauth_v2' => 'Only OAuth2 supported.',
-    'oauth_empty_email' => 'Only users with verified emails allowed'
+    'oauth_empty_email' => 'Only users with verified emails allowed',
 ];

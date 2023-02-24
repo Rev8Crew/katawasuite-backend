@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\User\Database\Seeders\UserSeeder;
+use Modules\Game\Database\Seeders\GameDatabaseSeeder;
+use Modules\User\Database\Seeders\UserDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeeder::class
+            UserDatabaseSeeder::class,
+            GameDatabaseSeeder::class,
         ]);
     }
 }

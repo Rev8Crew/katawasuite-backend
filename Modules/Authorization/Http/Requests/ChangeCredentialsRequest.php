@@ -10,7 +10,7 @@ class ChangeCredentialsRequest extends CustomFormRequest
     {
         return [
             'email' => 'required|email',
-            'name' =>'required|string|min:3'
+            'name' => 'required|string|min:3',
         ];
     }
 

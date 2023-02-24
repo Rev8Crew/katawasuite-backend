@@ -8,15 +8,10 @@ use Illuminate\Support\Str;
 
 class UserSocial extends Model
 {
+    public const TABLE = 'user_socials';
 
-    /**
-     * @var string
-     */
-    protected $table = 'user_socials';
+    protected $table = self::TABLE;
 
-    /**
-     * @var array
-     */
     protected $fillable = [
         'provider',
         'provider_id',
@@ -25,28 +20,15 @@ class UserSocial extends Model
         'avatar',
     ];
 
-    /**
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * @inheritDoc
-     */
     protected static function boot(): void
     {
         parent::boot();
 
-        static::creating(static function($model) {
+        static::creating(static function ($model) {
             $model->uuid = (string) Str::uuid();
         });
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -26,7 +26,7 @@ class HealthServiceProvider extends ServiceProvider
             ScheduleCheck::new(),
             SecurityAdvisoriesCheck::new(),
             SslCertificationExpiredCheck::new()->url(config('app.url'))->warnWhenSslCertificationExpiringDay(15)->failWhenSslCertificationExpiringDay(10),
-            SslCertificationValidCheck::new()->url(config('app.url'))
+            SslCertificationValidCheck::new()->url(config('app.url')),
         ]);
     }
 

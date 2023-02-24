@@ -6,9 +6,7 @@ use App\Enums\ActiveStatusEnum;
 use App\Models\Common\Response;
 use Carbon\Carbon;
 use Crypt;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Authorization\Http\Requests\ChangeCredentialsRequest;
@@ -32,11 +30,12 @@ class AuthorizationController extends Controller
     public function __construct(
         private readonly AuthServiceInterface $authService,
         private readonly UserServiceInterface $userService
-    ){}
+    ) {
+    }
 
     public function register(RegisterRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         try {
             $user = $this->userService->create(new RegisterDto(
@@ -56,14 +55,14 @@ class AuthorizationController extends Controller
 
     public function login(LoginRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         $user = $this->userService->getUserByEmail($request->input('email'));
         if ($user && $user->is_active !== ActiveStatusEnum::Active->value) {
             return $response->withError(SymfonyResponse::HTTP_BAD_REQUEST, trans('authorization::authorization.active'));
         }
 
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        if (! auth()->attempt($request->only('email', 'password'))) {
             return $response->withError(SymfonyResponse::HTTP_BAD_REQUEST, trans('authorization::authorization.failed'));
         }
 
@@ -79,12 +78,9 @@ class AuthorizationController extends Controller
         return $response->withData($resource);
     }
 
-    /**
-     * @return Response
-     */
     public function logout(): Response
     {
-        $response = new Response();
+        $response = Response::make();
         $user = request()->user();
 
         if ($user) {
@@ -92,6 +88,7 @@ class AuthorizationController extends Controller
         }
 
         Auth::logout();
+
         return $response->success();
     }
 
@@ -100,7 +97,7 @@ class AuthorizationController extends Controller
         $email = Crypt::decryptString($token);
         $user = $this->userService->getUserByEmail($email);
 
-        if (!$user || $user->email_verified_at) {
+        if (! $user || $user->email_verified_at) {
             abort(SymfonyResponse::HTTP_BAD_REQUEST);
         }
 
@@ -110,8 +107,9 @@ class AuthorizationController extends Controller
         return view('authorization::verify_acc');
     }
 
-    public function me(): Response {
-        $response = new Response();
+    public function me(): Response
+    {
+        $response = Response::make();
 
         $user = request()->user();
         //$user->load(['notifications']);
@@ -123,7 +121,7 @@ class AuthorizationController extends Controller
 
     public function changeCredentials(ChangeCredentialsRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
         $user = $request->user();
 
         $isEmailChanged = $this->userService->changeEmail($user, $request->input('email'));
@@ -140,15 +138,16 @@ class AuthorizationController extends Controller
         }
 
         $this->userService->changeName($user, $request->input('name'));
+
         return $response->success();
     }
 
     public function changePassword(ChangePasswordRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
         $user = $request->user();
 
-        if (!$this->userService->changePassword($user, $request->input('old'), $request->input('new_password'))) {
+        if (! $this->userService->changePassword($user, $request->input('old'), $request->input('new_password'))) {
             return $response->withError(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, trans('auth.oldPasswordConfirmation'));
         }
 
@@ -157,7 +156,7 @@ class AuthorizationController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
         $email = $request->input('email');
 
         try {
@@ -173,16 +172,17 @@ class AuthorizationController extends Controller
     {
         $email = Crypt::decryptString($token);
 
-        if (!($user = $this->userService->getUserByEmail($email))) {
+        if (! ($user = $this->userService->getUserByEmail($email))) {
             abort(SymfonyResponse::HTTP_BAD_REQUEST);
         }
 
         if (\request()->post()) {
             $this->validate(\request(), [
-                'password' => get_password_rules()
+                'password' => get_password_rules(),
             ]);
 
             $this->userService->changePassword($user, request()->post('password'));
+
             return view('authorization::reset_password_success');
         }
 
@@ -191,7 +191,7 @@ class AuthorizationController extends Controller
 
     public function reSendActivationEmail(ResetPasswordRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         $user = $this->userService->getUserByEmail($request->input('email'));
 
@@ -206,14 +206,16 @@ class AuthorizationController extends Controller
         return $response->success();
     }
 
-    public function providers(): Response {
+    public function providers(): Response
+    {
         return Response::make()->withData(AuthProviderEnum::labels());
     }
 
-    public function redirect(string $provider) {
+    public function redirect(string $provider)
+    {
         $authProvider = AuthProviderEnum::tryFrom($provider);
 
-        if (!$authProvider) {
+        if (! $authProvider) {
             abort(404);
         }
 
@@ -224,7 +226,7 @@ class AuthorizationController extends Controller
     {
         $authProvider = AuthProviderEnum::tryFrom($provider);
 
-        if (!$authProvider) {
+        if (! $authProvider) {
             abort(404);
         }
 
@@ -240,6 +242,7 @@ class AuthorizationController extends Controller
         }
 
         $token = $this->authService->socialAuth($authUser, $authProvider)->createToken('web');
-        return redirect()->to('app/auth/signin?' . http_build_query(['redirect' => '/home', 'social' => $token->plainTextToken]));
+
+        return redirect()->to('app/auth/signin?'.http_build_query(['redirect' => '/home', 'social' => $token->plainTextToken]));
     }
 }

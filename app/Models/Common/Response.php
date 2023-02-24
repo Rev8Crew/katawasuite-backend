@@ -7,6 +7,7 @@ use App\Helpers\BytesForHuman;
 use App\Traits\Makeable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -19,7 +20,7 @@ class Response implements Arrayable
 
     protected ResponseStatusEnum $status;
 
-    protected JsonResource|Collection|array $data = [];
+    protected JsonResource|Collection|array|Model $data = [];
 
     protected bool $hasErrors = false;
 
@@ -50,14 +51,11 @@ class Response implements Arrayable
 
     /**
      *  Return response with given error
-     * @param int $errorCode
-     * @param string $message
      *
      * @return $this
      */
     public function withError(int $errorCode, string $message): self
     {
-
         $this->hasErrors = true;
         $this->status = ResponseStatusEnum::Error;
 
@@ -70,19 +68,17 @@ class Response implements Arrayable
     }
 
     /**
-     * @param Throwable $throwable
      * @return $this
      */
     public function catch(Throwable $throwable): Response
     {
         $code = $throwable->getCode() ?: SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR;
+
         return $this->withError($code, $throwable->getMessage());
     }
 
     /**
-     * @param mixed $data
-     *
-     * @return Response
+     * @param  mixed  $data
      */
     public function withData($data): Response
     {
@@ -94,24 +90,19 @@ class Response implements Arrayable
         return $this;
     }
 
-    /**
-     * @param int $status
-     *
-     * @return Response
-     */
     public function withStatus(int $status): Response
     {
         $this->status = ResponseStatusEnum::from($status);
+
         return $this;
     }
 
     /**
-     * @param string $message
      * @return $this
      */
     private function withMessage(string $message = ''): Response
     {
-        if (!$message) {
+        if (! $message) {
             return $this;
         }
         $this->data['message'] = $message;
@@ -119,10 +110,6 @@ class Response implements Arrayable
         return $this;
     }
 
-    /**
-     * @param string $message
-     * @return Response
-     */
     public function success(string $message = ''): Response
     {
         return $this->withStatus(ResponseStatusEnum::Success->value)->withMessage($message);
@@ -131,19 +118,17 @@ class Response implements Arrayable
     public function validation(Validator $validator): Response
     {
         if ($validator->fails()) {
-            $this->withError(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, "Validation Errors");
+            $this->withError(SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY, 'Validation Errors');
             $this->withStatus(ResponseStatusEnum::Error->value);
 
             foreach ($validator->errors()->getMessages() as $field => $error) {
                 $this->validationErrors[$field] = $error;
             }
         }
+
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return [
@@ -159,5 +144,4 @@ class Response implements Arrayable
             'date' => $this->date->format('Y-m-d H:i:s'),
         ];
     }
-
 }

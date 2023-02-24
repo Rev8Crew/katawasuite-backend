@@ -3,5 +3,8 @@
     "Authorization": true,
     "User": true,
     "Game": true,
-    "File": true
+    "File": true,
+    "Feedback": true,
+    "Statistic": true,
+    "Achievement": true
 }

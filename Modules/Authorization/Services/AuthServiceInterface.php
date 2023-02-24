@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Authorization\Services;
 
 use Exception;
-use Modules\User\Entities\User;
 use Laravel\Socialite\Two\User as SocialiteUser;
+use Modules\User\Entities\User;
 use Modules\User\Enums\AuthProviderEnum;
 
 interface AuthServiceInterface

@@ -20,7 +20,9 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     public const WEB_PREFIX = 'web';
+
     public const API_PREFIX = 'api';
+
     public const API_VERSION = 'v1';
 
     /**

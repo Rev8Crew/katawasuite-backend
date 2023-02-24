@@ -11,7 +11,7 @@ class AdminEmailMiddleware
     {
         $user = \Auth::user();
 
-        if (!$user || in_array($user->email, config('app.admin_emails'), true)) {
+        if (! $user || in_array($user->email, config('app.admin_emails'), true)) {
             abort(403);
         }
 

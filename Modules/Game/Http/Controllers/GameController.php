@@ -2,40 +2,34 @@
 
 namespace Modules\Game\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
+use App\Models\Common\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Routing\Controller;
+use Modules\Game\Entities\Game;
+use Modules\Game\Http\Requests\GameSyncRequest;
+use Modules\Game\Http\Resources\GameResource;
+use Modules\Game\Services\GameServiceInterface;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class GameController extends Controller
 {
-    private FavoriteService $favoriteService;
-    private GameService $gameService;
-
-    public function __construct(FavoriteService $favoriteService, GameService $gameService)
-    {
-        $this->favoriteService = $favoriteService;
-        $this->gameService = $gameService;
+    public function __construct(
+        private readonly GameServiceInterface $gameService,
+    ) {
     }
 
-    /**
-     *  Path: /web/games
-     *  Return: array with games and mods
-     */
     public function index(): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         $games = $this->gameService->getAllGames();
+
         return $response->withData(GameResource::collection($games));
     }
 
-    /**
-     *  Path: /web/games/$short
-     *  Return: array with games and mods
-     */
     public function show(string $short): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         try {
             $games = collect([$this->gameService->getGameByShort($short)]);
@@ -46,66 +40,30 @@ class GameController extends Controller
         return $response->withData(GameResource::collection($games));
     }
 
-    /**
-     * Path: /web/games/play/{short}
-     * Return: view with vnds for selected game by it short name
-     *
-     * @param string $short
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|View
-     */
     public function play(string $short)
     {
-
         try {
             $game = $this->gameService->getGameByShort($short);
         } catch (ModelNotFoundException $exception) {
             abort(404);
         }
 
-        return view('games', compact('game'));
+        return view('game::games', compact('game'));
     }
 
-    /**
-     *  /web/games/sync
-     */
     public function sync(GameSyncRequest $request): Response
     {
-        $response = new Response();
+        $response = Response::make();
 
         $user = $request->user();
         $game = Game::find($request->input('game_id'));
 
         if ($request->input('data')) {
-            $this->gameService->saveGameDataByUser($request->input('data'),$game, $user );
+            $this->gameService->saveGameDataByUser($request->input('data'), $game, $user);
         }
 
         $loads = $this->gameService->getUserSavesByGame($user, $game);
+
         return $response->withData($loads);
-    }
-
-    public function addToFavorites(AddGameToFavoritesRequest $request): Response
-    {
-        $response = new Response();
-        $game = Game::find($request->input('id'));
-
-        $collection = $this->favoriteService->addGameToUserFavorites($game, request()->user());
-
-        return $response->withData($collection);
-    }
-
-    public function removeFromFavorites(AddGameToFavoritesRequest $request): Response
-    {
-        $response = new Response();
-        $game = Game::find($request->input('id'));
-
-        $collection = $this->favoriteService->removeGameFromUserFavorites($game, request()->user());
-
-        return $response->withData($collection);
-    }
-
-    public function getUserFavorites(): Response
-    {
-        $response = new Response();
-        return $response->withData($this->favoriteService->getListOfUserFavorites(request()->user()));
     }
 }
