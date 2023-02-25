@@ -22,7 +22,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('change-credentials', [AuthorizationController::class, 'changeCredentials'])->name('change_credentials');
     Route::post('change-password', [AuthorizationController::class, 'changePassword'])->name('change_password');
 
-    Route::post('reset-password', [AuthorizationController::class, 'resetPassword'])->name('reset_password');
+    Route::post('reset-password', [AuthorizationController::class, 'resetPassword'])->middleware('throttle:2,60')->name('reset_password');
     Route::post('resend-activation', [AuthorizationController::class, 'reSendActivationEmail'])->middleware('throttle:1,60')->name('resend_activation');
 
     Route::get('/verify/{token}', [AuthorizationController::class, 'verify'])->name('verify');

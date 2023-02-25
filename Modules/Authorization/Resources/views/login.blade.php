@@ -1,4 +1,4 @@
-@extends('auth')
+@extends('authorization::auth')
 
 @section('content')
     <div class="card fat">

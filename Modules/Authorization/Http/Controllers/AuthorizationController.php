@@ -195,11 +195,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         $user = $this->userService->getUserByEmail($request->input('email'));
 
         if ($user && $user->email_verified_at === null) {
-            try {
                 $this->authService->sendActivationEmail($user, Crypt::encryptString($user->email));
-            } catch (Throwable $ex) {
-                return $response->catch($ex);
-            }
         }
 
         return $response->success();

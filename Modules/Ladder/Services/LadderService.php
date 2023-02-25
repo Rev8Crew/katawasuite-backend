@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Modules\Achievement\Models\Achievement;
 use Modules\Achievement\Services\AchievementServiceInterface;
 use Modules\Game\Entities\Game;
+use Modules\Statistic\Models\TimeTracker;
 use Modules\Statistic\Models\UserStatistic;
 use Modules\Statistic\Services\TimeTrackerServiceInterface;
 
@@ -33,32 +34,36 @@ class LadderService implements LadderServiceInterface
 
     public function getNewYearStats2022(): Collection
     {
-        $countStartButtonClick = UserStatistic::query()->whereOption('start')->count();
-        $countSaveButtonClick = UserStatistic::query()->whereOption('continue')->count();
-        $countLoadButtonClick = UserStatistic::query()->whereOption('load')->count();
-
-        $countStartButtonByGame = $this->countOptionGroupByGame('start');
-        $countSaveButtonByGame = $this->countOptionGroupByGame('continue');
-        $countLoadButtonByGame = $this->countOptionGroupByGame('load');
-
         $startYearDate = Carbon::parse('2022-01-01 00:00:00');
         $endYearDate = Carbon::parse('2022-12-31 00:00:00');
+
+        $countStartButtonClick = UserStatistic::query()->whereOption('start')->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
+        $countSaveButtonClick = UserStatistic::query()->whereOption('continue')->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
+        $countLoadButtonClick = UserStatistic::query()->whereOption('load')->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
+
+        $countStartButtonByGame = $this->countOptionGroupByGame('start', $startYearDate, $endYearDate);
+        $countSaveButtonByGame = $this->countOptionGroupByGame('continue', $startYearDate, $endYearDate);
+        $countLoadButtonByGame = $this->countOptionGroupByGame('load', $startYearDate, $endYearDate);
+
+
+
         $novels = Game::active()->whereBetween('created_at', [$startYearDate, $endYearDate])->pluck('name', 'id');
         $achievementsCounts = Achievement::active()->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
 
+        $tableName = TimeTracker::TABLE;
         $maxTimeByGame = DB::query()
             ->select([
                 'users.name as user_name',
                 'games.name as game_name',
                 'games.id as game_id',
-                DB::raw('end-start as difference'),
+                DB::raw('(tt.end-tt.start) as difference'),
             ])
-            ->from('time_trackers')
-            ->join('users', 'users.id', '=', 'time_trackers.user_id')
-            ->join('games', 'games.id', '=', 'time_trackers.game_id')
-            ->where('end', '>', 0)
+            ->from($tableName . ' as tt')
+            ->join('users', 'users.id', '=', 'tt.user_id')
+            ->join('games', 'games.id', '=', 'tt.game_id')
+            ->where('tt.end', '>', 0)
             ->orderByDesc('difference')
-            ->groupBy(['users.name', 'games.name', 'games.id', 'start', 'end'])->limit(10)->get()
+            ->groupBy(['users.name', 'games.name', 'games.id', 'tt.start', 'tt.end'])->limit(10)->get()
             ->map(fn (\stdClass $item) => array_merge((array) $item, [
                 'difference' => CarbonInterval::seconds($item->difference)->cascade()->forHumans(),
             ]));
@@ -80,7 +85,7 @@ class LadderService implements LadderServiceInterface
         ]);
     }
 
-    protected function countOptionGroupByGame(string $option): Collection
+    protected function countOptionGroupByGame(string $option, Carbon $startYearDate, Carbon $endYearDate): Collection
     {
         return DB::query()
             ->select([
@@ -88,9 +93,10 @@ class LadderService implements LadderServiceInterface
                 'games.name as game_name',
                 \DB::raw('count(*) as counted'),
             ])
-            ->from('user_statistics')
-            ->join('games', 'user_statistics.game_id', '=', 'games.id')
-            ->where('option', $option)
+            ->from(UserStatistic::TABLE . ' as us')
+            ->join('games', 'us.game_id', '=', 'games.id')
+            ->whereBetween('us.created_at', [$startYearDate, $endYearDate])
+            ->where('us.option', $option)
             ->groupBy(['games.id', 'games.name'])
             ->get();
     }

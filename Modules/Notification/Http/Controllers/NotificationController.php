@@ -33,7 +33,7 @@ class NotificationController extends Controller
 
         $this->notificationService->unsubscribe($user, $notification);
 
-        return response(trans('notification.unsubscribed'));
+        return response(trans('notification::notification.unsubscribed'));
     }
 
     public function subscribeToAll(): Response

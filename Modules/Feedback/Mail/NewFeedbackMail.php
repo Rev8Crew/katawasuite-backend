@@ -25,7 +25,7 @@ class NewFeedbackMail extends Mailable implements ShouldQueue
         $name = config('app.author_name');
 
         return new Envelope(
-            to: new Address($email, $name),
+            to: [new Address($email, $name)],
             subject: trans('feedback::feedback.new_feedback_mail'),
         );
     }

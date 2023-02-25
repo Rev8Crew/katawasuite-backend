@@ -26,7 +26,7 @@ class sendNotificationMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: new Address($this->user->email, $this->user->name),
+            to: [new Address($this->user->email, $this->user->name)],
             subject: 'Send Notification',
         );
     }

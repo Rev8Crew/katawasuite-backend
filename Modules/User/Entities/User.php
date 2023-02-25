@@ -14,6 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\Achievement\Models\Achievement;
 use Modules\File\Entities\File;
 use Modules\Notification\Models\Notification;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 /**
  * Modules\User\Entities\User
@@ -57,7 +58,7 @@ use Modules\Notification\Models\Notification;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, AuthenticationLoggable;
 
     public const TABLE = 'users';
 

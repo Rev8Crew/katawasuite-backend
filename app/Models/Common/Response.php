@@ -43,6 +43,7 @@ class Response implements Arrayable
     {
         // Sets memory usage
         $this->memoryUsageStart = memory_get_usage();
+        $this->memoryPeakUsage = $this->memoryUsageStart;
         $this->executionTime = microtime(true);
 
         $this->status = ResponseStatusEnum::Unknown;

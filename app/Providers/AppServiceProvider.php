@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $driver = app()->environment('production') ? \Mail::getDefaultDriver() : 'log';
-        \Mail::setDefaultDriver($driver);
+        //\Mail::setDefaultDriver($driver);
     }
 }
