@@ -9,10 +9,10 @@ use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class WindowCommand extends Command
 {
-
     public function run(): ScenarioCollection
     {
         $model = LineModel::make(collect(KatawaCore::EMPTY_LINE));
+
         return ScenarioCollection::make(new Scenario($model, false, true));
     }
 }

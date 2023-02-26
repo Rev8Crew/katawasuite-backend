@@ -4,14 +4,16 @@ namespace Modules\KatawaCore\v2\Modules\GameModel;
 
 use Modules\KatawaCore\v2\KatawaCore;
 use Modules\KatawaCore\v2\Modules\Configs\Config;
-use Modules\KatawaCore\v2\Modules\Tools\GamePath;
 use Modules\KatawaCore\v2\Modules\Tools\Tools;
 
 class MusicModel extends Model
 {
-    public const COMMAND = "music";
+    public const COMMAND = 'music';
+
     public string $duration = '';
+
     public string $src;
+
     public string $command;
 
     public function parse(): MusicModel
@@ -49,11 +51,11 @@ class MusicModel extends Model
 
     public function compile(): string
     {
-        return $this->command . ' ' . $this->src . ' ' . 'easy' . ' ' . $this->duration;
+        return $this->command.' '.$this->src.' '.'easy'.' '.$this->duration;
     }
 
-    public function getMusicPath(string $string) {
-
+    public function getMusicPath(string $string)
+    {
         foreach (Config::getInstance()->getConfigValue('music_replace') as $key => $value) {
             $string = str_replace($key, $value, $string);
         }

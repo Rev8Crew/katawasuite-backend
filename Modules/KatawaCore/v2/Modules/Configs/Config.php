@@ -10,11 +10,13 @@ final class Config
     use ConfigLoaderTrait;
 
     protected Repository $config;
+
     protected string $short = '';
 
     public static ?Config $instance = null;
 
-    public function __construct(string $short) {
+    public function __construct(string $short)
+    {
         $this->getConfigLoader()->setDirectory(app_path('Modules/KatawaParser/v2/Configs'));
         $this->getConfigLoader()->load();
 
@@ -24,7 +26,7 @@ final class Config
 
     public function getConfigValue(string $value)
     {
-        return $this->config->get($this->short . '.' . $value, []);
+        return $this->config->get($this->short.'.'.$value, []);
     }
 
     public static function getInstance(string $short = ''): Config

@@ -2,7 +2,6 @@
 
 namespace Modules\KatawaCore\v2\Modules\GameModel;
 
-
 use Modules\KatawaCore\v2\KatawaCore;
 use Modules\KatawaCore\v2\Modules\Configs\Config;
 use Modules\KatawaCore\v2\Modules\Tools\GamePath;
@@ -11,6 +10,7 @@ use Modules\KatawaCore\v2\Modules\Tools\Tools;
 class SfxModel extends Model
 {
     public const COMMAND = 'sfx';
+
     public const EXTENSION = '.ogg';
 
     public string $path;
@@ -19,12 +19,13 @@ class SfxModel extends Model
     {
         $path = $this->line->get(KatawaCore::ARG_SECOND);
         $this->path = $this->replaceSfx($path);
+
         return parent::parse();
     }
 
     public function compile(): string
     {
-        return self::COMMAND . ' ' . Tools::quoted("sfx/" . $this->path . self::EXTENSION);
+        return self::COMMAND.' '.Tools::quoted('sfx/'.$this->path.self::EXTENSION);
     }
 
     public function replaceSfx($path): string
@@ -41,9 +42,9 @@ class SfxModel extends Model
         }
 
         $gamePath = GamePath::getInstance();
-        if (!$gamePath->exists($gamePath->getSfxPath($path . ".ogg")) && !$gamePath->exists($gamePath->getSfxPath($path . ".mp3"))) {
+        if (! $gamePath->exists($gamePath->getSfxPath($path.'.ogg')) && ! $gamePath->exists($gamePath->getSfxPath($path.'.mp3'))) {
             Tools::exitWithError('Sfx not exists',
-                $gamePath->getSfxPath($path . ".ogg"),
+                $gamePath->getSfxPath($path.'.ogg'),
                 $this->line->implode(' ')
             );
         }

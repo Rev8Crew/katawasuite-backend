@@ -64,4 +64,3 @@ class UserServiceTest extends TestCase
         $this->assertSame($user->id, $someUser->id);
     }
 }
-

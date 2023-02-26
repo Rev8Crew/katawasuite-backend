@@ -2,8 +2,8 @@
 
 namespace Modules\KatawaCore\v2\Modules\GameModel\Helpers;
 
+use Illuminate\Support\Collection;
 use Modules\KatawaCore\v2\KatawaCore;
-use Modules\KatawaCore\v2\Modules\Commands\DefaultCommand;
 use Modules\KatawaCore\v2\Modules\Configs\Config;
 use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
 use Modules\KatawaCore\v2\Modules\GameModel\BackgroundModel;
@@ -11,11 +11,11 @@ use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
 use Modules\KatawaCore\v2\Modules\Helpers\ScenarioCollectionHelper;
 use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollections;
 use Modules\KatawaCore\v2\Modules\Tools\Tools;
-use Illuminate\Support\Collection;
 
 class PositionParser
 {
     protected Position $position;
+
     protected Collection $line;
 
     protected string $at;
@@ -43,7 +43,6 @@ class PositionParser
                 $this->position->setX('right')->setY('center')->setTime(0.5);
             }
 
-
             ScenarioCollections::getInstance()->after(ScenarioCollectionHelper::fromModel(UnknownModel::make($this->line)));
         }
 
@@ -54,7 +53,7 @@ class PositionParser
     {
         // Если присутствует функция Transform, то необходимо залогировать данную строку
         // Чтобы автор смог сам определить что здесь лучше поставить
-        if (strpos($this->at, "Transform") !== false) {
+        if (strpos($this->at, 'Transform') !== false) {
             // Устанавливаем позицию по умолчанию
             $this->position->setX('center')->setY('center');
 
@@ -105,20 +104,20 @@ class PositionParser
 
     public function parseByFullSpan()
     {
-        if (strpos($this->at, "Fullpan") === false) {
+        if (strpos($this->at, 'Fullpan') === false) {
             return;
         }
 
         // show bg school_library at Fullpan(10.0, dir="left")
         // left - по умолчанию
-        $direction = $this->getDirectionOfFullSpan() ?: "left";
+        $direction = $this->getDirectionOfFullSpan() ?: 'left';
 
         // Формируем новую строку
         // Убираем скобку, если она есть [ Fullpan(10.0),"left") ]
         $string = str_replace(')', '', $this->at);
 
         // Дополняем до вида Fullpan(time.0, "direction")
-        $string .= "," . Tools::quoted($direction) . ")";
+        $string .= ','.Tools::quoted($direction).')';
 
         // парсим
         $re = '/.*\((\d+)\.\d+\,.*\"(.*)\".*\)/m';
@@ -127,19 +126,19 @@ class PositionParser
         $duration = 10.0;
         // Длительность
         if ($matches && $matches[0] && $matches[0][1]) {
-            $duration = (float)$matches[0][1];
+            $duration = (float) $matches[0][1];
         }
 
-        $align = "right";
+        $align = 'right';
         if ($matches && $matches[0] && $matches[0][2]) {
             $align = $matches[0][2];
         }
 
         switch ($align) {
-            case "left":
+            case 'left':
                 $this->position->setX('right')->setY('center');
                 break;
-            case "right":
+            case 'right':
                 $this->position->setX('left')->setY('center');
         }
 
@@ -161,9 +160,6 @@ class PositionParser
         }
     }
 
-    /**
-     * @return Position
-     */
     public function getPosition(): Position
     {
         return $this->position;

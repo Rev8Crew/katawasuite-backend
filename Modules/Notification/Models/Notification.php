@@ -20,6 +20,7 @@ use Modules\User\Entities\User;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $users
  * @property-read int|null $users_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Notification active()
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newQuery()
@@ -32,6 +33,7 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Notification extends Model

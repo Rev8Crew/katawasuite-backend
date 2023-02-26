@@ -13,20 +13,21 @@ class CrowdModel extends ModelWith
         }
 
         $array = ['relay', '"vfx/crowd1.png"', '"vfx/crowd2.png"', '"vfx/crowd3.png"', '1.0s'];
+
         return implode(' ', $array);
     }
 
     public function hide(): string
     {
         $array = ['relay', '~'];
+
         return implode(' ', $array);
     }
 
     public function setHide(bool $hide = true): CrowdModel
     {
         $this->hide = $hide;
+
         return $this;
     }
-
-
 }

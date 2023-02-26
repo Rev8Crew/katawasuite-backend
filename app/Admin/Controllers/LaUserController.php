@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
-use Encore\Admin\Show;
 use Modules\User\Entities\User;
 
 /** @mixin User */
@@ -22,8 +21,6 @@ class LaUserController extends AdminController
 
     /**
      * Make a grid builder.
-     *
-     * @return Grid
      */
     protected function grid(): Grid
     {
@@ -33,23 +30,21 @@ class LaUserController extends AdminController
         $grid->column('name', __('Логин'));
         $grid->column('email', __('Email'));
         $grid->column('phone', __('Телефон'));
-        $grid->column('email_verified_at', __('Подтвержден'))->display( fn($date) => $date ? Carbon::parse($date)->format('d-m-Y H:i:s') : 'Не подтвержден');
+        $grid->column('email_verified_at', __('Подтвержден'))->display(fn ($date) => $date ? Carbon::parse($date)->format('d-m-Y H:i:s') : 'Не подтвержден');
         $grid->column('is_active', 'Статус')->using(ActiveStatusEnum::toSelect())->label(ActiveStatusEnum::toLabels());
-        $grid->column('image', __('Image'))->display( function () {
+        $grid->column('image', __('Image'))->display(function () {
             // @phpstan-ignore-next-line
             return $this->image;
         })->image('', 100, 100);
 
-        $grid->column('created_at', __('Created at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
-        $grid->column('updated_at', __('Updated at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('created_at', __('Created at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('updated_at', __('Updated at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
 
         return $grid;
     }
 
     /**
      * Make a form builder.
-     *
-     * @return Form
      */
     protected function form(): Form
     {
@@ -76,7 +71,6 @@ class LaUserController extends AdminController
             if ($form->password && $form->model()->password != $form->password) {
                 $form->password = \Hash::make($form->password);
             }
-
         });
 
         return $form;

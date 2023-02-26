@@ -10,7 +10,9 @@ use Modules\KatawaCore\v2\Modules\Tools\Tools;
 class EventModel extends ModelWith
 {
     public const COMMAND = 'bg';
+
     public const EXTENSION = '.jpg';
+
     public string $path;
 
     public function parse(): EventModel
@@ -18,14 +20,15 @@ class EventModel extends ModelWith
         $path = $this->line->get(KatawaCore::ARG_SECOND);
 
         // TODO: fix
-        $path = str_replace(array('_std', 'other_iwanako_start'), array('', 'other_iwanako_nosnow'), $path);
+        $path = str_replace(['_std', 'other_iwanako_start'], ['', 'other_iwanako_nosnow'], $path);
 
-        $this->path = Tools::quoted($this->getSrcPath($path . self::EXTENSION));
+        $this->path = Tools::quoted($this->getSrcPath($path.self::EXTENSION));
 
         return $this;
     }
 
-    public function getSrcPath($src) : string {
+    public function getSrcPath($src): string
+    {
         $gamePath = GamePath::getInstance();
 
         $srcPng = str_replace('.jpg', '.png', $src);
@@ -33,20 +36,20 @@ class EventModel extends ModelWith
         foreach ($this->getEventsPath($src) as $paths) {
             if ($gamePath->exists($paths['path'])) {
                 if ($paths['config_value']) {
-                    return "event/" . $paths['config_value']. "/" . $src;
+                    return 'event/'.$paths['config_value'].'/'.$src;
                 }
 
-                return 'event/' . $src;
+                return 'event/'.$src;
             }
         }
 
         foreach ($this->getEventsPath($srcPng) as $paths) {
             if ($gamePath->exists($paths['path'])) {
                 if ($paths['config_value']) {
-                    return "event/" . $paths['config_value']. "/" . $src;
+                    return 'event/'.$paths['config_value'].'/'.$src;
                 }
 
-                return 'event/' . $src;
+                return 'event/'.$src;
             }
         }
 
@@ -65,25 +68,27 @@ class EventModel extends ModelWith
 
         $parent = parent::compile();
         if ($parent) {
-            $output .= ' ' .$parent;
+            $output .= ' '.$parent;
         }
+
         return $output;
     }
 
-    private function getEventsPath( $path ) : array {
+    private function getEventsPath($path): array
+    {
         $gamePath = GamePath::getInstance();
 
         $paths = [];
 
         $paths[] = [
-            'path' => $gamePath->getBackgroundEventFile( $path ),
-            'config_value' => ''
+            'path' => $gamePath->getBackgroundEventFile($path),
+            'config_value' => '',
         ];
 
         foreach (Config::getInstance()->getConfigValue('events_lookup_path') as $item) {
             $paths[] = [
-                'path' => $gamePath->getBackgroundEventFile( $item . '/' . $path),
-                'config_value' => $item
+                'path' => $gamePath->getBackgroundEventFile($item.'/'.$path),
+                'config_value' => $item,
             ];
         }
 

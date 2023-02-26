@@ -19,20 +19,20 @@ use Modules\KatawaCore\v2\Modules\Tools\Tools;
 
 class WithCommand extends Command
 {
-
     public function run(): ScenarioCollection
     {
         if (
-            !$this->charaexit() &&
-            !$this->vpunch() &&
-            !$this->charamove() &&
-            !$this->shuteye() &&
-            !$this->location() &&
-            !$this->charachange() &&
-            !$this->genericWhiteOut() &&
-            !$this->shorttimeskip()
+            ! $this->charaexit() &&
+            ! $this->vpunch() &&
+            ! $this->charamove() &&
+            ! $this->shuteye() &&
+            ! $this->location() &&
+            ! $this->charachange() &&
+            ! $this->genericWhiteOut() &&
+            ! $this->shorttimeskip()
         ) {
             $model = UnknownModel::make($this->line)->setDebug();
+
             return ScenarioCollection::make(new Scenario($model));
         }
 
@@ -47,13 +47,15 @@ class WithCommand extends Command
             $firstArg === 'charaexit'
         ) {
             ScenarioCollections::getInstance()->after(ScenarioCollectionHelper::fromModel(LineModel::make(collect(['delay', '0.4s']))));
+
             return true;
         }
 
         return false;
     }
 
-    public function vpunch() : bool {
+    public function vpunch(): bool
+    {
         $firstArg = $this->line->get(KatawaCore::ARG_FIRST);
 
         if (
@@ -64,21 +66,23 @@ class WithCommand extends Command
 
             if ($scenarioCollections->isEmpty()) {
                 $instance->after(ScenarioCollectionHelper::fromModel(LineModel::make(collect(['eff', 'v-shake', '50%', '2.0s']))));
+
                 return true;
             }
 
             $modelWith = $scenarioCollections->first()->getModel();
 
-            if ( GameModelHelper::isInstanceBackground($modelWith)) {
+            if (GameModelHelper::isInstanceBackground($modelWith)) {
                 $instance->after(ScenarioCollectionHelper::fromModel(LineModel::make(collect(['eff', 'v-shake', '50%', '2.0s']))));
+
                 return true;
             }
 
             if ($modelWith instanceof CharacterModel) {
-                $instance->after(ScenarioCollectionHelper::fromModel(LineModel::make(collect(['eff', '@' . $modelWith->name, 'v-shake', '50%', '2.0s']))));
+                $instance->after(ScenarioCollectionHelper::fromModel(LineModel::make(collect(['eff', '@'.$modelWith->name, 'v-shake', '50%', '2.0s']))));
+
                 return true;
             }
-
         }
 
         return false;
@@ -93,7 +97,7 @@ class WithCommand extends Command
         ) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
 
-            $scenarioCollections->each( static function(Scenario $scenario) {
+            $scenarioCollections->each(static function (Scenario $scenario) {
                 /** @var ModelWith $modelWith */
                 $modelWith = $scenario->getModel();
 
@@ -108,41 +112,39 @@ class WithCommand extends Command
         return false;
     }
 
-    public function shuteye() : bool
+    public function shuteye(): bool
     {
         $firstArg = $this->line->get(KatawaCore::ARG_FIRST);
 
         if (
             $firstArg === 'ease' ||
             $firstArg === 'shuteye' ||
-            stripos($firstArg, "Pause") !== false
+            stripos($firstArg, 'Pause') !== false
         ) {
             $model = LineModel::make(collect(['delay', '0.5s']));
             ScenarioCollections::getInstance()->after(ScenarioCollectionHelper::fromModel($model));
+
             return true;
         }
 
         if (
             $firstArg === 'openeye' ||
-            stripos($firstArg, "dissolve") !== false
+            stripos($firstArg, 'dissolve') !== false
         ) {
-
-            if (stripos($firstArg, "Dissolvechara") !== false) {
+            if (stripos($firstArg, 'Dissolvechara') !== false) {
                 return false;
             }
 
             $param = Tools::takeParamsFromFunction($firstArg);
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
 
-            $scenarioCollections->each( static function(Scenario $scenario) use ($param) {
+            $scenarioCollections->each(static function (Scenario $scenario) use ($param) {
                 /** @var ModelWith $modelWith */
                 $modelWith = $scenario->getModel();
 
-
-                if ( $modelWith instanceof CharacterModel || GameModelHelper::isInstanceBackground($modelWith)) {
+                if ($modelWith instanceof CharacterModel || GameModelHelper::isInstanceBackground($modelWith)) {
                     $modelWith->dissolve($param);
                 }
-
             });
 
             return true;
@@ -160,25 +162,24 @@ class WithCommand extends Command
             $firstArg === 'locationskip'
         ) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
-            $scenarioCollections->each( static function(Scenario $scenario) {
+            $scenarioCollections->each(static function (Scenario $scenario) {
                 /** @var ModelWith $modelWith */
                 $modelWith = $scenario->getModel();
 
-                if ( GameModelHelper::isInstanceBackground($modelWith)) {
+                if (GameModelHelper::isInstanceBackground($modelWith)) {
                     $modelWith->dissolve(1.0);
                 }
-
             });
 
             $scenarioCollections = ScenarioCollections::getInstance()->findWithCollections();
 
-            $scenarioCollections->each( static function(ScenarioCollection $scenarioCollection) {
+            $scenarioCollections->each(static function (ScenarioCollection $scenarioCollection) {
                 $collection = $scenarioCollection->getCollection();
 
                 /** @var ModelWith $model */
                 $model = $collection->first()->getModel();
 
-                if ( GameModelHelper::isInstanceBackground($model)) {
+                if (GameModelHelper::isInstanceBackground($model)) {
                     $collection->prepend(new Scenario(ImageModel::make(collect([]))->cls()->positionTime(0.5)));
                     $collection->prepend(new Scenario(LineModel::make(collect(['cls']))));
                 }
@@ -200,7 +201,7 @@ class WithCommand extends Command
         ) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
 
-            $scenarioCollections->each( static function(Scenario $scenario) {
+            $scenarioCollections->each(static function (Scenario $scenario) {
                 $modelWith = $scenario->getModel();
 
                 if ($modelWith instanceof CharacterModel) {
@@ -217,7 +218,7 @@ class WithCommand extends Command
         ) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
 
-            $scenarioCollections->each( static function(Scenario $scenario) {
+            $scenarioCollections->each(static function (Scenario $scenario) {
                 $modelWith = $scenario->getModel();
 
                 if ($modelWith instanceof CharacterModel) {
@@ -225,16 +226,15 @@ class WithCommand extends Command
                 }
             });
 
-
             $scenarioCollections = ScenarioCollections::getInstance()->findWithCollections();
 
-            $scenarioCollections->each( static function(ScenarioCollection $scenarioCollection) use ($firstArg) {
+            $scenarioCollections->each(static function (ScenarioCollection $scenarioCollection) use ($firstArg) {
                 $collection = $scenarioCollection->getCollection();
 
                 /** @var ModelWith $model */
                 $model = $collection->first()->getModel();
 
-                if ( $model instanceof CharacterModel) {
+                if ($model instanceof CharacterModel) {
                     //show hisao_talk_small_u at right
                     //with moveinright
                     // -->
@@ -251,7 +251,6 @@ class WithCommand extends Command
                         $model->position->setY('center');
                     }
 
-
                     $collection->prepend(new Scenario($clone, false));
                     $collection->push(new Scenario(LineModel::make(collect(['delay', '1.0s']), false)));
                 }
@@ -263,19 +262,20 @@ class WithCommand extends Command
         return false;
     }
 
-    public function genericWhiteOut() : bool {
+    public function genericWhiteOut(): bool
+    {
         $firstArg = $this->line->get(KatawaCore::ARG_FIRST);
 
         if (stripos($firstArg, 'GenericWhiteout') !== false) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithCollections();
 
-            $scenarioCollections->each( static function(ScenarioCollection $scenarioCollection) {
+            $scenarioCollections->each(static function (ScenarioCollection $scenarioCollection) {
                 $collection = $scenarioCollection->getCollection();
 
                 /** @var ModelWith $model */
                 $model = $collection->first()->getModel();
 
-                if ( $model instanceof EventModel) {
+                if ($model instanceof EventModel) {
                     // cls
                     // img ~
                     // bg #FFF
@@ -294,7 +294,8 @@ class WithCommand extends Command
         return false;
     }
 
-    public function shorttimeskip() : bool {
+    public function shorttimeskip(): bool
+    {
         $firstArg = $this->line->get(KatawaCore::ARG_FIRST);
 
         if (
@@ -302,7 +303,7 @@ class WithCommand extends Command
         ) {
             $scenarioCollections = ScenarioCollections::getInstance()->findWithScenarios();
 
-            $scenarioCollections->each( static function(Scenario $scenario) {
+            $scenarioCollections->each(static function (Scenario $scenario) {
                 $modelWith = $scenario->getModel();
 
                 if ($modelWith instanceof BackgroundModel) {
@@ -312,13 +313,13 @@ class WithCommand extends Command
 
             $scenarioCollections = ScenarioCollections::getInstance()->findWithCollections();
 
-            $scenarioCollections->each( static function(ScenarioCollection $scenarioCollection) {
+            $scenarioCollections->each(static function (ScenarioCollection $scenarioCollection) {
                 $collection = $scenarioCollection->getCollection();
 
                 /** @var ModelWith $model */
                 $model = $collection->first()->getModel();
 
-                if ( GameModelHelper::isInstanceBackground($model)) {
+                if (GameModelHelper::isInstanceBackground($model)) {
                     // cls
                     // img ~
                     // sfx "sfx/time.ogg"
@@ -331,6 +332,7 @@ class WithCommand extends Command
 
             return true;
         }
+
         return false;
     }
 }

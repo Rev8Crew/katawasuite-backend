@@ -10,23 +10,24 @@ use Modules\KatawaCore\v2\Modules\Tools\Tools;
 class BackgroundModel extends ModelWith
 {
     public const COMMAND_NAME = 'bg';
+
     public const IMAGE_EXTENSION = '.jpg';
 
     public string $src;
 
-    public function parse() : BackgroundModel
+    public function parse(): BackgroundModel
     {
         // Берем второй аргумент show [bg school_library]
         // Или берем первый аргумент, если это цвет [scene black]
         $arg = $this->line->get(KatawaCore::ARG_SECOND) ?: $this->line->get(KatawaCore::ARG_FIRST);
 
         // Если аругмента не валидный, то сразу бросаем ошибку
-        if (!$arg) {
-            Tools::exitWithError('Background arg not valid:' . $arg);
+        if (! $arg) {
+            Tools::exitWithError('Background arg not valid:'.$arg);
         }
 
         // Если это не цвет, то добавляем ему расширение и проверяем существует ли путь
-        $this->src = !Tools::isColor($arg) ?  $this->getSrcPath($arg . self::IMAGE_EXTENSION) : $arg;
+        $this->src = ! Tools::isColor($arg) ? $this->getSrcPath($arg.self::IMAGE_EXTENSION) : $arg;
 
         // Если задана позиция, то применяем ее
         $this->position();
@@ -40,27 +41,29 @@ class BackgroundModel extends ModelWith
         $this->src = '';
 
         switch ($align) {
-            case "left":
+            case 'left':
                 $this->position->setX('left')->setY('center')->setTime($duration);
                 break;
-            case "right":
+            case 'right':
                 $this->position->setX('right')->setY('center')->setTime($duration);
                 break;
         }
 
         $this->setIsSkipped(true);
+
         return $this;
     }
 
-    protected function getSrcPath($src) : string {
+    protected function getSrcPath($src): string
+    {
         // Формируем путь к файлу
-        $file = GamePath::getInstance()->win(GamePath::getInstance()->getBackgroundPath() . $this->replace_some_background($src));
+        $file = GamePath::getInstance()->win(GamePath::getInstance()->getBackgroundPath().$this->replace_some_background($src));
 
-        if (!GamePath::getInstance()->exists($file)) {
-            Tools::addDebugInfo('File not found:' . $file);
+        if (! GamePath::getInstance()->exists($file)) {
+            Tools::addDebugInfo('File not found:'.$file);
             dd(
                 '[Background Model]',
-                'File not found:' . $file,
+                'File not found:'.$file,
 
             );
         }
@@ -72,11 +75,11 @@ class BackgroundModel extends ModelWith
     {
         $path = str_replace('mural_part', 'mural', $path);
 
-        if (strpos($path, "tearoom") !== false) {
+        if (strpos($path, 'tearoom') !== false) {
             $path = str_replace('tearoom', 'event/Lilly_supercg/tearoom', $path);
         }
 
-        if ( ($value = Config::getInstance()->getConfigValue('replace_bg_postfix'))) {
+        if (($value = Config::getInstance()->getConfigValue('replace_bg_postfix'))) {
             foreach ($value as $item) {
                 $path = str_replace($item, '', $path);
             }
@@ -94,13 +97,14 @@ class BackgroundModel extends ModelWith
         $command = self::COMMAND_NAME;
 
         if ($this->src) {
-            $command .= ' ' . $this->src;
+            $command .= ' '.$this->src;
         }
 
         $output = parent::compile();
         if ($output) {
-            $command .= ' ' . $output;
+            $command .= ' '.$output;
         }
+
         return $command;
     }
 }

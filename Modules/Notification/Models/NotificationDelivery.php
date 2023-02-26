@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery query()
@@ -20,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery whereNotificationReleaseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationDelivery whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class NotificationDelivery extends Model

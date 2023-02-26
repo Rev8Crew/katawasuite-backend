@@ -2,9 +2,8 @@
 
 namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use Modules\KatawaCore\v2\KatawaCore;
-use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 use Illuminate\Support\Collection;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 abstract class Command
 {
@@ -15,5 +14,5 @@ abstract class Command
         $this->line = $line;
     }
 
-    abstract public function run() : ScenarioCollection;
+    abstract public function run(): ScenarioCollection;
 }

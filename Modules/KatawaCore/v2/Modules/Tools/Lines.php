@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 class Lines
 {
     public Collection $lines;
+
     protected string $delimiter;
 
     public function __construct(string $delimiter = PHP_EOL)
@@ -15,8 +16,9 @@ class Lines
         $this->delimiter = $delimiter;
     }
 
-    public function fromArray(array $input) {
-        return $this->parse( implode($this->delimiter, $input));
+    public function fromArray(array $input)
+    {
+        return $this->parse(implode($this->delimiter, $input));
     }
 
     public function parse(string $str): Lines
@@ -27,7 +29,7 @@ class Lines
             $this->lines->put($key, collect());
 
             $addQuote = isset($line[0]) && $line[0] === '"' ? '|' : '';
-            collect(Tools::explode($line))->each( function (string $word) use ($addQuote, $key) {
+            collect(Tools::explode($line))->each(function (string $word) use ($addQuote, $key) {
                 /** @var Collection $collection */
                 $collection = $this->lines->get($key);
 
@@ -37,12 +39,10 @@ class Lines
         });
 
         $this->lines = $this->lines->values();
+
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function get(): Collection
     {
         return $this->lines;

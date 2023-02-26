@@ -1,6 +1,5 @@
 <?php
 
-
 use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
 
 return [

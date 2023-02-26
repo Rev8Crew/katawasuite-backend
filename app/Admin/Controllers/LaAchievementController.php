@@ -24,8 +24,6 @@ class LaAchievementController extends AdminController
 
     /**
      * Make a grid builder.
-     *
-     * @return Grid
      */
     protected function grid(): Grid
     {
@@ -37,10 +35,10 @@ class LaAchievementController extends AdminController
         $grid->column('name', __('Name'));
         $grid->column('short', __('Short'));
         $grid->column('description', __('Description'));
-        $grid->column('game_id', 'Новелла')->display( fn($game_id) => optional(Game::where('id', $game_id)->first())->name);
+        $grid->column('game_id', 'Новелла')->display(fn ($game_id) => optional(Game::where('id', $game_id)->first())->name);
         $grid->column('is_active', 'Статус')->using(ActiveStatusEnum::toSelect())->label(ActiveStatusEnum::toLabels());
-        $grid->column('created_at', __('Created at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
-        $grid->column('updated_at', __('Updated at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('created_at', __('Created at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('updated_at', __('Updated at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
 
         return $grid;
     }
@@ -48,18 +46,15 @@ class LaAchievementController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      * @return Show
      */
     protected function detail($id)
     {
-
     }
 
     /**
      * Make a form builder.
-     *
-     * @return Form
      */
     protected function form(): Form
     {
@@ -75,8 +70,8 @@ class LaAchievementController extends AdminController
         $form->display('created_at', __('Created at'));
         $form->display('updated_at', __('Updated at'));
 
-        $form->select('game_id', 'Новелла')->options( Game::orderBy('id')->pluck('name', 'id') );
-        $form->multipleSelect('users', 'Пользователи')->options(User::all()->pluck('name','id'))->help('Пользователи которые уже получили достижение');
+        $form->select('game_id', 'Новелла')->options(Game::orderBy('id')->pluck('name', 'id'));
+        $form->multipleSelect('users', 'Пользователи')->options(User::all()->pluck('name', 'id'))->help('Пользователи которые уже получили достижение');
 
         $form->hasMany('rewards', 'Награды', function (Form\NestedForm $form) {
             $form->select('type', 'Тип')->options(RewardTypeEnum::labels())->default(RewardTypeEnum::Text->value);

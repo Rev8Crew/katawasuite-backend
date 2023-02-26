@@ -8,7 +8,6 @@ class ScenarioCollection
 {
     /**
      *  Коллекция из сценариев
-     * @var Collection
      */
     protected Collection $collection;
 
@@ -22,17 +21,15 @@ class ScenarioCollection
         return (new self())->insert($scenario);
     }
 
-    /**
-     * @return Collection
-     */
     public function getCollection(): Collection
     {
         return $this->collection;
     }
 
-    public function insert(Scenario $scenario) {
+    public function insert(Scenario $scenario)
+    {
         $this->collection->push($scenario);
+
         return $this;
     }
-
 }

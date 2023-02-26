@@ -54,5 +54,5 @@ return [
     /*
      * "bgm/Comfort.ogg" => "Comfort.ogg"
      */
-    'bgm/' => ''
+    'bgm/' => '',
 ];

@@ -14,7 +14,7 @@ class KatawaHelper
     public static function isContainCharacter(string $character): bool
     {
         foreach (Config::getInstance()->getConfigValue('characters') as $key => $name) {
-            if ( strpos($character, $key) !== false) {
+            if (strpos($character, $key) !== false) {
                 return true;
             }
         }
@@ -24,7 +24,7 @@ class KatawaHelper
 
     public static function replaceCharactersFromMessage(string $message): string
     {
-        $text =  $message;
+        $text = $message;
 
         foreach (Config::getInstance()->getConfigValue('replace_characters_from_message') as $search => $replace) {
             if (strpos($text, $search) !== false) {

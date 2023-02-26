@@ -11,20 +11,22 @@ use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class HideCommand extends Command
 {
-
     public function run(): ScenarioCollection
     {
         if ($this->line->get(KatawaCore::ARG_FIRST) === 'steam') {
             $steam = SteamModel::make($this->line)->setHide();
-            return ScenarioCollection::make( new Scenario($steam) );
+
+            return ScenarioCollection::make(new Scenario($steam));
         }
 
         if ($this->line->get(KatawaCore::ARG_FIRST) === 'crowd') {
             $crowd = CrowdModel::make($this->line)->setHide();
-            return ScenarioCollection::make( new Scenario($crowd) );
+
+            return ScenarioCollection::make(new Scenario($crowd));
         }
 
         $character = CharacterModel::make($this->line, false)->hide();
-        return ScenarioCollection::make( new Scenario($character) );
+
+        return ScenarioCollection::make(new Scenario($character));
     }
 }

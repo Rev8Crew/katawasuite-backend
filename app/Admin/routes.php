@@ -14,7 +14,6 @@ Route::group([
     'middleware' => config('admin.route.middleware'),
     'as' => config('admin.route.prefix').'.',
 ], function (Router $router) {
-
     $router->get('/', [\App\Admin\Controllers\HomeController::class, 'index'])->name('home');
 
     $router->resource('games', LaGameController::class);

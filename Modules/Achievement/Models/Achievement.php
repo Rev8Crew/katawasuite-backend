@@ -27,6 +27,7 @@ use Modules\User\Entities\User;
  * @property-read int|null $rewards_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $users
  * @property-read int|null $users_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement active()
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement newQuery()
@@ -39,6 +40,7 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Achievement extends Model

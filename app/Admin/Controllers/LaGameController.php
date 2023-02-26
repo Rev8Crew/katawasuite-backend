@@ -20,8 +20,6 @@ class LaGameController extends AdminController
 
     /**
      * Make a grid builder.
-     *
-     * @return Grid
      */
     protected function grid(): Grid
     {
@@ -36,7 +34,7 @@ class LaGameController extends AdminController
         $grid->column('is_active', 'Статус')
             ->using(ActiveStatusEnum::toSelect())
             ->label(ActiveStatusEnum::toLabels());
-        $grid->column('image', __('Image'))->display( function () {
+        $grid->column('image', __('Image'))->display(function () {
             return $this->image;
         })->image('', 100, 100);
         $grid->column('restriction', __('Restriction'));
@@ -50,7 +48,7 @@ class LaGameController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      * @return Show
      */
     protected function detail($id)
@@ -97,7 +95,6 @@ class LaGameController extends AdminController
             ->default(ActiveStatusEnum::Active->value);
         $form->number('restriction', __('Restriction'));
         $form->number('team_id', __('Team id'));
-
 
         return $form;
     }

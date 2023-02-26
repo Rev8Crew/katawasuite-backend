@@ -8,6 +8,7 @@ use Modules\KatawaCore\v2\Modules\Tools\Tools;
 class UnknownModel extends Model
 {
     public bool $debug = true;
+
     public function compile(): string
     {
         if ($this->debug) {
@@ -15,8 +16,8 @@ class UnknownModel extends Model
         }
 
         $result = $this->isStartWithComment($this->line->get(KatawaCore::ARG_COMMAND, '')) ?
-            [ ...$this->line ] :
-            [ "#", ...$this->line ];
+            [...$this->line] :
+            ['#', ...$this->line];
 
         return implode(self::DELIMITER, $result);
     }
@@ -26,13 +27,10 @@ class UnknownModel extends Model
         return isset($string[0]) && $string[0] === '#';
     }
 
-    /**
-     * @param bool $debug
-     * @return UnknownModel
-     */
     public function setDebug(bool $debug = true): UnknownModel
     {
         $this->debug = $debug;
+
         return $this;
     }
 }

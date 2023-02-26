@@ -8,7 +8,7 @@ return [
         'hi' => 'Хисао',
         'mystery' => '???',
         'iw' => 'Иванако',
-        "Иванако" => 'Иванако',
+        'Иванако' => 'Иванако',
         'father' => 'Отец',
         'doctor' => 'Доктор',
         'mu_' => 'Высокий мужчина',
@@ -29,11 +29,11 @@ return [
         'li_' => 'Светловолосая девушка',
         'li' => 'Лилли',
         'lilly' => 'Лилли',
-        "lillyprop" => 'Лилли',
+        'lillyprop' => 'Лилли',
         'yu_' => 'Библиотекарь',
         'yu' => 'Юко',
         'yuukoshang' => 'Юко',
-        "yuuko" => 'Юко',
+        'yuuko' => 'Юко',
         'ha_' => 'Девушка с чёлкой',
         'ha' => 'Ханако',
         'hanako' => 'Ханако',
@@ -51,24 +51,24 @@ return [
         'akira' => 'Акира',
         'shiraki' => 'Сираки',
         'ke_hi' => 'Кендзи & Хисао',
-        "hideaki" => 'Хидеаки',
-        "hh" => 'Хидеаки',
+        'hideaki' => 'Хидеаки',
+        'hh' => 'Хидеаки',
 
-        "shopkeep" => '',
-        "hanagown" => '',
-        "evfg" => '',
-        "evbg" => '',
-        "chessboard" => '',
-        "|Продавец" => '',
-        "phone" => '',
-        "|Девушка" => '',
-        "|Миссис Сато" => '',
-        "meiko" => 'Мейко',
-        "emm" => 'Мейко',
-        "emm_" => 'Загадочная женщина',
-        "emicas" => '',
-        "emiwheel" => '',
-        "rinpan" => '',
+        'shopkeep' => '',
+        'hanagown' => '',
+        'evfg' => '',
+        'evbg' => '',
+        'chessboard' => '',
+        '|Продавец' => '',
+        'phone' => '',
+        '|Девушка' => '',
+        '|Миссис Сато' => '',
+        'meiko' => 'Мейко',
+        'emm' => 'Мейко',
+        'emm_' => 'Загадочная женщина',
+        'emicas' => '',
+        'emiwheel' => '',
+        'rinpan' => '',
         'sae' => 'Саэ',
         'sa' => 'Саэ',
         'shizuyu' => '',
@@ -87,7 +87,7 @@ return [
         'rik' => 'Рика',
 
         'hand' => '',
-        'box' => ''
+        'box' => '',
     ],
 
     /**
@@ -119,7 +119,6 @@ return [
         'window' => \Modules\KatawaCore\v2\Modules\Commands\WindowCommand::class,
     ],
 
-
     // Пути для поиска моделей дефолтный
     'characters_lookup_path' => [
         'close',
@@ -140,55 +139,55 @@ return [
 
         'close/sp/form',
         'close/sp/casual',
-        'close/sp/swim'
+        'close/sp/swim',
     ],
 
     'events_lookup_path' => [
-        'cats_paw'
+        'cats_paw',
     ],
 
     'replace_characters_path' => [
         'lillyprop' => [
             'path' => 'vfx/prop_lilly_back_cane.png',
-            'dissolve' => false
+            'dissolve' => false,
         ],
         'chessboard' => [
             'path' => 'vfx/chessboard.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'mobile' => [
             'path' => 'vfx/mobile-sprite.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'phone' => [
             'path' => 'vfx/mobile-sprite.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'musicbox' => [
             'path' => 'vfx/musicbox_closed.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'hanako_door_base' => [
             'path' => 'vfx/hanako_door_base.jpg',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'hanako_door_door' => [
             'path' => 'vfx/hanako_door_door.jpg',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'letter_insert' => [
             'path' => 'vfx/letter_insert.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
 
         'box:' => [
             'path' => 'vfx/lev_box.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
 
         'hand:' => [
             'path' => 'vfx/hand.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
     ],
 
@@ -204,18 +203,18 @@ return [
         '|Миссис Сато' => 'missis_sato',
 
         'sak' => 'saki',
-        'rik' => 'rika'
+        'rik' => 'rika',
     ],
 
     'sign_characters' => [
         'ssh',
-        'his'
+        'his',
     ],
 
     'replace_bg_postfix' => [
-//        '_ss',
-//        '_rn',
-//        '_fb'
+        //        '_ss',
+        //        '_rn',
+        //        '_fb'
     ],
 
     'music_replace' => [
@@ -269,62 +268,62 @@ return [
 
     'sfx_replace' => [
 
-        "sfx_can_clatter" => "can_clatter",
-        "sfx_park" => "parkambience",
-        "sfx_crowd_indoors" => "crowd_indoors",
-        "sfx_normalbell" => "carillon",
-        "sfx_crowd_outdoors" => "crowd_outdoors",
-        "sfx_storebell" => "storebell",
-        "sfx_blop" => "blop",
-        "sfx_fireworks" => "fireworks",
-        "sfx_running" => "running",
-        "sfx_birdstakeoff" => "birdstakeoff",
-        "sfx_traffic" => "traffic",
-        "sfx_pillow" => "pillow",
-        "sfx_broken_plate" => "broken_plate",
-        "sfx_sitting" => "sitting",
-        "sfx_dooropen" => "dooropen",
-        "sfx_impact" => "wumph",
-        "sfx_splash" => "splash",
-        "sfx_void" => "void.mp3",
-        "sfx_doorclose" => "doorclose",
-        "sfx_rain" => "rain",
-        "sfx_doorknock_soft" => "doorknock2",
-        "sfx_doorknock" => "doorknock",
-        "sfx_shower" => "shower",
-        "sfx_alarmclock" => "alarm",
-        "sfx_switch" => "switch",
-        "sfx_hammer" => "hammer",
-        "sfx_rustling" => "rustling",
-        "sfx_whiteout" => "whiteout",
-        "sfx_car_driving" => "car_driving",
-        "sfx_cycling" => "cycling",
-        "sfx_can" => "can",
-        "sfx_tray_rattling" => "tray_rattling",
-        "sfx_bat_hit" => "bat_hit",
-        "sfx_kick_machine" => "kick_machine",
-        "sfx_snap" => "snap",
-        "sfx_doorslam" => "doorslam",
-        "sfx_tcard" => "tcard",
-        "sfx_rumble" => "rumble",
-        "sfx_cicadas" => "cicadas",
-        "sfx_cellphone" => "cellphone",
-        "sfx_cutlery" => "cutlery",
-        "sfx_car_drive_off" => "car_drive_off",
-        "sfx_car_door" => "car_door",
-        "sfx_beach" => "beach",
-        "sfx_photo" => "shutterfilm",
-        "sfx_kei_arrive" => "kei_arrive",
-        "sfx_clap" => "clap",
-        "sfx_pothole" => "pothole",
-        "sfx_sliding_door" => "sliding_door",
-        "sfx_creaking_door" => "creaking_door",
-        "sfx_wood_floor" => "wood_floor",
-        "sfx_footsteps_hard" => "footsteps_hard",
-        "sfx_brook" => "brook",
-        "sfx_crickets" => "crickets",
-        "sfx_twig_snap" => "twig_snap",
-        "sfx_forest" => "forest",
+        'sfx_can_clatter' => 'can_clatter',
+        'sfx_park' => 'parkambience',
+        'sfx_crowd_indoors' => 'crowd_indoors',
+        'sfx_normalbell' => 'carillon',
+        'sfx_crowd_outdoors' => 'crowd_outdoors',
+        'sfx_storebell' => 'storebell',
+        'sfx_blop' => 'blop',
+        'sfx_fireworks' => 'fireworks',
+        'sfx_running' => 'running',
+        'sfx_birdstakeoff' => 'birdstakeoff',
+        'sfx_traffic' => 'traffic',
+        'sfx_pillow' => 'pillow',
+        'sfx_broken_plate' => 'broken_plate',
+        'sfx_sitting' => 'sitting',
+        'sfx_dooropen' => 'dooropen',
+        'sfx_impact' => 'wumph',
+        'sfx_splash' => 'splash',
+        'sfx_void' => 'void.mp3',
+        'sfx_doorclose' => 'doorclose',
+        'sfx_rain' => 'rain',
+        'sfx_doorknock_soft' => 'doorknock2',
+        'sfx_doorknock' => 'doorknock',
+        'sfx_shower' => 'shower',
+        'sfx_alarmclock' => 'alarm',
+        'sfx_switch' => 'switch',
+        'sfx_hammer' => 'hammer',
+        'sfx_rustling' => 'rustling',
+        'sfx_whiteout' => 'whiteout',
+        'sfx_car_driving' => 'car_driving',
+        'sfx_cycling' => 'cycling',
+        'sfx_can' => 'can',
+        'sfx_tray_rattling' => 'tray_rattling',
+        'sfx_bat_hit' => 'bat_hit',
+        'sfx_kick_machine' => 'kick_machine',
+        'sfx_snap' => 'snap',
+        'sfx_doorslam' => 'doorslam',
+        'sfx_tcard' => 'tcard',
+        'sfx_rumble' => 'rumble',
+        'sfx_cicadas' => 'cicadas',
+        'sfx_cellphone' => 'cellphone',
+        'sfx_cutlery' => 'cutlery',
+        'sfx_car_drive_off' => 'car_drive_off',
+        'sfx_car_door' => 'car_door',
+        'sfx_beach' => 'beach',
+        'sfx_photo' => 'shutterfilm',
+        'sfx_kei_arrive' => 'kei_arrive',
+        'sfx_clap' => 'clap',
+        'sfx_pothole' => 'pothole',
+        'sfx_sliding_door' => 'sliding_door',
+        'sfx_creaking_door' => 'creaking_door',
+        'sfx_wood_floor' => 'wood_floor',
+        'sfx_footsteps_hard' => 'footsteps_hard',
+        'sfx_brook' => 'brook',
+        'sfx_crickets' => 'crickets',
+        'sfx_twig_snap' => 'twig_snap',
+        'sfx_forest' => 'forest',
 
         'sfx_4lslogo' => '4lsaudiologo',
         'sfx_warningbell' => 'chaimu',
@@ -358,6 +357,6 @@ return [
         'left' => PositionDto::make('left', 'center'),
         'twoleft' => PositionDto::make('left', 'center'),
         'bgleft' => PositionDto::make('left', 'center'),
-        'offscreenleft' => PositionDto::make('left-in', 'center')
-    ]
+        'offscreenleft' => PositionDto::make('left-in', 'center'),
+    ],
 ];

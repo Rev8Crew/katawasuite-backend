@@ -13,7 +13,7 @@
 
 use Modules\KatawaCore\Http\Controllers\KatawaCoreController;
 
-Route::prefix('katawacore')->group(function() {
+Route::prefix('katawacore')->group(function () {
     Route::post('convert/{short}', [KatawaCoreController::class, 'convert']);
     Route::post('json', [KatawaCoreController::class, 'json']);
 });

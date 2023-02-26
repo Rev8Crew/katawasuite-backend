@@ -17,6 +17,7 @@ use Modules\User\Entities\User;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read User $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic query()
@@ -27,6 +28,7 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserStatistic whereValue($value)
+ *
  * @mixin \Eloquent
  */
 class UserStatistic extends Model

@@ -45,8 +45,6 @@ class LadderService implements LadderServiceInterface
         $countSaveButtonByGame = $this->countOptionGroupByGame('continue', $startYearDate, $endYearDate);
         $countLoadButtonByGame = $this->countOptionGroupByGame('load', $startYearDate, $endYearDate);
 
-
-
         $novels = Game::active()->whereBetween('created_at', [$startYearDate, $endYearDate])->pluck('name', 'id');
         $achievementsCounts = Achievement::active()->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
 
@@ -58,7 +56,7 @@ class LadderService implements LadderServiceInterface
                 'games.id as game_id',
                 DB::raw('(tt.end-tt.start) as difference'),
             ])
-            ->from($tableName . ' as tt')
+            ->from($tableName.' as tt')
             ->join('users', 'users.id', '=', 'tt.user_id')
             ->join('games', 'games.id', '=', 'tt.game_id')
             ->where('tt.end', '>', 0)
@@ -93,7 +91,7 @@ class LadderService implements LadderServiceInterface
                 'games.name as game_name',
                 \DB::raw('count(*) as counted'),
             ])
-            ->from(UserStatistic::TABLE . ' as us')
+            ->from(UserStatistic::TABLE.' as us')
             ->join('games', 'us.game_id', '=', 'games.id')
             ->whereBetween('us.created_at', [$startYearDate, $endYearDate])
             ->where('us.option', $option)

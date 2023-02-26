@@ -1,14 +1,12 @@
 <?php
 
-use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
-
 return [
     /** Список всех персонажей, [ character_name => 'Описание' ] */
     'characters' => [
         'hi' => 'Хисао',
         'mystery' => '???',
         'iw' => 'Иванако',
-        "Иванако" => 'Иванако',
+        'Иванако' => 'Иванако',
         'father' => 'Отец',
         'doctor' => 'Доктор',
         'mu_' => 'Высокий мужчина',
@@ -29,11 +27,11 @@ return [
         'li_' => 'Светловолосая девушка',
         'li' => 'Лилли',
         'lilly' => 'Лилли',
-        "lillyprop" => 'Лилли',
+        'lillyprop' => 'Лилли',
         'yu_' => 'Библиотекарь',
         'yu' => 'Юко',
         'yuukoshang' => 'Юко',
-        "yuuko" => 'Юко',
+        'yuuko' => 'Юко',
         'ha_' => 'Девушка с чёлкой',
         'ha' => 'Ханако',
         'hanako' => 'Ханако',
@@ -51,25 +49,25 @@ return [
         'akira' => 'Акира',
         'shiraki' => 'Сираки',
         'ke_hi' => 'Кендзи & Хисао',
-        "hideaki" => 'Хидеаки',
-        "hh" => 'Хидеаки',
+        'hideaki' => 'Хидеаки',
+        'hh' => 'Хидеаки',
 
-        "shopkeep" => '',
-        "hanagown" => '',
-        "evfg" => '',
-        "evbg" => '',
-        "chessboard" => '',
+        'shopkeep' => '',
+        'hanagown' => '',
+        'evfg' => '',
+        'evbg' => '',
+        'chessboard' => '',
         'wine' => '',
-        "|Продавец" => '',
-        "phone" => '',
-        "|Девушка" => '',
-        "|Миссис Сато" => '',
-        "meiko" => 'Мейко',
-        "emm" => 'Мейко',
-        "emm_" => 'Загадочная женщина',
-        "emicas" => '',
-        "emiwheel" => '',
-        "rinpan" => '',
+        '|Продавец' => '',
+        'phone' => '',
+        '|Девушка' => '',
+        '|Миссис Сато' => '',
+        'meiko' => 'Мейко',
+        'emm' => 'Мейко',
+        'emm_' => 'Загадочная женщина',
+        'emicas' => '',
+        'emiwheel' => '',
+        'rinpan' => '',
         'sae' => 'Саэ',
         'sa' => 'Саэ',
         'shizuyu' => '',
@@ -84,7 +82,7 @@ return [
         'hakamichi' => 'Хакамити',
 
         'aoi' => '',
-        'mk' => ''
+        'mk' => '',
     ],
 
     /**
@@ -127,14 +125,14 @@ return [
         'close',
         'superclose',
         'ksa',
-        '/event/lilly_supercg'
+        '/event/lilly_supercg',
     ],
 
     /** Пути для поиска персонажей из Event */
     'events_lookup_path' => [
         'ksa',
         'lilly_supercg',
-        'hanako_kiss'
+        'hanako_kiss',
     ],
 
     /**
@@ -145,40 +143,40 @@ return [
     'replace_characters_path' => [
         'lillyprop' => [
             'path' => 'vfx/prop_lilly_back_cane.png',
-            'dissolve' => false
+            'dissolve' => false,
         ],
         'chessboard' => [
             'path' => 'vfx/chessboard.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'mobile' => [
             'path' => 'vfx/mobile-sprite.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'phone' => [
             'path' => 'vfx/mobile-sprite.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'musicbox' => [
             'path' => 'vfx/musicbox_closed.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'hanako_door_base' => [
             'path' => 'vfx/hanako_door_base.jpg',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'hanako_door_door' => [
             'path' => 'vfx/hanako_door_door.jpg',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'letter_insert' => [
             'path' => 'vfx/letter_insert.png',
-            'dissolve' => true
+            'dissolve' => true,
         ],
         'wine' => [
             'path' => 'vfx/wine.png',
-            'dissolve' => true
-        ]
+            'dissolve' => true,
+        ],
     ],
 
     /** Замена персонажей */
@@ -192,13 +190,13 @@ return [
         '|Девушка' => 'girl',
         '|Продавец' => 'seller',
         '|Миссис Сато' => 'missis_sato',
-        'mk' => 'miki'
+        'mk' => 'miki',
     ],
 
     /** Персонажи, которые общаются жестами */
     'sign_characters' => [
         'ssh',
-        'his'
+        'his',
     ],
 
     /**
@@ -211,21 +209,21 @@ return [
         '%(name_hakamichi)s' => 'Хакамити',
         '%(name_sicchan)s' => 'Ситтян',
         '%(name_hicchan)s' => 'Хиттян',
-        '%(name_mizuki)s' => 'Мидзуки'
+        '%(name_mizuki)s' => 'Мидзуки',
     ],
 
     /** Удаляет постфиксы с bg */
     'replace_bg_postfix' => [
         '_rn',
-        '_fb'
+        '_fb',
     ],
 
     /** Музыка */
-    'music_replace' => require __DIR__ . '/helpers/music.php',
+    'music_replace' => require __DIR__.'/helpers/music.php',
 
     /** SFX звуки */
-    'sfx_replace' => require __DIR__ . '/helpers/sfx.php',
+    'sfx_replace' => require __DIR__.'/helpers/sfx.php',
 
     /** Виды позиций */
-    'positions' => require __DIR__ . "/helpers/position.php"
+    'positions' => require __DIR__.'/helpers/position.php',
 ];

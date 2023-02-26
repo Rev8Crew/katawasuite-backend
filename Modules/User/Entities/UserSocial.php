@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Modules\User\Entities\User|null $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial query()
@@ -33,6 +34,7 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserSocial whereUuid($value)
+ *
  * @mixin \Eloquent
  */
 class UserSocial extends Model

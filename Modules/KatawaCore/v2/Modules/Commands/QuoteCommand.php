@@ -8,10 +8,10 @@ use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class QuoteCommand extends Command
 {
-
     public function run(): ScenarioCollection
     {
         $model = TextModel::make($this->line);
-        return ScenarioCollection::make( new Scenario($model));
+
+        return ScenarioCollection::make(new Scenario($model));
     }
 }

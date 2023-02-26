@@ -2,11 +2,11 @@
 
 namespace Modules\KatawaCore\v2\Modules\GameModel;
 
+use Illuminate\Support\Collection;
 use Modules\KatawaCore\v2\KatawaCore;
 use Modules\KatawaCore\v2\Modules\GameModel\Helpers\Position;
 use Modules\KatawaCore\v2\Modules\GameModel\Helpers\PositionParser;
 use Modules\KatawaCore\v2\Modules\Tools\Tools;
-use Illuminate\Support\Collection;
 
 abstract class ModelWith extends Model
 {
@@ -37,15 +37,15 @@ abstract class ModelWith extends Model
     {
         $exists = null;
 
-        if ( $this->line->get(KatawaCore::ARG_THIRD) === 'at') {
+        if ($this->line->get(KatawaCore::ARG_THIRD) === 'at') {
             $exists = KatawaCore::ARG_THIRD;
         }
 
-        if ( $this->line->get(KatawaCore::ARG_SECOND) === 'at') {
+        if ($this->line->get(KatawaCore::ARG_SECOND) === 'at') {
             $exists = KatawaCore::ARG_SECOND;
         }
 
-        if ( $exists ) {
+        if ($exists) {
             $at = $this->line->get($exists + 1);
 
             $parser = new PositionParser($this->position, $this->line, $at);
@@ -57,16 +57,17 @@ abstract class ModelWith extends Model
         return $this;
     }
 
-    public function positionTime(float $seconds = 0.5) {
+    public function positionTime(float $seconds = 0.5)
+    {
         $this->position->setTime($seconds);
+
         return $this;
     }
 
-    /**
-     * @param float|string $seconds
-     */
-    public function dissolve(float|string $seconds = 0.5) {
+    public function dissolve(float|string $seconds = 0.5)
+    {
         $this->position->setDissolve($seconds);
+
         return $this;
     }
 
@@ -83,6 +84,6 @@ abstract class ModelWith extends Model
             $compile->push(Tools::endWithS($this->flip));
         }
 
-        return trim($compile->implode(" "));
+        return trim($compile->implode(' '));
     }
 }

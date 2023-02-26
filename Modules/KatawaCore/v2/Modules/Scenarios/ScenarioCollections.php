@@ -2,14 +2,15 @@
 
 namespace Modules\KatawaCore\v2\Modules\Scenarios;
 
-use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
 use Illuminate\Support\Collection;
+use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
 
 final class ScenarioCollections
 {
     public Collection $scenarioCollections;
 
     protected Collection $before;
+
     protected Collection $after;
 
     protected static ?ScenarioCollections $instance = null;
@@ -21,7 +22,8 @@ final class ScenarioCollections
         $this->after = collect();
     }
 
-    public static function getInstance() : self {
+    public static function getInstance(): self
+    {
         if (static::$instance === null) {
             static::$instance = new static();
         }
@@ -31,7 +33,6 @@ final class ScenarioCollections
 
     /**
      *  Скомпилировать сценарий в текст
-     * @return string
      */
     public function compile(): string
     {
@@ -53,18 +54,20 @@ final class ScenarioCollections
     public function before(ScenarioCollection $scenarioCollection): ScenarioCollections
     {
         $this->before->push($scenarioCollection);
+
         return $this;
     }
 
     public function after(ScenarioCollection $scenarioCollection): ScenarioCollections
     {
         $this->after->push($scenarioCollection);
+
         return $this;
     }
 
     /**
      *  Добавить сценарий в глобальный массив
-     * @param ScenarioCollection $scenarioCollection
+     *
      * @return $this
      */
     public function insert(ScenarioCollection $scenarioCollection): ScenarioCollections
@@ -81,6 +84,7 @@ final class ScenarioCollections
 
         $this->before = collect();
         $this->after = collect();
+
         return $this;
     }
 
@@ -94,9 +98,6 @@ final class ScenarioCollections
         return $this->find(true);
     }
 
-    /**
-     *
-     */
     public function find(bool $findCollection = false): Collection
     {
         $result = collect();
@@ -106,8 +107,8 @@ final class ScenarioCollections
             $scenarioCollection->getCollection()->reverse()->each(static function (Scenario $scenario) use ($scenarioCollection, $findCollection, $result, &$break) {
                 if (
                     $scenario->hasWithRelation() &&
-                    !($scenario->getModel() instanceof UnknownModel) &&
-                    !$scenario->getModel()->isSkipped()
+                    ! ($scenario->getModel() instanceof UnknownModel) &&
+                    ! $scenario->getModel()->isSkipped()
                 ) {
                     $break = false;
                     $result->push($findCollection ? $scenarioCollection : $scenario);

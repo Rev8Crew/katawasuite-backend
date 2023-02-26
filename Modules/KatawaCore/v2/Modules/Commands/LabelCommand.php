@@ -9,16 +9,16 @@ use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class LabelCommand extends Command
 {
-
     public function run(): ScenarioCollection
     {
         $labelName = $this->line->get(KatawaCore::ARG_FIRST);
         // убираем префикс ru_ и ; в конце
-        $labelName = str_replace(array('ru_', ':'), array('lab', ''), $labelName);
+        $labelName = str_replace(['ru_', ':'], ['lab', ''], $labelName);
 
         $this->line->put(KatawaCore::ARG_FIRST, $labelName);
 
         $line = LineModel::make($this->line);
-        return ScenarioCollection::make( new Scenario($line));
+
+        return ScenarioCollection::make(new Scenario($line));
     }
 }

@@ -2,10 +2,8 @@
 
 namespace Modules\KatawaCore\Http\Controllers;
 
-use Modules\KatawaCore\v2\KatawaCore;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Modules\KatawaCore\v2\KatawaCore;
 
 class KatawaCoreController extends Controller
 {
@@ -13,16 +11,17 @@ class KatawaCoreController extends Controller
     {
         $separator = PHP_EOL;
 
-        $content= request()->getContent();
-        $lines = explode( $separator, $content);
+        $content = request()->getContent();
+        $lines = explode($separator, $content);
 
         return response()->json($lines);
     }
 
-    public function convert(string $short) {
+    public function convert(string $short)
+    {
         $in = request()->all();
 
-        if (!in_array($short, ['sc', 'ks', 'cp', 'misha_route', 'ksa'])) {
+        if (! in_array($short, ['sc', 'ks', 'cp', 'misha_route', 'ksa'])) {
             abort(404);
         }
 

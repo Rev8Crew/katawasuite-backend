@@ -5,6 +5,7 @@ namespace Modules\KatawaCore\v2\Modules\GameModel;
 class ImageModel extends ModelWith
 {
     public const COMMAND = 'img';
+
     public bool $cls = false;
 
     public function compile(): string
@@ -12,18 +13,20 @@ class ImageModel extends ModelWith
         $output = self::COMMAND;
 
         if ($this->cls) {
-            $output .= ' ' . '~';
+            $output .= ' '.'~';
         }
 
-        $output .= ' ' . parent::compile();
+        $output .= ' '.parent::compile();
 
         return $output;
     }
 
-    public function cls() : self {
+    public function cls(): self
+    {
         $this->cls = true;
 
         $this->setIsSkipped();
+
         return $this;
     }
 }

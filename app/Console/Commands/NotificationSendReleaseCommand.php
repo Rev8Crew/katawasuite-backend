@@ -20,7 +20,6 @@ class NotificationSendReleaseCommand extends Command
         $chunks = $release->notification->users->chunk(25);
         $bar = $this->output->createProgressBar($chunks->count());
         foreach ($release->notification->users->chunk(25) as $userChunk) {
-
             foreach ($userChunk as $user) {
                 $notificationReleaseService->send($user, $release);
             }

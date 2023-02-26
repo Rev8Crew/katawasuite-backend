@@ -22,8 +22,6 @@ class LaFeedbackController extends AdminController
 
     /**
      * Make a grid builder.
-     *
-     * @return Grid
      */
     protected function grid(): Grid
     {
@@ -33,13 +31,13 @@ class LaFeedbackController extends AdminController
         $grid->column('name', __('Name'));
         $grid->column('email', __('Email'));
         $grid->column('text', __('Text'))->limit();
-        $grid->column('user_id', 'Пользователь')->display( fn($user_id) => optional(User::where('id', $user_id)->first())->name);
+        $grid->column('user_id', 'Пользователь')->display(fn ($user_id) => optional(User::where('id', $user_id)->first())->name);
         $grid->column('relation', 'Relation')
             ->using(FeedbackRelationEnum::toSelect())
             ->label(FeedbackRelationEnum::toLabels());
 
-        $grid->column('created_at', __('Created at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
-        $grid->column('updated_at', __('Updated at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('created_at', __('Created at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
+        $grid->column('updated_at', __('Updated at'))->display(fn ($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
 
         return $grid;
     }
@@ -47,18 +45,15 @@ class LaFeedbackController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      * @return Show
      */
     protected function detail($id)
     {
-
     }
 
     /**
      * Make a form builder.
-     *
-     * @return Form
      */
     protected function form(): Form
     {
