@@ -1,0 +1,11 @@
+{
+    "name": "KatawaCore",
+    "alias": "katawacore",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\KatawaCore\\Providers\\KatawaCoreServiceProvider"
+    ],
+    "files": []
+}

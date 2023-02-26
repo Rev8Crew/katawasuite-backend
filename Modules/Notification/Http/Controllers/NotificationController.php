@@ -27,7 +27,7 @@ class NotificationController extends Controller
         $user = $this->userService->getUserByEmail($email);
         $notification = $this->notificationService->getByCode($code);
 
-        if (! $user) {
+        if (!$user) {
             abort(SymfonyResponse::HTTP_BAD_REQUEST);
         }
 
