@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker pint ide-helper phpstan
+.PHONY : help install shell init test test-cover up down restart clean shell_prod up_prod restart_prod ps renew_certs artisan artisan_prod deploy deploy_with_docker command command_prod clear_docker pint ide-helper phpstan refresh
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -24,8 +24,15 @@ init: ## Make full application initialization
 	docker-compose run $(DC_RUN_ARGS) --no-deps app php ./artisan storage:link
 	docker-compose run $(DC_RUN_ARGS) --no-deps app php ./artisan key:generate
 
+refresh:
+	docker-compose exec web php artisan optimize:clear
+	docker-compose exec web php artisan config:clear
+	docker-compose exec web php artisan db:wipe --database pgsql_test
+	docker-compose exec web php artisan migrate --database pgsql_test
+	docker-compose exec web php artisan db:seed --database pgsql_test
+
 test: ## Execute app tests
-	docker-compose run $(DC_RUN_ARGS) app composer test
+	docker-compose exec web php artisan test --do-not-cache-result -c phpunit.xml
 
 test-cover: ## Execute app tests with coverage
 	docker-compose run --rm --user "0:0" -e 'XDEBUG_MODE=coverage' app sh -c 'echo "XDebug installing, please wait.." \

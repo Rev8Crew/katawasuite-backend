@@ -99,6 +99,7 @@ services:
     image: postgres:15-alpine # Image page: <https://hub.docker.com/_/postgres>
     container_name: katawa-suite-pgsql
     restart: unless-stopped
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
     environment:
       POSTGRES_DB: '${DB_DATABASE}'
       POSTGRES_USER: '${DB_USERNAME}'
