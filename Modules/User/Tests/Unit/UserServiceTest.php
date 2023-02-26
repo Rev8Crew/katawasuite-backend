@@ -45,7 +45,7 @@ class UserServiceTest extends TestCase
 
         $this->assertSame($dto->name, $user->name);
         $this->assertSame($dto->email, $user->email);
-        $this->assertSame(\Hash::make($dto->password), $user->password);
+        $this->assertTrue(\Hash::check($dto->password, $user->password));
         $this->assertSame($dto->phone, $user->phone);
         $this->assertSame($dto->status->value, $user->is_active);
         $this->assertNull($user->email_verified_at);
