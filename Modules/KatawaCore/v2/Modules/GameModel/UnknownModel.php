@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel;
+namespace Modules\KatawaCore\v2\Modules\GameModel;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\Tools\Tools;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\Tools\Tools;
 
 class UnknownModel extends Model
 {

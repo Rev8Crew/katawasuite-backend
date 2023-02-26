@@ -21,7 +21,6 @@ use Modules\User\Entities\User;
  * @property-read \Modules\Notification\Models\Notification $notification
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $notificationDelivery
  * @property-read int|null $notification_delivery_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease query()
@@ -33,8 +32,6 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease whereNotificationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NotificationRelease whereUpdatedAt($value)
- *
- *
  * @mixin \Eloquent
  */
 class NotificationRelease extends Model

@@ -19,7 +19,6 @@ use Modules\User\Entities\User;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Game $game
  * @property-read User $user
- *
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker query()
@@ -30,7 +29,6 @@ use Modules\User\Entities\User;
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker whereStart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TimeTracker whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class TimeTracker extends Model

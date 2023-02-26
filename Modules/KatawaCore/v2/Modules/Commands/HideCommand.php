@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Commands;
+namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\GameModel\CharacterModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\CrowdModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\SteamModel;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\Scenario;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\GameModel\CharacterModel;
+use Modules\KatawaCore\v2\Modules\GameModel\CrowdModel;
+use Modules\KatawaCore\v2\Modules\GameModel\SteamModel;
+use Modules\KatawaCore\v2\Modules\Scenarios\Scenario;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class HideCommand extends Command
 {

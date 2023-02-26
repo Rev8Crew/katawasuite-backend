@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Tools;
+namespace Modules\KatawaCore\v2\Modules\Tools;
 
 use Illuminate\Support\Collection;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Commands;
+namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\GameModel\NoteModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\UnknownModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\WrittenNote;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\Scenario;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\GameModel\NoteModel;
+use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
+use Modules\KatawaCore\v2\Modules\GameModel\WrittenNote;
+use Modules\KatawaCore\v2\Modules\Scenarios\Scenario;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class EmitCommand extends Command
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Helpers;
+namespace Modules\KatawaCore\v2\Modules\Helpers;
 
-use App\Modules\KatawaParser\v2\Modules\GameModel\BackgroundModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\EventModel;
+use Modules\KatawaCore\v2\Modules\GameModel\BackgroundModel;
+use Modules\KatawaCore\v2\Modules\GameModel\EventModel;
 
 class GameModelHelper
 {

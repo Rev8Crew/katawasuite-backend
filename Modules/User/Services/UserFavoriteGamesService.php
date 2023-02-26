@@ -37,6 +37,7 @@ class UserFavoriteGamesService implements UserFavoriteGamesServiceInterface
     {
         $collection = UserFavoriteGames::whereUserId($user->id)
             ->whereHas('game',
+                // @phpstan-ignore-next-line
                 fn (Builder $query) => $query->active()
             )->limit($limit)->get();
 

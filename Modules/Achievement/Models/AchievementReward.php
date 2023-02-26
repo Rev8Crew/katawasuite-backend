@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Modules\Achievement\Models\Achievement $achievement
- *
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward query()
@@ -28,7 +27,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AchievementReward whereValue($value)
- *
  * @mixin \Eloquent
  */
 class AchievementReward extends Model

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Dto;
+namespace Modules\KatawaCore\v2\Modules\Dto;
 
 class PositionDto
 {

@@ -32,7 +32,7 @@ class Response implements Arrayable
 
     protected int $memoryUsageStart;
 
-    protected string $memoryPeakUsage;
+    protected int $memoryPeakUsage;
 
     protected Carbon $date;
 

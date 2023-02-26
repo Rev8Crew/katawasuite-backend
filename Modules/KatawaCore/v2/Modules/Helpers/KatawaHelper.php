@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Helpers;
+namespace Modules\KatawaCore\v2\Modules\Helpers;
 
-use App\Modules\KatawaParser\v2\Modules\Configs\Config;
+use Modules\KatawaCore\v2\Modules\Configs\Config;
 
 class KatawaHelper
 {

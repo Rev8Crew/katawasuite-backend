@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel;
+namespace Modules\KatawaCore\v2\Modules\GameModel;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\GameModel\Helpers\Position;
-use App\Modules\KatawaParser\v2\Modules\GameModel\Helpers\PositionParser;
-use App\Modules\KatawaParser\v2\Modules\Tools\Tools;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\GameModel\Helpers\Position;
+use Modules\KatawaCore\v2\Modules\GameModel\Helpers\PositionParser;
+use Modules\KatawaCore\v2\Modules\Tools\Tools;
 use Illuminate\Support\Collection;
 
 abstract class ModelWith extends Model
@@ -63,9 +63,9 @@ abstract class ModelWith extends Model
     }
 
     /**
-     * @param float $seconds
+     * @param float|string $seconds
      */
-    public function dissolve(float $seconds = 0.5) {
+    public function dissolve(float|string $seconds = 0.5) {
         $this->position->setDissolve($seconds);
         return $this;
     }

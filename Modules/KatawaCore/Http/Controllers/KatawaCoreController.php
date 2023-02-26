@@ -2,7 +2,7 @@
 
 namespace Modules\KatawaCore\Http\Controllers;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
+use Modules\KatawaCore\v2\KatawaCore;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

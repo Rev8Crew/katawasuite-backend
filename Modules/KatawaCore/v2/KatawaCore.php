@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2;
+namespace Modules\KatawaCore\v2;
 
 use Aedart\Config\Traits\ConfigLoaderTrait;
-use App\Modules\KatawaParser\v2\Modules\Commands\Command;
-use App\Modules\KatawaParser\v2\Modules\Configs\Config;
-use App\Modules\KatawaParser\v2\Modules\Helpers\KatawaHelper;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollections;
-use App\Modules\KatawaParser\v2\Modules\Tools\GamePath;
-use App\Modules\KatawaParser\v2\Modules\Tools\Lines;
+use Modules\KatawaCore\v2\Modules\Commands\Command;
+use Modules\KatawaCore\v2\Modules\Configs\Config;
+use Modules\KatawaCore\v2\Modules\Helpers\KatawaHelper;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollections;
+use Modules\KatawaCore\v2\Modules\Tools\GamePath;
+use Modules\KatawaCore\v2\Modules\Tools\Lines;
 use Illuminate\Support\Collection;
 
 /**

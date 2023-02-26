@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Configs;
+namespace Modules\KatawaCore\v2\Modules\Configs;
 
 use Aedart\Config\Traits\ConfigLoaderTrait;
 use Illuminate\Contracts\Config\Repository;
 
-class Config
+final class Config
 {
     use ConfigLoaderTrait;
 

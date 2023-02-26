@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\KatawaParser\v2\Modules\Dto\PositionDto;
+use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
 
 return [
     /** Список всех персонажей, [ character_name => 'Описание' ] */
@@ -21,20 +21,20 @@ return [
      * Команды и обработчики для них
      */
     'commands' => [
-        'default' => \App\Modules\KatawaParser\v2\Modules\Commands\DefaultCommand::class,
-        'note' => \App\Modules\KatawaParser\v2\Modules\Commands\NoteCommand::class,
-        'quote' => \App\Modules\KatawaParser\v2\Modules\Commands\QuoteCommand::class,
-        'label' => \App\Modules\KatawaParser\v2\Modules\Commands\LabelCommand::class,
-        'hide' => \App\Modules\KatawaParser\v2\Modules\Commands\HideCommand::class,
-        'scene' => \App\Modules\KatawaParser\v2\Modules\Commands\SceneCommand::class,
-        'with' => \App\Modules\KatawaParser\v2\Modules\Commands\WithCommand::class,
-        'play' => \App\Modules\KatawaParser\v2\Modules\Commands\PlayCommand::class,
-        'say' => \App\Modules\KatawaParser\v2\Modules\Commands\SayCommand::class,
-        'stop' => \App\Modules\KatawaParser\v2\Modules\Commands\StopCommand::class,
-        'emit' => \App\Modules\KatawaParser\v2\Modules\Commands\EmitCommand::class,
-        'show' => \App\Modules\KatawaParser\v2\Modules\Commands\ShowCommand::class,
+        'default' => \Modules\KatawaCore\v2\Modules\Commands\DefaultCommand::class,
+        'note' => \Modules\KatawaCore\v2\Modules\Commands\NoteCommand::class,
+        'quote' => \Modules\KatawaCore\v2\Modules\Commands\QuoteCommand::class,
+        'label' => \Modules\KatawaCore\v2\Modules\Commands\LabelCommand::class,
+        'hide' => \Modules\KatawaCore\v2\Modules\Commands\HideCommand::class,
+        'scene' => \Modules\KatawaCore\v2\Modules\Commands\SceneCommand::class,
+        'with' => \Modules\KatawaCore\v2\Modules\Commands\WithCommand::class,
+        'play' => \Modules\KatawaCore\v2\Modules\Commands\PlayCommand::class,
+        'say' => \Modules\KatawaCore\v2\Modules\Commands\SayCommand::class,
+        'stop' => \Modules\KatawaCore\v2\Modules\Commands\StopCommand::class,
+        'emit' => \Modules\KatawaCore\v2\Modules\Commands\EmitCommand::class,
+        'show' => \Modules\KatawaCore\v2\Modules\Commands\ShowCommand::class,
 
-        'window' => \App\Modules\KatawaParser\v2\Modules\Commands\WindowCommand::class,
+        'window' => \Modules\KatawaCore\v2\Modules\Commands\WindowCommand::class,
     ],
 
     /** Пути для поиска моделей дефолтный */

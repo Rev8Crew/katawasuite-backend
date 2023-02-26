@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel\Helpers;
+namespace Modules\KatawaCore\v2\Modules\GameModel\Helpers;
 
 
-use App\Modules\KatawaParser\v2\Modules\Tools\Tools;
+use Modules\KatawaCore\v2\Modules\Tools\Tools;
 
 class Position
 {
     protected string $x = "";
     protected string $y = "";
 
-    protected string $time = "";
+    protected float $time = 0.0;
 
     protected bool $dissolve = false;
 

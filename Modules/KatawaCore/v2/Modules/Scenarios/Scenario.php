@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Modules\KatawaParser\v2\Modules\Scenarios;
+namespace Modules\KatawaCore\v2\Modules\Scenarios;
 
-use App\Modules\KatawaParser\v2\Modules\GameModel\Model;
-use App\Modules\KatawaParser\v2\Modules\GameModel\ModelWith;
+use Modules\KatawaCore\v2\Modules\GameModel\Model;
+use Modules\KatawaCore\v2\Modules\GameModel\ModelWith;
 
 class Scenario
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Helpers;
+namespace Modules\KatawaCore\v2\Modules\Helpers;
 
-use App\Modules\KatawaParser\v2\Modules\GameModel\Model;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\Scenario;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\Modules\GameModel\Model;
+use Modules\KatawaCore\v2\Modules\Scenarios\Scenario;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 use Illuminate\Support\Collection;
 
 class ScenarioCollectionHelper

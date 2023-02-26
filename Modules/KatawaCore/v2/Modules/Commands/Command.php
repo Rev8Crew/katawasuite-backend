@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Commands;
+namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 use Illuminate\Support\Collection;
 
 abstract class Command

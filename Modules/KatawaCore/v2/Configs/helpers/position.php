@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Modules\KatawaParser\v2\Modules\Dto\PositionDto;
+use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
 
 return [
     'center' => PositionDto::make('center', 'center'),

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Modules\KatawaParser\v2\Modules\Commands;
+namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\GameModel\TextModel;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\Scenario;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\GameModel\TextModel;
+use Modules\KatawaCore\v2\Modules\Scenarios\Scenario;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
 
 class CenteredCommand extends Command
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Scenarios;
+namespace Modules\KatawaCore\v2\Modules\Scenarios;
 
 use Illuminate\Support\Collection;
 

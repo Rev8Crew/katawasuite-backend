@@ -16,7 +16,6 @@ use Modules\Game\Entities\Game;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Game $game
  * @property-read \Modules\User\Entities\User $user
- *
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames query()
@@ -25,7 +24,6 @@ use Modules\Game\Entities\Game;
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFavoriteGames whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class UserFavoriteGames extends Model

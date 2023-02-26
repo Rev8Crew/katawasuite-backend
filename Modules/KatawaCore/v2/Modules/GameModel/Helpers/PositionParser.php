@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel\Helpers;
+namespace Modules\KatawaCore\v2\Modules\GameModel\Helpers;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\Commands\DefaultCommand;
-use App\Modules\KatawaParser\v2\Modules\Configs\Config;
-use App\Modules\KatawaParser\v2\Modules\Dto\PositionDto;
-use App\Modules\KatawaParser\v2\Modules\GameModel\BackgroundModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\UnknownModel;
-use App\Modules\KatawaParser\v2\Modules\Helpers\ScenarioCollectionHelper;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollections;
-use App\Modules\KatawaParser\v2\Modules\Tools\Tools;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\Commands\DefaultCommand;
+use Modules\KatawaCore\v2\Modules\Configs\Config;
+use Modules\KatawaCore\v2\Modules\Dto\PositionDto;
+use Modules\KatawaCore\v2\Modules\GameModel\BackgroundModel;
+use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
+use Modules\KatawaCore\v2\Modules\Helpers\ScenarioCollectionHelper;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollections;
+use Modules\KatawaCore\v2\Modules\Tools\Tools;
 use Illuminate\Support\Collection;
 
 class PositionParser

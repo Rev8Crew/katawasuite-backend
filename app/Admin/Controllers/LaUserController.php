@@ -10,6 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Modules\User\Entities\User;
 
+/** @mixin User */
 class LaUserController extends AdminController
 {
     /**
@@ -35,6 +36,7 @@ class LaUserController extends AdminController
         $grid->column('email_verified_at', __('Подтвержден'))->display( fn($date) => $date ? Carbon::parse($date)->format('d-m-Y H:i:s') : 'Не подтвержден');
         $grid->column('is_active', 'Статус')->using(ActiveStatusEnum::toSelect())->label(ActiveStatusEnum::toLabels());
         $grid->column('image', __('Image'))->display( function () {
+            // @phpstan-ignore-next-line
             return $this->image;
         })->image('', 100, 100);
 
@@ -42,17 +44,6 @@ class LaUserController extends AdminController
         $grid->column('updated_at', __('Updated at'))->display( fn($date) => Carbon::parse($date)->format('d-m-Y H:i:s'));
 
         return $grid;
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-
     }
 
     /**
@@ -81,6 +72,7 @@ class LaUserController extends AdminController
         $form->display('updated_at', __('Updated at'));
 
         $form->saving(static function (Form $form) {
+            // @phpstan-ignore-next-line
             if ($form->password && $form->model()->password != $form->password) {
                 $form->password = \Hash::make($form->password);
             }

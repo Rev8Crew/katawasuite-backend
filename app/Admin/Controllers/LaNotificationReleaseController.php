@@ -10,6 +10,7 @@ use Encore\Admin\Show;
 use Modules\Notification\Models\Notification;
 use Modules\Notification\Models\NotificationRelease;
 
+/** @mixin NotificationRelease */
 class LaNotificationReleaseController extends AdminController
 {
     /**
@@ -42,17 +43,6 @@ class LaNotificationReleaseController extends AdminController
     }
 
     /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-
-    }
-
-    /**
      * Make a form builder.
      *
      * @return Form
@@ -63,6 +53,7 @@ class LaNotificationReleaseController extends AdminController
 
         $form->display('id', 'ID');
         $form->text('title', 'Title');
+        // @phpstan-ignore-next-line
         $form->summernote('body', __('Body'));
         $form->text('color', __('Color'));
         $form->text('icon', __('Icon'));

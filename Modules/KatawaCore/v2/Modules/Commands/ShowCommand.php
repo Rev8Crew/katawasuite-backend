@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Commands;
+namespace Modules\KatawaCore\v2\Modules\Commands;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\Configs\Config;
-use App\Modules\KatawaParser\v2\Modules\GameModel\BackgroundModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\CharacterModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\CrowdModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\EventModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\HeartAttackModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\LineModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\RainModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\SteamModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\TeaRoomModel;
-use App\Modules\KatawaParser\v2\Modules\GameModel\UnknownModel;
-use App\Modules\KatawaParser\v2\Modules\Helpers\KatawaHelper;
-use App\Modules\KatawaParser\v2\Modules\Helpers\ScenarioCollectionHelper;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\Scenario;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollection;
-use App\Modules\KatawaParser\v2\Modules\Scenarios\ScenarioCollections;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\Configs\Config;
+use Modules\KatawaCore\v2\Modules\GameModel\BackgroundModel;
+use Modules\KatawaCore\v2\Modules\GameModel\CharacterModel;
+use Modules\KatawaCore\v2\Modules\GameModel\CrowdModel;
+use Modules\KatawaCore\v2\Modules\GameModel\EventModel;
+use Modules\KatawaCore\v2\Modules\GameModel\HeartAttackModel;
+use Modules\KatawaCore\v2\Modules\GameModel\LineModel;
+use Modules\KatawaCore\v2\Modules\GameModel\RainModel;
+use Modules\KatawaCore\v2\Modules\GameModel\SteamModel;
+use Modules\KatawaCore\v2\Modules\GameModel\TeaRoomModel;
+use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
+use Modules\KatawaCore\v2\Modules\Helpers\KatawaHelper;
+use Modules\KatawaCore\v2\Modules\Helpers\ScenarioCollectionHelper;
+use Modules\KatawaCore\v2\Modules\Scenarios\Scenario;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollection;
+use Modules\KatawaCore\v2\Modules\Scenarios\ScenarioCollections;
 
 class ShowCommand extends Command
 {

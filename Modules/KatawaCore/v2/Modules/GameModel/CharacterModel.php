@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel;
+namespace Modules\KatawaCore\v2\Modules\GameModel;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
-use App\Modules\KatawaParser\v2\Modules\Configs\Config;
-use App\Modules\KatawaParser\v2\Modules\Tools\GamePath;
-use App\Modules\KatawaParser\v2\Modules\Tools\Tools;
+use Modules\KatawaCore\v2\KatawaCore;
+use Modules\KatawaCore\v2\Modules\Configs\Config;
+use Modules\KatawaCore\v2\Modules\Tools\GamePath;
+use Modules\KatawaCore\v2\Modules\Tools\Tools;
 use Illuminate\Support\Str;
 
-class CharacterModel extends ModelWith
+final class CharacterModel extends ModelWith
 {
     public const COMMAND = 'img';
     public const NAME_PREFIX = '@';
@@ -82,7 +82,7 @@ class CharacterModel extends ModelWith
     {
         $pathOfExile = $path ?: $this->name;
         /**
-         * @var array{dissolve: bool, path: string}
+         * @var array{dissolve: bool, path: string} $item
          */
         foreach (Config::getInstance()->getConfigValue('replace_characters_path') as $character => $item) {
             if ($this->name === $character) {
@@ -118,12 +118,12 @@ class CharacterModel extends ModelWith
             }
         }
 
-        dd(
-            '[Character Model] File not found',
-            $this->getForegroundPaths($fixNamePathIfRequired, $canBeUsedAsPath),
-            $this->line->implode(' '),
-            $path
-        );
+//        dd(
+//            '[Character Model] File not found',
+//            $this->getForegroundPaths($fixNamePathIfRequired, $canBeUsedAsPath),
+//            $this->line->implode(' '),
+//            $path
+//        );
 
         return '';
     }

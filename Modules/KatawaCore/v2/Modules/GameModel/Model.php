@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel;
+namespace Modules\KatawaCore\v2\Modules\GameModel;
 
-use App\Modules\KatawaParser\v2\KatawaCore;
+use Modules\KatawaCore\v2\KatawaCore;
 use Illuminate\Support\Collection;
 
 abstract class Model
@@ -18,6 +18,7 @@ abstract class Model
 
     public static function make(Collection $line, bool $parse = true)
     {
+        // @phpstan-ignore-next-line
         $self = new static($line);
 
         if ($parse) {

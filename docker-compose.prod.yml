@@ -62,7 +62,7 @@ services:
       - katawa-suite
     container_name: katawa-suite-nginx-proxy-acme
     environment:
-      - DEFAULT_EMAIL=dimaelik71@gmail.com
+      - DEFAULT_EMAIL=${AUTHOR_EMAIL}
       - NGINX_PROXY_CONTAINER=katawa-suite-nginx-proxy
     volumes:
       - ./docker/nginx/certs:/etc/nginx/certs:rw

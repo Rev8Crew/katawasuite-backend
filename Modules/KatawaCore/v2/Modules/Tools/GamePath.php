@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\Tools;
+namespace Modules\KatawaCore\v2\Modules\Tools;
 
 use Exception;
 
-class GamePath
+final class GamePath
 {
     protected string $separator;
     protected string $gamePath;
@@ -13,7 +13,7 @@ class GamePath
 
     public static function getInstance() : self {
         if (static::$instance === null) {
-            static::$instance = new static();
+            static::$instance = new self();
         }
 
         return static::$instance;

@@ -18,7 +18,6 @@ use Modules\Game\Entities\Game;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Game $game
  * @property-read \Modules\User\Entities\User $user
- *
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave query()
@@ -29,7 +28,6 @@ use Modules\Game\Entities\Game;
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereSlot($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserGameSave whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class UserGameSave extends Model

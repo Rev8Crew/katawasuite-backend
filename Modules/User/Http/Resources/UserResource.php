@@ -31,6 +31,7 @@ class UserResource extends JsonResource
             'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
 
             'ach_created' => $this->whenPivotLoaded('achievement_user', function () {
+                // @phpstan-ignore-next-line
                 return $this->pivot->created_at->translatedFormat('d F Y');
             }),
         ];

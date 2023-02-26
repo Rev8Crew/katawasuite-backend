@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\KatawaParser\v2\Modules\GameModel;
+namespace Modules\KatawaCore\v2\Modules\GameModel;
 
 class ImageModel extends ModelWith
 {
