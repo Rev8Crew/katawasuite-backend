@@ -41,7 +41,7 @@ test-cover: ## Execute app tests with coverage
 		&& su $(shell whoami) -s /bin/sh -c "composer phpunit"'
 
 up: ## Create and start containers
-	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --detach --remove-orphans web queue cron
+	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --detach --remove-orphans web queue cron horizon
 	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8080 or https://127.0.0.1:8443';
 
 down: ## Stop containers
@@ -58,7 +58,7 @@ shell_prod: ## Start shell into app container
 	docker-compose -f docker-compose.prod.yml run $(DC_RUN_ARGS) app sh
 
 up_prod: ## Create and start containers
-	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron
+	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose -f docker-compose.prod.yml up --detach --remove-orphans web queue cron horizon
 
 restart_prod: down up_prod ## Restart all containers
 

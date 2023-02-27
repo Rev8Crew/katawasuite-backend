@@ -3,14 +3,10 @@ version: '3.8'
 volumes:
   postgres-data:
     driver: local
-  pg-admin-data:
-    driver: local
-  #  mysql-data:
-  #    driver: local
   tmp-data:
     driver: local
-  #  redis-data:
-  #    driver: local
+  redis-data:
+      driver: local
   rabbit-data:
     driver: local
   mail-data:
@@ -37,7 +33,7 @@ services:
       - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
       postgres: { condition: service_healthy }
-      pgadmin: { condition: service_started }
+      redis: {condition: service_healthy}
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
       rabbitmq: {condition: service_healthy}
@@ -97,6 +93,10 @@ services:
     restart: unless-stopped
     command: "supercronic /etc/supercronic/laravel" # it runs artisan schedule:run
 
+  horizon:
+    <<: *app
+    command: php /app/artisan horizon
+
   postgres:
     image: postgres:15-alpine # Image page: <https://hub.docker.com/_/postgres>
     container_name: katawa-suite-pgsql
@@ -110,7 +110,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data:rw
     ports:
-      - "127.0.0.1:5433:5432"
+      - "127.0.0.1:5432:5432"
     networks:
       - katawa-suite
     healthcheck: # Healthcheck docs: <https://docs.docker.com/engine/reference/builder/#healthcheck>
@@ -119,79 +119,18 @@ services:
       timeout: 5s
       start_period: 2s
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    restart: unless-stopped
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-      - VIRTUAL_HOST=${PGADMIN_VIRTUAL_HOST}
-      - LETSENCRYPT_HOST=${PGADMIN_VIRTUAL_HOST}
-    volumes:
-      - pg-admin-data:/var/lib/pgadmin
+  redis:
+    image: redis:7-alpine # Image page: <https://hub.docker.com/_/redis>
+    container_name: katawa-suite-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
     networks:
       - katawa-suite
-    depends_on:
-      - postgres
-
-#  mailserver:
-#    image: analogic/poste.io
-#    container_name: katawa-suite-mailserver
-#    ports:
-#      - "25:25"
-#      - "110:110"
-#      - "143:143"
-#      - "587:587"
-#      - "993:993"
-#      - "995:995"
-#      - "4190:4190"
-#    environment:
-#      - VIRTUAL_HOST=mail.katawa.local
-#      - HTTPS=OFF
-#    volumes:
-#      - /etc/localtime:/etc/localtime:ro
-#      - mail-data:/data
-#    networks:
-#      - katawa-suite
-
-#  mysql:
-#    image: 'mysql/mysql-server:8.0'
-#    ports:
-#      - '3306:3306'
-#    container_name: katawa-suite-mysql
-#    environment:
-#      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-#      MYSQL_ROOT_HOST: "%"
-#      MYSQL_DATABASE: '${DB_DATABASE}'
-#      MYSQL_USER: '${DB_USERNAME}'
-#      MYSQL_PASSWORD: '${DB_PASSWORD}'
-#      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-#    volumes:
-#      - 'mysql-data:/var/lib/mysql'
-#    networks:
-#      - katawa-suite
-#    healthcheck:
-#      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
-#      retries: 3
-#      timeout: 5s
-#
-#  phpmyadmin:
-#    build: ./docker/phpmyadmin
-#    container_name: katawa-suite-phpmyadmin
-#    environment:
-#      - PMA_ARBITRARY=1
-#      - MYSQL_USER=${PMA_USER}
-#      - MYSQL_PASSWORD=${PMA_PASSWORD}
-#      - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
-#      - MAX_EXECUTION_TIME=${PMA_MAX_EXECUTION_TIME}
-#      - MEMORY_LIMIT=${PMA_MEMORY_LIMIT}
-#      - UPLOAD_LIMIT=${PMA_UPLOAD_LIMIT}
-#      - VIRTUAL_HOST=${PMA_VIRTUAL_HOST}
-#      - LETSENCRYPT_HOST=${PMA_VIRTUAL_HOST}
-#    depends_on:
-#      - mysql
-#    networks:
-#      - katawa-suite
+    volumes:
+      - redis-data:/data:rw
+    healthcheck:
+      test: [ 'CMD', 'redis-cli', 'ping' ]
+      interval: 500ms
+      timeout: 1s
 
   rabbitmq:
     build: ./docker/rabbitmq
