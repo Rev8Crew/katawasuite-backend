@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\TestController;
+use App\Http\Middleware\AdminEmailMiddleware;
 use App\Http\Middleware\VerifyCsrfToken;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
-Route::/*middleware(AdminEmailMiddleware::class)->*/prefix('test')->group(static function () {
+Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static function () {
     Route::get('/database', [TestController::class, 'database'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
 
@@ -21,12 +22,8 @@ Route::/*middleware(AdminEmailMiddleware::class)->*/prefix('test')->group(static
     Route::get('/url', [TestController::class, 'url'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    Route::get('/health', HealthCheckResultsController::class);
+    //Route::get('/health', HealthCheckResultsController::class);
 });
-
-/** Katawa Parser */
-//Route::post('vnds/convert/{short}', [KatawaParserController::class, 'convert']);
-//Route::post('vnds/json', [KatawaParserController::class, 'json']);
 
 Route::get('/storage/{filename}', [CommonController::class, 'storage'])->where('filename', '^(?!(api)).*$');
 
