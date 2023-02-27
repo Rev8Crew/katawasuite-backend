@@ -45,7 +45,7 @@ services:
       pgadmin: {condition: service_started}
       nginx-proxy: {condition: service_started}
       rabbitmq: {condition: service_healthy}
-      mailserver: {condition: service_started}
+#      mailserver: {condition: service_started}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
