@@ -22,7 +22,7 @@ Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static fun
     Route::get('/url', [TestController::class, 'url'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
 
-    //Route::get('/health', HealthCheckResultsController::class);
+    Route::get('/health', HealthCheckResultsController::class);
 });
 
 Route::get('/storage/{filename}', [CommonController::class, 'storage'])->where('filename', '^(?!(api)).*$');
