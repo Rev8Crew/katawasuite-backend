@@ -5,7 +5,7 @@ parameters:
   level: 5
   excludePaths:
     - app/Admin/*
-    - Modules/*/Tests
+    - Modules/*/Tests/*
   paths:
     - app
     - database

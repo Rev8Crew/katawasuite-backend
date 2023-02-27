@@ -32,7 +32,7 @@ class Response implements Arrayable
 
     protected int $memoryUsageStart;
 
-    protected int $memoryPeakUsage;
+    protected string $memoryPeakUsage;
 
     protected Carbon $date;
 
@@ -43,7 +43,7 @@ class Response implements Arrayable
     {
         // Sets memory usage
         $this->memoryUsageStart = memory_get_usage();
-        $this->memoryPeakUsage = $this->memoryUsageStart;
+        $this->memoryPeakUsage = BytesForHuman::format($this->memoryUsageStart);
         $this->executionTime = microtime(true);
 
         $this->status = ResponseStatusEnum::Unknown;

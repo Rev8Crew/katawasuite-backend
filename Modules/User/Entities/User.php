@@ -114,11 +114,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Achievement::class, 'achievement_user')->withTimestamps();
     }
 
-    public function imageFile(): BelongsTo
-    {
-        return $this->belongsTo(File::class, 'image_id');
-    }
-
     public function notifications(): BelongsToMany
     {
         return  $this->belongsToMany(Notification::class)->withTimestamps();

@@ -11,7 +11,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         $root = User::create([
-            'id' => 1,
             'name' => 'admin',
             'email' => config('app.admin_default_email'),
             'password' => \Hash::make(config('app.admin_default_password')),

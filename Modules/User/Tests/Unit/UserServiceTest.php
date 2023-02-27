@@ -3,7 +3,7 @@
 namespace Modules\User\Tests\Unit;
 
 use App\Enums\ActiveStatusEnum;
-use Modules\User\database\factories\UserFactory;
+use Modules\User\Database\factories\UserFactory;
 use Modules\User\Entities\DTO\RegisterDto;
 use Modules\User\Services\UserServiceInterface;
 use Tests\TestCase;
