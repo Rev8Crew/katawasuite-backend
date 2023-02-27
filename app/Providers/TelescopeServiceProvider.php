@@ -28,16 +28,17 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
             $entryDto = new EntryContentDto($entry);
 
-            return $entry->isReportableException() ||
-                $entry->isFailedRequest() ||
-                $entry->isFailedJob() ||
-                $entry->isScheduledTask() ||
-                $entry->hasMonitoredTag() ||
-                $entry->isQuery() ||
-                $entry->isClientRequest() ||
-                $entry->isRequest() ||
-                $entryDto->isSlowRequest() ||
-                $entry->type === EntryType::LOG;
+            return true;
+//            return $entry->isReportableException() ||
+//                $entry->isFailedRequest() ||
+//                $entry->isFailedJob() ||
+//                $entry->isScheduledTask() ||
+//                $entry->hasMonitoredTag() ||
+//                $entry->isQuery() ||
+//                $entry->isClientRequest() ||
+//                $entry->isRequest() ||
+//                $entryDto->isSlowRequest() ||
+//                $entry->type === EntryType::LOG;
         });
 
         Telescope::tag(static function (IncomingEntry $entry) {
@@ -75,8 +76,8 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewTelescope', function () {
-            return true;
-            //return in_array($user->email, config('telescope.admin_emails', []), true);
+            $user = \Auth::user();
+            return in_array($user->email, config('telescope.admin_emails', []), true);
         });
     }
 }

@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
 
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyTwoMinutes();
+        $schedule->command('telescope:prune --hours=48')->daily();
         //$schedule->command('enlightn --report')->weekly();
     }
 
