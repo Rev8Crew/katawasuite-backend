@@ -13,6 +13,8 @@ volumes:
   #    driver: local
   rabbit-data:
     driver: local
+  mail-data:
+    driver: local
 
 services:
   app: &app
@@ -131,6 +133,26 @@ services:
       - katawa-suite
     depends_on:
       - postgres
+
+#  mailserver:
+#    image: analogic/poste.io
+#    container_name: katawa-suite-mailserver
+#    ports:
+#      - "25:25"
+#      - "110:110"
+#      - "143:143"
+#      - "587:587"
+#      - "993:993"
+#      - "995:995"
+#      - "4190:4190"
+#    environment:
+#      - VIRTUAL_HOST=mail.katawa.local
+#      - HTTPS=OFF
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - mail-data:/data
+#    networks:
+#      - katawa-suite
 
 #  mysql:
 #    image: 'mysql/mysql-server:8.0'

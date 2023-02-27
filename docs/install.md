@@ -13,6 +13,8 @@ c:\windows\system32\drivers\etc\hosts
 - make shell
 ```shell
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+php artisan telescope:install
+php artisan horizon:install
 ```
 
 ## PhpMyAdmin

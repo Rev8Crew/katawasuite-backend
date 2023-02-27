@@ -75,7 +75,7 @@
 
             for (let id in array) {
                 let elem = document.getElementById(array[id])
-                elem.src = '//katawa-suite.ru/test.mp3'
+                elem.src = '//katawa-suite.com/test.mp3'
                 elem.muted = true;
                 elem.play()
 
