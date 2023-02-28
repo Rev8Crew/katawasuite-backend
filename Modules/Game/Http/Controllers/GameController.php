@@ -48,7 +48,7 @@ class GameController extends Controller
             abort(SymfonyResponse::HTTP_NOT_FOUND);
         }
 
-        return view('game::games', compact('game'));
+        return view('game::games', [ 'game' => $game]);
     }
 
     public function sync(GameSyncRequest $request): Response
