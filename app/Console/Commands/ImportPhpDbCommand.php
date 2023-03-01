@@ -45,6 +45,12 @@ class ImportPhpDbCommand extends Command
                     continue;
                 }
 
+                if ($datum->name === 'files' && isset($item['url']) && \Str::contains($item['url'], 'https://katawa-suite.com')) {
+                    if (config('app.url') !== 'https://katawa-suite.com') {
+                        $item['url'] = \Str::replace('https://katawa-suite.com', config('app.url'), $item['url']);
+                    }
+                }
+
                 DB::table($datum->name)->insert( (array)$item);
             }
         }

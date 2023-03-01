@@ -3,6 +3,8 @@
 namespace Modules\Statistic\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Statistic\Services\StatisticService;
+use Modules\Statistic\Services\StatisticServiceInterface;
 use Modules\Statistic\Services\TimeTrackerService;
 use Modules\Statistic\Services\TimeTrackerServiceInterface;
 
@@ -39,6 +41,7 @@ class StatisticServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
 
         $this->app->bind(TimeTrackerServiceInterface::class, TimeTrackerService::class);
+        $this->app->bind(StatisticServiceInterface::class, StatisticService::class);
     }
 
     /**

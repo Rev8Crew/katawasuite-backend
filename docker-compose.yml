@@ -54,7 +54,7 @@ services:
       - "443:443"
     volumes:
       - ./docker/htpasswd:/etc/nginx/htpasswd
-      - ./docker/nginx/certs:/etc/nginx/certs
+#      - ./docker/nginx/certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   web:

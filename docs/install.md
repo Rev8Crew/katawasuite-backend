@@ -1,10 +1,10 @@
 ## WSL
 c:\windows\system32\drivers\etc\hosts
-127.0.0.1 katawa.local
-127.0.0.1 rabbitmq.katawa.local
-127.0.0.1 horizon.katawa.local
-127.0.0.1 telescope.katawa.local
-127.0.0.1 app.katawa.local
+127.0.0.1 katawa.test
+127.0.0.1 rabbitmq.katawa.test
+127.0.0.1 horizon.katawa.test
+127.0.0.1 telescope.katawa.test
+127.0.0.1 app.katawa.test
 
 ## Install
 - sudo apt install apache2-utils
