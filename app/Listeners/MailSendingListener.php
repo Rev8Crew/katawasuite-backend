@@ -17,5 +17,7 @@ class MailSendingListener
                 return false;
             }
         }
+
+        return true;
     }
 }
