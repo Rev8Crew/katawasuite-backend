@@ -5,7 +5,7 @@
 SHELL = /bin/bash
 DC_RUN_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install shell init test up down restart shell_prod up_prod restart_prod ps renew_certs deploy deploy_with_docker command_prod clear_docker pint ide-helper phpstan refresh
+.PHONY : help install shell init refresh test up down restart shell_prod up_prod restart_prod ps renew_certs deploy deploy_build command_prod clear_docker pint
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -59,11 +59,8 @@ ps: # PS
 renew_certs_prod: # Renew SSL certs
 	docker-compose -f docker-compose.prod.yml exec acme-companion /app/force_renew
 
-deploy:
-	php vendor/bin/envoy run deploy deploy_docker
-
-deploy_docker:
-	php vendor/bin/envoy run deploy_docker
+deploy: # Deploy to host
+	php vendor/bin/envoy run deploy || php vendor/bin/envoy run deploy_docker
 
 deploy_build:
 	php vendor/bin/envoy run deploy_build
@@ -73,12 +70,6 @@ command_prod:
 
 pint:
 	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c './vendor/bin/pint'
-
-ide-helper:
-	docker-compose run $(DC_RUN_ARGS) app /bin/sh -c 'php artisan ide-helper:model -W'
-
-phpstan:
-	./vendor/bin/phpstan analyse
 
 clear_docker:
 	docker stop $(docker ps -a -q)
