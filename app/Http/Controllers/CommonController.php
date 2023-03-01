@@ -20,7 +20,11 @@ class CommonController extends Controller
         $path = storage_path('app'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.$filename);
 
         if (! File::exists($path)) {
-            abort(SymfonyResponse::HTTP_NOT_FOUND);
+            $path = storage_path('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.$filename);
+
+            if (! File::exists($path)) {
+                abort(SymfonyResponse::HTTP_NOT_FOUND);
+            }
         }
 
         $file = File::get($path);

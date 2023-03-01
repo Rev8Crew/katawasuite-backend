@@ -45,9 +45,22 @@ class ImportPhpDbCommand extends Command
                     continue;
                 }
 
-                if ($datum->name === 'files' && isset($item['url']) && \Str::contains($item['url'], 'https://katawa-suite.com')) {
+                if ($datum->name === 'files' &&
+                    isset($item['url']) &&
+                    \Str::contains($item['url'], 'https://katawa-suite.com')
+                ) {
                     if (config('app.url') !== 'https://katawa-suite.com') {
                         $item['url'] = \Str::replace('https://katawa-suite.com', config('app.url'), $item['url']);
+                    }
+                }
+
+                if (
+                    $datum->name === 'achievement_rewards' &&
+                    isset($item['value']) &&
+                    \Str::contains($item['value'], 'https://katawa-suite.com')
+                ) {
+                    if (config('app.url') !== 'https://katawa-suite.com') {
+                        $item['value'] = \Str::replace('https://katawa-suite.com', config('app.url'), $item['value']);
                     }
                 }
 

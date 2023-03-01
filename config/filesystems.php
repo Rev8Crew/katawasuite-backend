@@ -90,23 +90,23 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
 
-        //        public_path('games/cp/background') => public_path('games/ks/background'),
-        //        public_path('games/cp/font') => public_path('games/ks/font'),
-        //        public_path('games/cp/foreground') => public_path('games/ks/foreground'),
-        //        public_path('games/cp/sound') => public_path('games/ks/sound'),
-        //        public_path('games/cp/video') => public_path('games/ks/video'),
-        //
-        //        public_path('games/misha_route/background') => public_path('games/ks/background'),
-        //        public_path('games/misha_route/font') => public_path('games/ks/font'),
-        //        public_path('games/misha_route/foreground') => public_path('games/ks/foreground'),
-        //        public_path('games/mish a_route/sound') => public_path('games/ks/sound'),
-        //        public_path('games/misha_route/video') => public_path('games/ks/video'),
-        //
-        //        public_path('games/ksa/background') => public_path('games/ks/background'),
-        //        public_path('games/ksa/font') => public_path('games/ks/font'),
-        //        public_path('games/ksa/foreground') => public_path('games/ks/foreground'),
-        //        public_path('games/ksa/sound') => public_path('games/ks/sound'),
-        //        public_path('games/ksa/video') => public_path('games/ks/video'),
+                public_path('games/cp/background') => public_path('games/ks/background'),
+                public_path('games/cp/font') => public_path('games/ks/font'),
+                public_path('games/cp/foreground') => public_path('games/ks/foreground'),
+                public_path('games/cp/sound') => public_path('games/ks/sound'),
+                public_path('games/cp/video') => public_path('games/ks/video'),
+
+                public_path('games/misha_route/background') => public_path('games/ks/background'),
+                public_path('games/misha_route/font') => public_path('games/ks/font'),
+                public_path('games/misha_route/foreground') => public_path('games/ks/foreground'),
+                public_path('games/mish a_route/sound') => public_path('games/ks/sound'),
+                public_path('games/misha_route/video') => public_path('games/ks/video'),
+
+                public_path('games/ksa/background') => public_path('games/ks/background'),
+                public_path('games/ksa/font') => public_path('games/ks/font'),
+                public_path('games/ksa/foreground') => public_path('games/ks/foreground'),
+                public_path('games/ksa/sound') => public_path('games/ks/sound'),
+                public_path('games/ksa/video') => public_path('games/ks/video'),
     ],
 
 ];
