@@ -28,6 +28,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
     public function testCreate(): void
     {
+
         $user = $this->userFactory->create();
 
         $dto = new FeedbackCreateDto(
