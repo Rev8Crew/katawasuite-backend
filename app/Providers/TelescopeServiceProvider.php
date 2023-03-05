@@ -79,6 +79,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function () {
             $user = \Auth::user();
+
             return $user && in_array($user->email, config('telescope.admin_emails', []), true);
         });
     }

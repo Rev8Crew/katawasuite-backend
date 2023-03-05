@@ -53,6 +53,10 @@
         window.$k = katawa
         window.laravel.katawa.load();
 
+        window.laravel.set_onbeforeunload = function(){
+            return true;
+        };
+
         // function requestWithUrl(url) {
         //     return $.get( addAssetUrl(url))
         // }

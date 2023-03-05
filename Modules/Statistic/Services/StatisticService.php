@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Statistic\Services;
@@ -9,14 +10,13 @@ use Modules\Statistic\Models\UserStatistic;
 
 class StatisticService implements StatisticServiceInterface
 {
-
     public function createForUserAndGame(int $userId, int $gameId, StatisticOptionsEnum $optionsEnum, string $value): UserStatistic
     {
         return UserStatistic::create([
-           'user_id' => $userId,
-           'game_id' => $gameId,
-           'option' => $optionsEnum->value,
-           'value' => $value
+            'user_id' => $userId,
+            'game_id' => $gameId,
+            'option' => $optionsEnum->value,
+            'value' => $value,
         ]);
     }
 

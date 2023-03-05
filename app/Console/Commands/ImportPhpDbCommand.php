@@ -16,8 +16,9 @@ class ImportPhpDbCommand extends Command
     {
         $file = base_path('h91184_katawa_suite.json');
 
-        if (!\File::exists($file)) {
+        if (! \File::exists($file)) {
             $this->error("Can't find dump file");
+
             return;
         }
 
@@ -25,13 +26,12 @@ class ImportPhpDbCommand extends Command
 
         DB::beginTransaction();
         foreach ($data as $datum) {
-
             if ($datum->type !== 'table') {
                 continue;
             }
 
             foreach ($datum->data as $item) {
-                $item = (array)$item;
+                $item = (array) $item;
 
                 if ($datum->name === 'users') {
                     unset($item['image_id']);
@@ -64,7 +64,7 @@ class ImportPhpDbCommand extends Command
                     }
                 }
 
-                DB::table($datum->name)->insert( (array)$item);
+                DB::table($datum->name)->insert((array) $item);
             }
         }
 

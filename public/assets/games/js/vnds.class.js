@@ -2985,6 +2985,8 @@ var vnds_interpreter = function () {
 
                 if (isAutoSave === false) {
                     window.$k.endTimeTracker();
+                    window.onbeforeunload = window.laravel.set_onbeforeunload;
+                    window.onbeforeunload = null;
                 }
 
                 config.autosave_lines = AUTOSAVE_EVERY_LINES;
@@ -3213,6 +3215,8 @@ var vnds_interpreter = function () {
             || (((line.substr(0, 2) === '@[') || (line.substr(0, 2) === '+[')) && ((last_char === '"') || (last_char === "'")))
             || (((line.substr(0, 3) === '@@[') || (line.substr(0, 3) === '++[')) && ((last_char === '"') || (last_char === "'"))))
             line = 'msg ' + line;
+
+        window.onbeforeunload = window.laravel.set_onbeforeunload;
 
         let delimiter_pos = line.indexOf(' ');
         if (delimiter_pos > 0) {

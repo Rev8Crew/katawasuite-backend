@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\Statistic\Services;
@@ -16,9 +17,8 @@ interface StatisticServiceInterface
         string $value
     ): UserStatistic;
 
-
     /**
      * @return Collection|UserStatistic[]
      */
-    public function getUserStatisticByGame( int $userId, int $gameId): Collection;
+    public function getUserStatisticByGame(int $userId, int $gameId): Collection;
 }

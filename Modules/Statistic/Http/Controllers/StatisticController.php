@@ -40,7 +40,7 @@ class StatisticController extends Controller
         $user = $request->user();
         $game_id = $request->input('game_id');
 
-        $counted = $this->statisticService->getUserStatisticByGame($user->id, $game_id)->groupBy('option')->map(function($values) {
+        $counted = $this->statisticService->getUserStatisticByGame($user->id, $game_id)->groupBy('option')->map(function ($values) {
             return $values->count();
         });
 

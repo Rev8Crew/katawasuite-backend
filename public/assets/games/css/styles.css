@@ -484,14 +484,14 @@ input[type=radio]:hover + label:before {
     display: block;
     width: 100%;
     margin: 7px 0;
-    padding: 7px 0;
+    padding: 5px 0;
     font-size: 1.5em;
 }
 
 #choice_menu button {
     display: block;
     margin: 7px 0;
-    padding: 7px 0;
+    padding: 5px 0;
     font-size: 1.5em;
 }
 
