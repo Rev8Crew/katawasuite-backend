@@ -30,17 +30,17 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
             $entryDto = new EntryContentDto($entry);
 
-            return true;
-//            return $entry->isReportableException() ||
-//                $entry->isFailedRequest() ||
-//                $entry->isFailedJob() ||
-//                $entry->isScheduledTask() ||
-//                $entry->hasMonitoredTag() ||
-//                $entry->isQuery() ||
-//                $entry->isClientRequest() ||
-//                $entry->isRequest() ||
-//                $entryDto->isSlowRequest() ||
-//                $entry->type === EntryType::LOG;
+            return $entry->isReportableException() ||
+                $entry->isFailedRequest() ||
+                $entry->isFailedJob() ||
+                $entry->isScheduledTask() ||
+                $entry->hasMonitoredTag() ||
+                $entry->isQuery() ||
+                $entry->isClientRequest() ||
+                $entry->isRequest() ||
+                $entryDto->isSlowRequest() ||
+                $entry->type === EntryType::JOB ||
+                $entry->type === EntryType::LOG;
         });
 
         Telescope::tag(static function (IncomingEntry $entry) {
