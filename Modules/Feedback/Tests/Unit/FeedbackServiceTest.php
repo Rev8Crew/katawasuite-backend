@@ -12,7 +12,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-#[AllowDynamicProperties] class FeedbackServiceTest extends TestCase
+class FeedbackServiceTest extends TestCase
 {
     private ?FeedbackServiceInterface $feedbackService = null;
 
@@ -26,6 +26,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
         $this->userFactory = $this->app->make(UserFactory::class);
     }
 
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->feedbackService = null;
+        $this->userFactory = null;
+    }
+
     public function testCreate(): void
     {
 
@@ -36,7 +44,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
             $this->faker->email(),
             $this->faker->text(),
             $user->id,
-            $this->relation = 'site'
+            'site'
         );
 
         $feedback = $this->feedbackService->create($dto);
