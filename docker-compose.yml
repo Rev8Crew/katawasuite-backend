@@ -5,15 +5,13 @@ version: '3.8'
 volumes:
   postgres-data:
     driver: local
-#  mysql-data:
-#    driver: local
   tmp-data:
     driver: local
   redis-data:
     driver: local
   rabbit-data:
     driver: local
-  mail-data:
+  mailserver-data:
     driver: local
 
 services:
@@ -36,13 +34,11 @@ services:
       - .:/app:rw
       - ./docker/supercronic/laravel:/etc/supercronic/laravel
     depends_on:
-#      mysql: {condition: service_healthy}
-#      phpmyadmin: {condition: service_started}
       redis: {condition: service_healthy}
       postgres: {condition: service_healthy}
       nginx-proxy: {condition: service_started}
       rabbitmq: {condition: service_healthy}
-#      mailserver: {condition: service_started}
+      mailserver: {condition: service_started}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -133,6 +129,26 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
+    networks:
+      - katawa-suite
+
+  mailserver:
+    image: analogic/poste.io
+    container_name: katawa-suite-mailserver
+    ports:
+      - "25:25"
+      - "110:110"
+      - "143:143"
+      - "587:587"
+      - "993:993"
+      - "995:995"
+      - "4190:4190"
+    environment:
+      - VIRTUAL_HOST=${MAIL_VIRTUAL_HOST}
+      - HTTPS=OFF
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mailserver-data:/data
     networks:
       - katawa-suite
 
