@@ -169,10 +169,15 @@ services:
     environment:
       - VIRTUAL_HOST=${MAIL_VIRTUAL_HOST}
       - LETSENCRYPT_HOST=${MAIL_VIRTUAL_HOST}
+      - DISABLE_CLAMAV=TRUE
       - HTTPS=OFF
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - mailserver-data:/data
+      - ./docker/nginx/html/.well-known:/opt/www/.well-known
+      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/key.pem:/data/ssl/server.key:ro
+      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/fullchain.pem:/data/ssl/ca.crt:ro
+      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/cert.pem:/data/ssl/server.crt:ro
     networks:
       - katawa-suite
 
