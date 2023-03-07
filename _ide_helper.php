@@ -9819,6 +9819,41 @@
                         return $instance->setConnectionName($name);
         }
                     /**
+         * Get the number of queue jobs that are ready to process.
+         *
+         * @param string|null $queue
+         * @throws AMQPProtocolChannelException
+         * @static 
+         */ 
+        public static function readyNow($queue = null)
+        {
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
+                        return $instance->readyNow($queue);
+        }
+                    /**
+         * {@inheritdoc}
+         *
+         * @static 
+         */ 
+        public static function release($delay, $job, $data, $queue, $attempts = 0)
+        {
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
+                        return $instance->release($delay, $job, $data, $queue, $attempts);
+        }
+                    /**
+         * Fire the job deleted event.
+         *
+         * @param string $queue
+         * @param \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQJob $job
+         * @throws BindingResolutionException
+         * @static 
+         */ 
+        public static function deleteReserved($queue, $job)
+        {
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
+                        return $instance->deleteReserved($queue, $job);
+        }
+                    /**
          * 
          *
          * @param null $queue
@@ -9828,8 +9863,8 @@
          * @static 
          */ 
         public static function laterRaw($delay, $payload, $queue = null, $attempts = 0)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->laterRaw($delay, $payload, $queue, $attempts);
         }
                     /**
@@ -9841,8 +9876,8 @@
          * @static 
          */ 
         public static function bulkRaw($payload, $queue = null, $options = [])
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->bulkRaw($payload, $queue, $options);
         }
                     /**
@@ -9851,8 +9886,8 @@
          * @static 
          */ 
         public static function getConnection()
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getConnection();
         }
                     /**
@@ -9861,8 +9896,8 @@
          * @static 
          */ 
         public static function getChannel()
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getChannel();
         }
                     /**
@@ -9872,8 +9907,8 @@
          * @static 
          */ 
         public static function getJobClass()
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getJobClass();
         }
                     /**
@@ -9883,8 +9918,8 @@
          * @static 
          */ 
         public static function getQueue($queue = null)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getQueue($queue);
         }
                     /**
@@ -9896,8 +9931,8 @@
          * @static 
          */ 
         public static function isExchangeExists($exchange)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->isExchangeExists($exchange);
         }
                     /**
@@ -9906,8 +9941,8 @@
          * @static 
          */ 
         public static function declareExchange($name, $type = 'direct', $durable = true, $autoDelete = false, $arguments = [])
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->declareExchange($name, $type, $durable, $autoDelete, $arguments);
         }
                     /**
@@ -9917,8 +9952,8 @@
          * @static 
          */ 
         public static function deleteExchange($name, $unused = false)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->deleteExchange($name, $unused);
         }
                     /**
@@ -9930,8 +9965,8 @@
          * @static 
          */ 
         public static function isQueueExists($name = null)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->isQueueExists($name);
         }
                     /**
@@ -9940,8 +9975,8 @@
          * @static 
          */ 
         public static function declareQueue($name, $durable = true, $autoDelete = false, $arguments = [])
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->declareQueue($name, $durable, $autoDelete, $arguments);
         }
                     /**
@@ -9951,8 +9986,8 @@
          * @static 
          */ 
         public static function deleteQueue($name, $if_unused = false, $if_empty = false)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->deleteQueue($name, $if_unused, $if_empty);
         }
                     /**
@@ -9961,8 +9996,8 @@
          * @static 
          */ 
         public static function bindQueue($queue, $exchange, $routingKey = '')
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->bindQueue($queue, $exchange, $routingKey);
         }
                     /**
@@ -9971,8 +10006,8 @@
          * @static 
          */ 
         public static function purge($queue = null)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->purge($queue);
         }
                     /**
@@ -9981,8 +10016,8 @@
          * @static 
          */ 
         public static function ack($job)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->ack($job);
         }
                     /**
@@ -9991,8 +10026,8 @@
          * @static 
          */ 
         public static function reject($job, $requeue = false)
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->reject($job, $requeue);
         }
                     /**
@@ -10002,8 +10037,8 @@
          * @static 
          */ 
         public static function close()
-        {
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+        {            //Method inherited from \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue         
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->close();
         }
                     /**
@@ -10015,7 +10050,7 @@
          */ 
         public static function getJobBackoff($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getJobBackoff($job);
         }
                     /**
@@ -10027,7 +10062,7 @@
          */ 
         public static function getJobExpiration($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getJobExpiration($job);
         }
                     /**
@@ -10039,7 +10074,7 @@
          */ 
         public static function createPayloadUsing($callback)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue::createPayloadUsing($callback);
+                        \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue::createPayloadUsing($callback);
         }
                     /**
          * Get the container instance being used by the connection.
@@ -10049,7 +10084,7 @@
          */ 
         public static function getContainer()
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         return $instance->getContainer();
         }
                     /**
@@ -10061,7 +10096,7 @@
          */ 
         public static function setContainer($container)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue $instance */
+                        /** @var \VladimirYuldashev\LaravelQueueRabbitMQ\Horizon\RabbitMQQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -10879,12 +10914,12 @@
          * Clones a request and overrides some of its parameters.
          *
          * @return static 
-         * @param array $query The GET parameters
-         * @param array $request The POST parameters
-         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
-         * @param array $cookies The COOKIE parameters
-         * @param array $files The FILES parameters
-         * @param array $server The SERVER parameters
+         * @param array|null $query The GET parameters
+         * @param array|null $request The POST parameters
+         * @param array|null $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array|null $cookies The COOKIE parameters
+         * @param array|null $files The FILES parameters
+         * @param array|null $server The SERVER parameters
          * @static 
          */ 
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null)
