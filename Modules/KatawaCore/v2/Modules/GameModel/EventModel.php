@@ -53,7 +53,7 @@ class EventModel extends ModelWith
             }
         }
 
-        dd(
+        \rr\dd(
             '[Event Model] File not found',
             $this->getEventsPath($src),
             $this->getEventsPath($srcPng),

@@ -12,8 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'vnds/json',
-        'vnds/convert/*',
+        'web/katawacore/*',
         'web/vk/*',
     ];
 }
