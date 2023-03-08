@@ -99,7 +99,7 @@ return [
         public_path('games/misha_route/background') => public_path('games/ks/background'),
         public_path('games/misha_route/font') => public_path('games/ks/font'),
         public_path('games/misha_route/foreground') => public_path('games/ks/foreground'),
-        public_path('games/mish a_route/sound') => public_path('games/ks/sound'),
+        public_path('games/misha_route/sound') => public_path('games/ks/sound'),
         public_path('games/misha_route/video') => public_path('games/ks/video'),
 
         public_path('games/ksa/background') => public_path('games/ks/background'),
