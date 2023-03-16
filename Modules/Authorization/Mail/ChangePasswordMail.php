@@ -29,12 +29,14 @@ class ChangePasswordMail extends Mailable implements ShouldQueue
         );
     }
 
-//изменить (убрать окно с кнопкой)
     public function content(): Content
     {
 
         return new Content(
             view: 'authorization::emails.change-password',
+            with: [
+                'url' => route('app', ['any' => 'home']),
+            ]
         );
     }
 
