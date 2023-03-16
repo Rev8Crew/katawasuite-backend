@@ -6,6 +6,8 @@ namespace Modules\User\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Mail;
+use Modules\Authorization\Mail\ChangePasswordMail;
 use Modules\User\Entities\DTO\RegisterDto;
 use Modules\User\Entities\User;
 
@@ -40,6 +42,7 @@ class UserService implements UserServiceInterface
     public function changePassword(User $user, string $password): bool
     {
         $user->password = Hash::make($password);
+        Mail::send(new ChangePasswordMail($user));
 
         return $user->save();
     }
