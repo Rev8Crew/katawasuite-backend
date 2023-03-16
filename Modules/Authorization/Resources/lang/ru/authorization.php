@@ -14,6 +14,7 @@ return [
 
     'activation_email_subject' => 'Активация аккаунта Katawa-Suite',
     'reset_password_subject' => 'Запрос на сброс пароля',
+    'change_password_subject' => 'Пароль учётной записи изменён',
 
     'password' => 'Некорректный пароль',
     'failed' => 'Неверные учетные данные.',
