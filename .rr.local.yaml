@@ -135,28 +135,28 @@ http:
       #
       # Default: 0s
       exec_ttl: 60s
-
-  # SSL (Secure Sockets Layer) settings (docs: https://roadrunner.dev/docs/http-https).
-  ssl:
-    # Host and port to listen on (eg.: `127.0.0.1:443`).
-    #
-    # Default: ":443"
-    address: 0.0.0.0:8443
-
-    # Automatic redirect from http:// to https:// schema.
-    #
-    # Default: false
-    redirect: false
-
-    # Path to the cert file. This option is required for SSL working.
-    #
-    # This option is required.
-    cert: /etc/ssl/certs/selfsigned.crt
-
-    # Path to the cert key file.
-    #
-    # This option is required.
-    key: /etc/ssl/private/selfsigned.key
+#
+#  # SSL (Secure Sockets Layer) settings (docs: https://roadrunner.dev/docs/http-https).
+#  ssl:
+#    # Host and port to listen on (eg.: `127.0.0.1:443`).
+#    #
+#    # Default: ":443"
+#    address: 0.0.0.0:8443
+#
+#    # Automatic redirect from http:// to https:// schema.
+#    #
+#    # Default: false
+#    redirect: false
+#
+#    # Path to the cert file. This option is required for SSL working.
+#    #
+#    # This option is required.
+#    cert: /etc/ssl/certs/selfsigned.crt
+#
+#    # Path to the cert key file.
+#    #
+#    # This option is required.
+#    key: /etc/ssl/private/selfsigned.key
 
   # HTTP/2 settings.
   http2:

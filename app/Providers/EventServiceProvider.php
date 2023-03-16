@@ -27,8 +27,8 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         MessageSending::class => [
-            MailSendingListener::class
-        ]
+            MailSendingListener::class,
+        ],
     ];
 
     /**

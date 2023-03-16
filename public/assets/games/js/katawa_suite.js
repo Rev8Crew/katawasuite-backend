@@ -97,7 +97,7 @@ class KatawaSuite {
         return this.request(this.url + 'web/statistic/time-tracker/end', data)
     }
 
-    addStatistic( option, value = '') {
+    addStatistic( option, value = '1') {
         const url = 'web/statistic/add-user-statistic-game';
 
         const data = {

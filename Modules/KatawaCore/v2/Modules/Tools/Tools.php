@@ -97,6 +97,6 @@ class Tools
 
     public static function exitWithError(...$args)
     {
-        dd($args, (new \Exception)->getTraceAsString());
+        \rr\dd($args, (new \Exception)->getTraceAsString());
     }
 }

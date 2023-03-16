@@ -17,7 +17,7 @@ final class Config
 
     public function __construct(string $short)
     {
-        $this->getConfigLoader()->setDirectory(app_path('Modules/KatawaParser/v2/Configs'));
+        $this->getConfigLoader()->setDirectory(module_path('KatawaCore', 'v2/Configs'));
         $this->getConfigLoader()->load();
 
         $this->short = $short;

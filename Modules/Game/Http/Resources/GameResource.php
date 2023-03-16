@@ -25,6 +25,7 @@ class GameResource extends JsonResource
 
             'restriction' => $this->restriction,
 
+            'icon_s' => $this->icon_small,
             'icon_b' => $this->icon_high,
 
             'thumb_s' => $this->thumbnail_small,

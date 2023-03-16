@@ -37,6 +37,7 @@ services:
       nginx-proxy: {condition: service_started}
       acme-companion: {condition: service_started}
       rabbitmq: {condition: service_healthy}
+      mailserver: {condition: service_started}
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -151,6 +152,32 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
+    networks:
+      - katawa-suite
+
+  mailserver:
+    image: analogic/poste.io
+    container_name: katawa-suite-mailserver
+    ports:
+      - "25:25"
+      - "110:110"
+      - "143:143"
+      - "587:587"
+      - "993:993"
+      - "995:995"
+      - "4190:4190"
+    environment:
+      - VIRTUAL_HOST=${MAIL_VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${MAIL_VIRTUAL_HOST}
+      - DISABLE_CLAMAV=TRUE
+      - HTTPS=OFF
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mail-data:/data
+      - ./docker/nginx/html/.well-known:/opt/www/.well-known
+#      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/key.pem:/data/ssl/server.key:ro
+#      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/fullchain.pem:/data/ssl/ca.crt:ro
+#      - ./docker/nginx/certs/${MAIL_VIRTUAL_HOST}/cert.pem:/data/ssl/server.crt:ro
     networks:
       - katawa-suite
 

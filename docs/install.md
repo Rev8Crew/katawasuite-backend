@@ -1,10 +1,10 @@
 ## WSL
 c:\windows\system32\drivers\etc\hosts
-127.0.0.1 katawa.local
-127.0.0.1 rabbitmq.katawa.local
-127.0.0.1 horizon.katawa.local
-127.0.0.1 telescope.katawa.local
-127.0.0.1 app.katawa.local
+127.0.0.1 katawa.test
+127.0.0.1 rabbitmq.katawa.test
+127.0.0.1 horizon.katawa.test
+127.0.0.1 telescope.katawa.test
+127.0.0.1 app.katawa.test
 
 ## Install
 - sudo apt install apache2-utils
@@ -12,21 +12,12 @@ c:\windows\system32\drivers\etc\hosts
 - cp .env.example .env
 - make install
 - make init
-- make shell
-```shell
-php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
-php artisan telescope:install
-php artisan horizon:install
-```
 
-## PhpMyAdmin
-1. Веб-интерфейс
-```
-https://phpmyadmin.katawa.local
-server ${DB_HOST}
-user ${DB_USERNAME}
-password ${DB_PASSWORD}
-```
+## Tests
+- Подключиться к бд постгреса через phpstorm, создать бд katawa-suite-test
+- make refresh
+- make test
+
 ## RabbitMQ
 1. Заходим в контейнер
 ```bash
@@ -42,14 +33,3 @@ php artisan rabbitmq:queue-bind default default
 
 3. Веб-интерфейс
 - https://rabbitmq.katawa.local
-
-
-## MySQL - если проблемы
-```shell
-docker-compose exec mysql bash
-mysql -u root
-CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
-grant all on *.* to 'admin'@'%';
-exit
-exit
-```

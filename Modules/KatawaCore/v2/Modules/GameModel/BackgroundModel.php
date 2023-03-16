@@ -61,7 +61,7 @@ class BackgroundModel extends ModelWith
 
         if (! GamePath::getInstance()->exists($file)) {
             Tools::addDebugInfo('File not found:'.$file);
-            dd(
+            \rr\dd(
                 '[Background Model]',
                 'File not found:'.$file,
 

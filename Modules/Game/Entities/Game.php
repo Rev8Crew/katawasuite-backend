@@ -100,6 +100,11 @@ class Game extends Model
         return 'games'.'/'.$this->short;
     }
 
+    public function getIconSmallAttribute(): string
+    {
+        return $this->getDirAttribute().'/'.'icon.png';
+    }
+
     public function getIconHighAttribute(): string
     {
         return $this->getDirAttribute().'/'.'icon-high.png';
