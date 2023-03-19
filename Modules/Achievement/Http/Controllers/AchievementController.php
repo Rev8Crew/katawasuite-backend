@@ -17,11 +17,11 @@ class AchievementController extends Controller
     {
     }
 
-    public function getAchievementsByCurrentUser(): Response
+    public function getAchievementsAndMarkCompletedByUser(): Response
     {
         $response = Response::make();
 
-        $achievements = $this->achievementService->getCompletedByUser(request()->user());
+        $achievements = $this->achievementService->getAllAndMarkByUser(request()->user());
 
         return $response->withData(AchievementResource::collection($achievements));
     }

@@ -6,6 +6,7 @@ namespace Modules\Achievement\Services;
 
 use DB;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Modules\Achievement\DTO\AchievementCreateDto;
 use Modules\Achievement\Models\Achievement;
 use Modules\Game\Entities\Game;
@@ -82,5 +83,36 @@ class AchievementService implements AchievementServiceInterface
     public function getAchievementByShort(string $short): ?Achievement
     {
         return Achievement::whereShort($short)->first();
+    }
+
+    public function getAllAndMarkByUser(User $user): EloquentCollection
+    {
+        $completed = $this->getCompletedByUser($user);
+
+        $achievements = $this->getAll()
+            ->load([
+                'rewards',
+                'game'
+            ]);
+
+        $achievements = $this->removeCompletedAchievementsFromAll($achievements, $completed);
+
+        foreach ($completed->reverse() as $achievement) {
+            $achievements->prepend($achievement);
+        }
+
+        return $achievements;
+    }
+
+    private function removeCompletedAchievementsFromAll(EloquentCollection $achievements, Collection $completed): EloquentCollection
+    {
+        $completedIds = $completed->pluck('id', 'id');
+
+        return $achievements->reject(fn(Achievement $achievement) => isset($completedIds[$achievement['id']]));
+    }
+
+    public function getAll(): EloquentCollection
+    {
+        return Achievement::active()->get();
     }
 }

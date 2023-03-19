@@ -14,7 +14,7 @@
 use Modules\Achievement\Http\Controllers\AchievementController;
 
 Route::prefix('achievements')->middleware('auth:sanctum')->name('achievements.')->group(function () {
-    Route::post('/user', [AchievementController::class, 'getAchievementsByCurrentUser'])->name('user');
+    Route::post('/user', [AchievementController::class, 'getAchievementsAndMarkCompletedByUser'])->name('user');
     Route::post('/game/{game}', [AchievementController::class, 'getAchievementsByGame'])->name('game');
 
     Route::post('/complete', [AchievementController::class, 'completeByShort'])->name('complete');
