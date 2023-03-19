@@ -17,17 +17,19 @@ class HealthServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        \Health::checks([
-            UsedDiskSpaceCheck::new(),
-            DatabaseCheck::new(),
-            CacheCheck::new(),
-            CpuLoadCheck::new(),
-            QueueCheck::new(),
-            ScheduleCheck::new(),
-            //SecurityAdvisoriesCheck::new(),
-            SslCertificationExpiredCheck::new()->url(config('app.url'))->warnWhenSslCertificationExpiringDay(15)->failWhenSslCertificationExpiringDay(10),
-            SslCertificationValidCheck::new()->url(config('app.url')),
-        ]);
+        if ($this->app->environment('production')) {
+            \Health::checks([
+                UsedDiskSpaceCheck::new(),
+                DatabaseCheck::new(),
+                CacheCheck::new(),
+                CpuLoadCheck::new(),
+                QueueCheck::new(),
+                ScheduleCheck::new(),
+                //SecurityAdvisoriesCheck::new(),
+                SslCertificationExpiredCheck::new()->url(config('app.url'))->warnWhenSslCertificationExpiringDay(15)->failWhenSslCertificationExpiringDay(10),
+                SslCertificationValidCheck::new()->url(config('app.url')),
+            ]);
+        }
     }
 
     public function boot()

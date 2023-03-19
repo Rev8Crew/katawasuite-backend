@@ -117,4 +117,6 @@ return [
     'sfx_trainchime' => 'trainchime',
     'sfx_teacup' => 'teacup',
     'sfx_rooftop' => 'rooftop',
+
+    'sfx_time' => 'time'
 ];
