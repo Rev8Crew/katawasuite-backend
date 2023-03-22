@@ -4,6 +4,7 @@ namespace Modules\KatawaCore\v2\Modules\Scenarios;
 
 use Illuminate\Support\Collection;
 use Modules\KatawaCore\v2\Modules\GameModel\UnknownModel;
+use Modules\KatawaCore\v2\Modules\Tools\Finder;
 
 final class ScenarioCollections
 {
@@ -96,6 +97,11 @@ final class ScenarioCollections
     public function findWithCollections(): Collection
     {
         return $this->find(true);
+    }
+
+    public function findAnyTextScenario(): Collection
+    {
+        return Finder::findAnyTextScenario($this->scenarioCollections);
     }
 
     public function find(bool $findCollection = false): Collection

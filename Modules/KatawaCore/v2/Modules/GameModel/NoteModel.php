@@ -33,7 +33,7 @@ class NoteModel extends Model
         }
 
         if ($this->text === 'clear') {
-            return self::COMMAND.'\n\n';
+            return self::COMMAND.' \n\n';
         }
 
         return self::COMMAND.' + '.$this->text;
