@@ -28,7 +28,7 @@ class UserSocialService implements UserSocialServiceInterface
         return UserSocial::whereUserId($user->id)->get();
     }
 
-    public function findByProvider(AuthProviderEnum $provider, int $providerUserId): ?UserSocial
+    public function findByProvider(AuthProviderEnum $provider, string $providerUserId): ?UserSocial
     {
         return UserSocial::query()
             ->where([
