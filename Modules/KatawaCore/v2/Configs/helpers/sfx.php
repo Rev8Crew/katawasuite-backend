@@ -118,5 +118,6 @@ return [
     'sfx_teacup' => 'teacup',
     'sfx_rooftop' => 'rooftop',
 
-    'sfx_time' => 'time'
+    'sfx_time' => 'time',
+    'sfx_camera' => 'camera'
 ];

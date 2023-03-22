@@ -196,7 +196,8 @@ return [
         '%(name_mizuki)s' => 'Мидзуки',
         '%(name_hideaki)s' => 'Хидеаки',
         '%(name_jigoro)s' => 'Жигоро',
-        '%(name_yamato_nadeshiko)s' => 'ямато-надэсико'
+        '%(name_yamato_nadeshiko)s' => 'ямато-надэсико',
+        '%(name_shiina)s' => 'Сиина'
     ],
 
     /** Удаляет постфиксы с bg */
