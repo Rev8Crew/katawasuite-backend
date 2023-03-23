@@ -38,7 +38,6 @@ class LaGameController extends AdminController
             return $this->image;
         })->image('', 100, 100);
         $grid->column('restriction', __('Restriction'));
-        $grid->column('team_id', __('Team id'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -67,7 +66,6 @@ class LaGameController extends AdminController
         $show->field('image', __('Image'))->image();
         $show->field('image_id', __('Image id'));
         $show->field('restriction', __('Restriction'));
-        $show->field('team_id', __('Team id'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -94,7 +92,6 @@ class LaGameController extends AdminController
         $form->select('is_active', 'Активность')->options(ActiveStatusEnum::toSelect())
             ->default(ActiveStatusEnum::Active->value);
         $form->number('restriction', __('Restriction'));
-        $form->number('team_id', __('Team id'));
 
         return $form;
     }
