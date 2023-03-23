@@ -60,6 +60,8 @@ class EventModel extends ModelWith
             $this->line->implode(' '),
             $src
         );
+
+        return '';
     }
 
     public function compile(): string

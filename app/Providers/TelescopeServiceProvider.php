@@ -8,6 +8,7 @@ use Laravel\Telescope\EntryType;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
+use Modules\User\Entities\User;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
@@ -78,6 +79,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewTelescope', function () {
+            /** @var User|null $user */
             $user = \Auth::user();
 
             return $user && in_array($user->email, config('telescope.admin_emails', []), true);
