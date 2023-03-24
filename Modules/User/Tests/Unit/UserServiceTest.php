@@ -63,4 +63,13 @@ class UserServiceTest extends TestCase
 
         $this->assertSame($user->id, $someUser->id);
     }
+
+    public function testChangePhone(): void{
+        $user = $this->userFactory->create();
+        $oldPhone = $user->phone;
+
+        $this->userService->changePhone($user, '1231231231');
+
+        $this->assertNotSame($user->phone, $oldPhone);
+    }
 }

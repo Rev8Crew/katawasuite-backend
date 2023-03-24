@@ -77,4 +77,19 @@ class UserService implements UserServiceInterface
 
         return true;
     }
+
+    public function changePhone(User $user, string $phone): bool
+    {
+        $changed = false;
+
+        if ($user->phone === $phone || !preg_match("/^\d{10}$/", $phone) || User::where('phone', '=', $phone)->exists()) {
+            die("Введите корректное значение!");
+        }
+        else {
+            $user->update(['phone' => $phone]);
+            $changed = true;
+        }
+
+        return $changed;
+    }
 }
