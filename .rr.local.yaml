@@ -227,7 +227,7 @@ reload:
       # Ignored folders.
       #
       # Default: []
-      ignore: ["vendor"]
+      ignore: []
 
 # RoadRunner internal container configuration (docs: https://github.com/spiral/endure).
 endure:
