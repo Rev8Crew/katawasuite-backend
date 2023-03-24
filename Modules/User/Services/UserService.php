@@ -82,7 +82,7 @@ class UserService implements UserServiceInterface
     {
         $changed = false;
 
-        if ($user->phone === $phone || !preg_match("/^\d{10}$/", $phone) || User::where('phone', '=', $phone)->exists()) {
+        if ($user->phone === $phone || !phone($phone, ['RU','UA','KZ'])->isValid() || User::where('phone', '=', $phone)->exists()) {
             die("Введите корректное значение!");
         }
         else {
