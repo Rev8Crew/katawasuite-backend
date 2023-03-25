@@ -32,8 +32,10 @@ class UserController extends Controller
         $phone = $request->input('phone');
         $user = $request->user();
 
-        if($this->userService->changePhone($user, $phone)) {
-            return $response->success();
+        try {
+            $this->userService->changePhone($user, $phone);
+        } catch (\Throwable $throwable) {
+            return $response->catch($throwable);
         }
 
         return $response->success();
