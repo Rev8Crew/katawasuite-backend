@@ -7,7 +7,7 @@
         "php": "^8.2",
         "aedart/athenaeum-config": "^7.9",
         "bepsvpt/secure-headers": "^7.4",
-        "encore/laravel-admin": "^1.8",
+        "encore/laravel-admin": "1.8.19",
         "enlightn/enlightn": "^2.3",
         "guzzlehttp/guzzle": "^7.5.0",
         "halaxa/json-machine": "^1.1",
@@ -53,7 +53,8 @@
             "App\\": "app/",
             "Modules\\": "Modules/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Packages\\": "packages/"
         },
         "files": [
             "app/helpers.php"
@@ -91,5 +92,16 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "prefer-stable": true
+    "prefer-stable": true,
+
+    "repositories": [
+      {
+        "type": "path",
+        "url": "packages/laravel-admin",
+        "canonical": true,
+        "options": {
+          "symlink": true
+        }
+      }
+    ]
 }

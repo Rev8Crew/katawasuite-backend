@@ -21,4 +21,10 @@ Route::group([
     $router->resource('feedback', LaFeedbackController::class);
     $router->resource('users', LaUserController::class);
     $router->resource('notification-releases', LaNotificationReleaseController::class);
+
+    $router->post('games/{game}', [LaGameController::class, 'update']);
+    $router->post('achievements/{achievement}', [LaAchievementController::class, 'update']);
+    $router->post('feedback/{feedback}', [LaFeedbackController::class, 'update']);
+    $router->post('users/{user}', [LaUserController::class, 'update']);
+    $router->post('notification-releases/{notification-release}', [LaNotificationReleaseController::class, 'update']);
 });
