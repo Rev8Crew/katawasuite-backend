@@ -84,9 +84,9 @@ class BackgroundModel extends ModelWith
                 $path = str_replace($item, '', $path);
             }
 
-            if (strpos($path, '_ni') == strlen($path) - 7) {
-                $path = str_replace('_ni', '', $path);
-            }
+//            if (strpos($path, '_ni') == strlen($path) - 7) {
+//                $path = str_replace('_ni', '', $path);
+//            }
         }
 
         return $path;
