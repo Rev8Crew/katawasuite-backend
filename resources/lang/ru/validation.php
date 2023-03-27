@@ -130,7 +130,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-    'phone' => 'Поле :attribute field  должно быть корректным телефонным номером (',
+    'phone' => 'Поле :attribute должно содержать корректный телефонный номер',
     'attributes' => [
         'address' => 'Адрес',
         'age' => 'Возраст',
