@@ -18,4 +18,9 @@ interface UserServiceInterface
     public function changeName(User $user, string $name): bool;
 
     public function changePassword(User $user, string $password): bool;
+
+    /**
+     * @throws \Throwable
+     */
+    public function changePhone(User $user, string $phone): bool;
 }

@@ -63,4 +63,47 @@ class UserServiceTest extends TestCase
 
         $this->assertSame($user->id, $someUser->id);
     }
+
+    public function testChangePhone(): void
+    {
+        $user = $this->userFactory->create();
+        $oldPhone = $user->phone;
+
+        $this->userService->changePhone($user, '+79775428977');
+
+        $this->assertNotSame($user->phone, $oldPhone);
+    }
+
+    public function testSamePhone(): void
+    {
+        $user = $this->userFactory->create();
+        $oldPhone = $user->phone;
+
+        $this->expectExceptionMessage(trans("user::user.samePhone"));
+        $this->userService->changePhone($user, $oldPhone);
+
+    }
+
+    public function testLocalPhone(): void
+    {
+        $user = $this->userFactory->create();
+
+        $this->expectExceptionMessage(trans("user::user.localPhone"));
+        $this->userService->changePhone($user, "+319775428989");
+
+    }
+
+    public function testRepeatedNumber(): void
+    {
+        $userOne = $this->userFactory->create();
+        $userOne->phone = "+79775555555";
+        $userOne->save();
+
+        $userTwo = $this->userFactory->create();
+
+        $this->expectExceptionMessage(trans("user::user.repeatedNumber"));
+        $this->userService->changePhone($userTwo, "+79775555555");
+
+    }
+
 }

@@ -10,6 +10,7 @@ use Mail;
 use Modules\Authorization\Mail\ChangePasswordMail;
 use Modules\User\Entities\DTO\RegisterDto;
 use Modules\User\Entities\User;
+use RuntimeException;
 
 class UserService implements UserServiceInterface
 {
@@ -76,5 +77,14 @@ class UserService implements UserServiceInterface
         $user->update(['name' => $name]);
 
         return true;
+    }
+
+    public function changePhone(User $user, string $phone): bool
+    {
+        throw_if($user->phone === $phone, new RuntimeException(trans("user::user.samePhone")));
+        throw_if(!phone($phone, ['RU','UA','KZ'])->isValid(), new RuntimeException(trans("user::user.localPhone")));
+        throw_if(User::where('phone', '=', $phone)->exists(), new RuntimeException(trans("user::user.repeatedNumber")));
+
+        return $user->update(['phone' => $phone]);
     }
 }
