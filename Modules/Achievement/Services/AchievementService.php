@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Achievement\Services;
 
+use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -47,7 +48,7 @@ class AchievementService implements AchievementServiceInterface
         return Achievement::whereGameId($game->id)->active()->with(['rewards', 'game'])->orderBy('short')->get();
     }
 
-    public function getUsersByAchievements($startDate, $endDate): Collection
+    public function getUsersByAchievements(Carbon $startDate, Carbon $endDate): Collection
     {
         return DB::query()
             ->select([

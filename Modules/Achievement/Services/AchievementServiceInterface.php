@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Achievement\Services;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Modules\Achievement\DTO\AchievementCreateDto;
@@ -23,7 +24,7 @@ interface AchievementServiceInterface
 
     public function getAllByGame(Game $game): Collection;
 
-    public function getUsersByAchievements($startDate, $endDate): Collection;
+    public function getUsersByAchievements(Carbon $startDate, Carbon $endDate): Collection;
 
     public function getAllAndMarkByUser(User $user): EloquentCollection;
 
