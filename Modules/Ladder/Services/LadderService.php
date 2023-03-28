@@ -25,7 +25,10 @@ class LadderService implements LadderServiceInterface
 
     public function getNewYearLadder2022(): Collection
     {
-        return $this->achievementService->getUsersByAchievements()->map(function (\stdClass $row) {
+        $startYearDate = Carbon::parse('2022-01-01 00:00:00');
+        $endYearDate = Carbon::parse('2022-12-31 23:59:59');
+
+        return $this->achievementService->getUsersByAchievements($startYearDate, $endYearDate)->map(function (\stdClass $row) {
             return (array) $row;
         })->map(function (array $row) {
             return array_merge($row, ['time' => $this->timeTrackerService->getTimeSpentByUserForGame($row['user_id'])]);
