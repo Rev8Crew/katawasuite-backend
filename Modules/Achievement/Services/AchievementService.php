@@ -47,7 +47,7 @@ class AchievementService implements AchievementServiceInterface
         return Achievement::whereGameId($game->id)->active()->with(['rewards', 'game'])->orderBy('short')->get();
     }
 
-    public function getUsersByAchievements(): Collection
+    public function getUsersByAchievements($startDate, $endDate): Collection
     {
         return DB::query()
             ->select([
@@ -58,6 +58,7 @@ class AchievementService implements AchievementServiceInterface
             ->from('users')
             ->join('achievement_user', 'achievement_user.user_id', '=', 'users.id')
             ->groupBy('users.id', 'users.name')
+            ->whereBetween('achievement_user.created_at', [$startDate, $endDate])
             ->orderByDesc('achievements')
             ->limit(15)
             ->get();

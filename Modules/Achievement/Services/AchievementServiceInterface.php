@@ -23,7 +23,7 @@ interface AchievementServiceInterface
 
     public function getAllByGame(Game $game): Collection;
 
-    public function getUsersByAchievements(): Collection;
+    public function getUsersByAchievements($startDate, $endDate): Collection;
 
     public function getAllAndMarkByUser(User $user): EloquentCollection;
 
