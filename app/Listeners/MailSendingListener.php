@@ -12,8 +12,11 @@ class MailSendingListener
 
     public function handle(MessageSending $event): bool
     {
-        foreach ($event->message->getTo() as $email) {
-            if (\Str::contains($email->getAddress(), '@admin.com')) {
+        $emails = collect($event->message->getTo())
+            ->map(fn ($item) => $item->getAddress());
+
+        foreach ($emails as $email) {
+            if (\Str::contains($email, '@admin.com')) {
                 return false;
             }
         }
