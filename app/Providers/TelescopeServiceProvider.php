@@ -18,7 +18,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     public function register(): void
     {
-        // Telescope::night();
+        Telescope::night();
 
         $this->hideSensitiveRequestDetails();
 
@@ -40,8 +40,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                 $entry->isClientRequest() ||
                 $entry->isRequest() ||
                 $entryDto->isSlowRequest() ||
-                $entry->type === EntryType::JOB ||
-                $entry->type === EntryType::LOG;
+                in_array($entry->type, [EntryType::MAIL, EntryType::JOB, EntryType::LOG], true);
         });
 
         Telescope::tag(static function (IncomingEntry $entry) {
