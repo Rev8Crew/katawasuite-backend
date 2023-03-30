@@ -14,6 +14,10 @@
 use Modules\Authorization\Http\Controllers\AuthorizationController;
 
 Route::prefix('auth')->name('auth.')->group(function () {
+
+    Route::get('login', [AuthorizationController::class, 'showLoginForm'])->name('show-login-form');
+    Route::post('app-login', [AuthorizationController::class, 'appLogin'])->name('app-login');
+
     Route::post('register', [AuthorizationController::class, 'register'])->name('register');
 
     Route::post('login', [AuthorizationController::class, 'login'])->name('login');

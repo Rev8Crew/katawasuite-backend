@@ -5,7 +5,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Вход</h4>
                             <div class="alert alert-warning">Кажется, мы забыли, кто вы. Напомните нам, пожалуйста.</div>
-                            <form method="POST" class="my-login-validation" novalidate="" action="{{ url('login') }}">
+                            <form method="POST" class="my-login-validation" novalidate="" action="{{ route('auth.app-login') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="email">E-Mail Адресс</label>

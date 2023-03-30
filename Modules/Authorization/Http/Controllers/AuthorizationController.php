@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Crypt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Modules\Authorization\Http\Requests\AppLoginRequest;
 use Modules\Authorization\Http\Requests\ChangeCredentialsRequest;
 use Modules\Authorization\Http\Requests\ChangePasswordRequest;
 use Modules\Authorization\Http\Requests\LoginRequest;
@@ -50,6 +51,22 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         }
 
         return $response->success();
+    }
+
+    public function showLoginForm()
+    {
+        return view('authorization::login');
+    }
+
+    public function appLogin(AppLoginRequest $request)
+    {
+        $credentials = $request->getCredentials();
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended();
+        }
+
+        return redirect('auth.show-login-form')->withErrors(trans('auth.failed'));
     }
 
     public function login(LoginRequest $request): Response
