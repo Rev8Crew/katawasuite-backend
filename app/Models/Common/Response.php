@@ -141,7 +141,7 @@ class Response implements Arrayable
             'execution_time' => microtime(true) - $this->executionTime,
             'memory_start_usage' => $this->memoryUsageStart,
             'memory_peak_usage' => $this->memoryPeakUsage,
-            'memory_end_usage' => BytesForHuman::format(memory_get_usage() - $this->memoryUsageStart),
+            'memory_end_usage' => BytesForHuman::format(abs(memory_get_usage() - $this->memoryUsageStart)),
             'date' => $this->date->format('Y-m-d H:i:s'),
         ];
     }
