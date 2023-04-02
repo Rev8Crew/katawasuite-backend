@@ -32,6 +32,7 @@ Route::get('agreement', static fn () => view('privacy.agreement'));
 
 // For public application
 Route::get('/', static fn () => redirect()->route('app', ['any' => 'home']));
+Route::get('/app/novels/details/5', static fn () => redirect()->route('app', ['any' => 'novels/details/5']));
 
 /**
  * Ресурсы хранятся в public/app/*, поэтому без префикса app не будет работать
