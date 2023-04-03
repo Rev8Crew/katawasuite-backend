@@ -16,7 +16,7 @@ interface UserSocialServiceInterface
 
     public function getSocialsByUser(User $user): EloquentCollection;
 
-    public function findByProvider(AuthProviderEnum $provider, string $providerUserId): ?UserSocial;
+    public function findByProvider(AuthProviderEnum $provider, string|int $providerUserId): ?UserSocial;
 
     public function create(RegisterSocialDto $dto): UserSocial;
 
