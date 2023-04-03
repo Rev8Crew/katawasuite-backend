@@ -10,7 +10,7 @@ readonly class RegisterSocialDto implements Arrayable
 {
     public function __construct(
         public string $provider,
-        public string $providerId,
+        public string|int $providerId,
         public string $name,
         public string $avatar,
         public string $email
