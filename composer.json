@@ -23,6 +23,7 @@
         "nwidart/laravel-modules": "^9.0",
         "propaganistas/laravel-phone": "^5.0",
         "rappasoft/laravel-authentication-log": "^3.0",
+        "sentry/sentry-laravel": "^3.3",
         "socialiteproviders/telegram": "*",
         "socialiteproviders/vkontakte": "^5.0",
         "spatie/cpu-load-health-check": "^1.0",
@@ -90,7 +91,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "prefer-stable": true,
 
