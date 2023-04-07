@@ -30,6 +30,7 @@ RUN set -x \
     && apk add --no-cache \
         postgresql-libs \
         icu-libs \
+        git \
     # install build-time dependencies
     && apk add --no-cache --virtual .build-deps \
         postgresql-dev \
@@ -95,11 +96,12 @@ WORKDIR /app
 # copy composer (json|lock) files for dependencies layer caching
 COPY --chown=appuser:appuser ./composer.* /app/
 
+# copy application sources into image (completely)
+COPY --chown=appuser:appuser . /app/
+
 # install composer dependencies (autoloader MUST be generated later!)
 RUN composer install -n --no-dev --no-cache --no-ansi --no-autoloader --no-scripts --prefer-dist
 
-# copy application sources into image (completely)
-COPY --chown=appuser:appuser . /app/
 
 #    # copy front-end artifacts into image
 #    COPY --from=frontend --chown=appuser:appuser /app/public /app/public
