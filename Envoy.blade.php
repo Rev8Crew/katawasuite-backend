@@ -9,7 +9,7 @@
 cd {{ env('DEPLOY_PATH') }}
 export SENTRY_DEPLOY_START=$(date +%s);
 git pull
-make command_prod 'composer i && php artisan migrate --force && php artisan optimize'
+docker-compose -f docker-compose.prod.yml exec web /bin/sh -c 'composer i && php artisan migrate --force && php artisan optimize'
 export SENTRY_RELEASE_VERSION=$(git --git-dir .git log --pretty="%h" -n1 HEAD)
 export SENTRY_URL="{{ env('DEPLOY_SENTRY_URL') }}"
 export SENTRY_AUTH_TOKEN="{{ env('DEPLOY_SENTRY_TOKEN') }}"
