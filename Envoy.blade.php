@@ -31,6 +31,7 @@ docker-compose -f docker-compose.prod.yml restart queue
 docker-compose -f docker-compose.prod.yml restart cron
 docker-compose -f docker-compose.prod.yml restart horizon
 export SENTRY_RELEASE_VERSION=$(git --git-dir .git log --pretty="%h" -n1 HEAD)
+export SENTRY_RELEASE_NAME=$( echo $(git log -1 --pretty=%B) | sed 's/[^a-zA-Z0-9А-я[:space:]-]//g' | head -c63)
 export SENTRY_URL="{{ env('DEPLOY_SENTRY_URL') }}"
 export SENTRY_AUTH_TOKEN="{{ env('DEPLOY_SENTRY_TOKEN') }}"
 export SENTRY_ORG="{{ env('DEPLOY_SENTRY_ORG') }}"
