@@ -206,4 +206,7 @@ return [
 
     'admin_default_email' => env('ADMIN_DEFAULT_EMAIL', ''),
     'admin_default_password' => env('ADMIN_DEFAULT_PASSWORD', ''),
+
+    'author_email' => env('AUTHOR_EMAIL'),
+    'author_name' => env('AUTHOR_NAME'),
 ];

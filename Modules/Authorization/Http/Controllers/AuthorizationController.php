@@ -130,7 +130,7 @@ class AuthorizationController extends \App\Http\Controllers\Controller
         $user = request()->user();
         $user->load(['notifications']);
 
-        $resource = UserResource::make($user);
+        $resource = \auth()->check() ? UserResource::make($user) : [];
 
         return $response->withData($resource);
     }
