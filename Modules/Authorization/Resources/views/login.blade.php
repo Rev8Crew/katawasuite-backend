@@ -45,6 +45,13 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="g-recaptcha" data-sitekey="{{ config('auth.recaptcha.public') }}"></div>
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                    @endif
+                                </div>
+
                                 <div class="form-group m-0">
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Войти

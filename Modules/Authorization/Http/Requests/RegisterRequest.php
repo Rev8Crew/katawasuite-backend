@@ -3,6 +3,7 @@
 namespace Modules\Authorization\Http\Requests;
 
 use App\Http\Requests\CustomFormRequest;
+use App\Rules\ReCaptchaRule;
 
 class RegisterRequest extends CustomFormRequest
 {
@@ -13,6 +14,7 @@ class RegisterRequest extends CustomFormRequest
             'password' => get_password_rules(),
             'email' => 'required|string|email|unique:users',
             'phone' => 'required|unique:users|phone:RU,UA,KZ',
+            'g-recaptcha-response' => ['required', new ReCaptchaRule]
         ];
     }
 

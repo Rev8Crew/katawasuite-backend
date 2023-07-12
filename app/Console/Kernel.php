@@ -31,7 +31,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyTwoMinutes();
         $schedule->command('telescope:prune')->weekly();
-        $schedule->command('enlightn --report')->weekly();
     }
 
     /**

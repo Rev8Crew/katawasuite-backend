@@ -108,4 +108,12 @@ return [
 
     'password_timeout' => 10800,
 
+    /**
+     *  ReCaptcha Secret key
+     */
+
+    'recaptcha' => [
+        'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+        'public' => env('GOOGLE_RECAPTCHA_KEY')
+    ]
 ];

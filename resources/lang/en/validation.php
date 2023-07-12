@@ -154,4 +154,5 @@ return [
 
     'attributes' => [],
 
+    'recaptcha' => 'The google recaptcha is required'
 ];

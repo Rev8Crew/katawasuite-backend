@@ -72,6 +72,11 @@ class Game extends Model
         'image_id',
         'width',
         'height',
+        'images'
+    ];
+
+    protected $casts = [
+        'images' => 'array'
     ];
 
     protected $attributes = [

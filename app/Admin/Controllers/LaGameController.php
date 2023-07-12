@@ -93,6 +93,8 @@ class LaGameController extends AdminController
             ->default(ActiveStatusEnum::Active->value);
         $form->number('restriction', __('Restriction'));
 
+        $form->multipleImage('images', __('Изображения к новелле'))->uniqueName()->removable();
+
         return $form;
     }
 }

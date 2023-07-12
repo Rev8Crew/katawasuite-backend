@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Modules\Authorization\Http\Requests;
 
+use App\Rules\ReCaptchaRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AppLoginRequest extends FormRequest
@@ -16,7 +17,8 @@ class AppLoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'g-recaptcha-response' => ['required', new ReCaptchaRule]
         ];
     }
 
