@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class Column
 {
+    use Column\ExtendDisplay;
     use Column\HasHeader;
     use Column\InlineEditing;
-    use Column\ExtendDisplay;
 
     const SELECT_COLUMN_NAME = '__row_selector__';
 
@@ -104,8 +104,8 @@ class Column
     protected static $model;
 
     /**
-     * @param string $name
-     * @param string $label
+     * @param  string  $name
+     * @param  string  $label
      */
     public function __construct($name, $label)
     {
@@ -129,8 +129,8 @@ class Column
     /**
      * Define a column globally.
      *
-     * @param string $name
-     * @param mixed  $definition
+     * @param  string  $name
+     * @param  mixed  $definition
      */
     public static function define($name, $definition)
     {
@@ -139,8 +139,6 @@ class Column
 
     /**
      * Set grid instance for column.
-     *
-     * @param Grid $grid
      */
     public function setGrid(Grid $grid)
     {
@@ -151,8 +149,6 @@ class Column
 
     /**
      * Set model for column.
-     *
-     * @param $model
      */
     public function setModel($model)
     {
@@ -163,8 +159,6 @@ class Column
 
     /**
      * Set original data for column.
-     *
-     * @param Collection $collection
      */
     public static function setOriginalGridModels(Collection $collection)
     {
@@ -174,8 +168,7 @@ class Column
     /**
      * Set column attributes.
      *
-     * @param array $attributes
-     *
+     * @param  array  $attributes
      * @return $this
      */
     public function setAttributes($attributes = [], $key = null)
@@ -200,8 +193,7 @@ class Column
     /**
      * Get column attributes.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return mixed
      */
     public static function getAttributes($name, $key = null)
@@ -235,8 +227,7 @@ class Column
     /**
      * Set style of this column.
      *
-     * @param string $style
-     *
+     * @param  string  $style
      * @return $this
      */
     public function style($style)
@@ -247,7 +238,6 @@ class Column
     /**
      * Set the width of column.
      *
-     * @param int $width
      *
      * @return $this
      */
@@ -259,8 +249,7 @@ class Column
     /**
      * Set the color of column.
      *
-     * @param string $color
-     *
+     * @param  string  $color
      * @return $this
      */
     public function color($color)
@@ -301,7 +290,6 @@ class Column
     /**
      * Format label.
      *
-     * @param $label
      *
      * @return mixed
      */
@@ -329,9 +317,8 @@ class Column
     /**
      * Set relation.
      *
-     * @param string $relation
-     * @param string $relationColumn
-     *
+     * @param  string  $relation
+     * @param  string  $relationColumn
      * @return $this
      */
     public function setRelation($relation, $relationColumn = null)
@@ -355,8 +342,7 @@ class Column
     /**
      * Mark this column as sortable.
      *
-     * @param null|string $cast
-     *
+     * @param  null|string  $cast
      * @return Column|string
      */
     public function sortable($cast = null)
@@ -381,8 +367,7 @@ class Column
     /**
      * Set help message for column.
      *
-     * @param string $help
-     *
+     * @param  string  $help
      * @return $this|string
      */
     public function help($help = '')
@@ -393,8 +378,7 @@ class Column
     /**
      * Set column filter.
      *
-     * @param mixed|null $builder
-     *
+     * @param  mixed|null  $builder
      * @return $this
      */
     public function filter($builder = null)
@@ -405,7 +389,6 @@ class Column
     /**
      * Add a display callback.
      *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -419,9 +402,8 @@ class Column
     /**
      * Display using display abstract.
      *
-     * @param string $abstract
-     * @param array  $arguments
-     *
+     * @param  string  $abstract
+     * @param  array  $arguments
      * @return $this
      */
     public function displayUsing($abstract, $arguments = [])
@@ -453,7 +435,6 @@ class Column
     /**
      * Add column to total-row.
      *
-     * @param null $display
      *
      * @return $this
      */
@@ -467,13 +448,12 @@ class Column
     /**
      * Display column using a grid row action.
      *
-     * @param string $action
-     *
+     * @param  string  $action
      * @return $this
      */
     public function action($action)
     {
-        if (!is_subclass_of($action, RowAction::class)) {
+        if (! is_subclass_of($action, RowAction::class)) {
             throw new \InvalidArgumentException("Action class [$action] must be sub-class of [Encore\Admin\Actions\GridAction]");
         }
 
@@ -498,15 +478,14 @@ class Column
      */
     protected function hasDisplayCallbacks()
     {
-        return !empty($this->displayCallbacks);
+        return ! empty($this->displayCallbacks);
     }
 
     /**
      * Call all of the "display" callbacks column.
      *
-     * @param mixed $value
-     * @param int   $key
-     *
+     * @param  mixed  $value
+     * @param  int  $key
      * @return mixed
      */
     protected function callDisplayCallbacks($value, $key)
@@ -531,9 +510,7 @@ class Column
     /**
      * Set original grid data to column.
      *
-     * @param Closure $callback
-     * @param int     $key
-     *
+     * @param  int  $key
      * @return Closure
      */
     protected function bindOriginalRowModel(Closure $callback, $key)
@@ -546,7 +523,6 @@ class Column
     /**
      * Fill all data to every column.
      *
-     * @param array $data
      *
      * @return mixed
      */
@@ -600,7 +576,7 @@ class Column
             return;
         }
 
-        if (!class_exists($class) || !is_subclass_of($class, AbstractDisplayer::class)) {
+        if (! class_exists($class) || ! is_subclass_of($class, AbstractDisplayer::class)) {
             throw new \Exception("Invalid column definition [$class]");
         }
 
@@ -618,8 +594,7 @@ class Column
     /**
      * Convert characters to HTML entities recursively.
      *
-     * @param array|string|null $item
-     *
+     * @param  array|string|null  $item
      * @return mixed
      */
     protected function htmlEntityEncode($item)
@@ -638,9 +613,8 @@ class Column
     /**
      * Find a displayer to display column.
      *
-     * @param string $abstract
-     * @param array  $arguments
-     *
+     * @param  string  $abstract
+     * @param  array  $arguments
      * @return $this
      */
     protected function resolveDisplayer($abstract, $arguments)
@@ -655,9 +629,8 @@ class Column
     /**
      * Call Illuminate/Support displayer.
      *
-     * @param string $abstract
-     * @param array  $arguments
-     *
+     * @param  string  $abstract
+     * @param  array  $arguments
      * @return $this
      */
     protected function callSupportDisplayer($abstract, $arguments)
@@ -678,9 +651,8 @@ class Column
     /**
      * Call Builtin displayer.
      *
-     * @param string $abstract
-     * @param array  $arguments
-     *
+     * @param  string  $abstract
+     * @param  array  $arguments
      * @return $this
      */
     protected function callBuiltinDisplayer($abstract, $arguments)
@@ -711,14 +683,13 @@ class Column
      *
      * Allow fluent calls on the Column object.
      *
-     * @param string $method
-     * @param array  $arguments
-     *
+     * @param  string  $method
+     * @param  array  $arguments
      * @return $this
      */
     public function __call($method, $arguments)
     {
-        if ($this->isRelation() && !$this->relationColumn) {
+        if ($this->isRelation() && ! $this->relationColumn) {
             $this->name = "{$this->relation}.$method";
             $this->label = $this->formatLabel($arguments[0] ?? null);
 

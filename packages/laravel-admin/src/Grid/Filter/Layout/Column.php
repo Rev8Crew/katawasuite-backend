@@ -20,7 +20,7 @@ class Column
     /**
      * Column constructor.
      *
-     * @param int $width
+     * @param  int  $width
      */
     public function __construct($width = 12)
     {
@@ -30,8 +30,6 @@ class Column
 
     /**
      * Add a filter to this column.
-     *
-     * @param AbstractFilter $filter
      */
     public function addFilter(AbstractFilter $filter)
     {
@@ -51,7 +49,7 @@ class Column
     /**
      * Set column width.
      *
-     * @param int $width
+     * @param  int  $width
      */
     public function setWidth($width)
     {

@@ -9,7 +9,6 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\URL;
 use Modules\User\Entities\User;
 
 class ChangePasswordMail extends Mailable implements ShouldQueue

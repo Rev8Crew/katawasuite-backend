@@ -59,11 +59,11 @@ class Notification extends Model
         'description',
         'code',
         'entity_class',
-        'entity_id'
+        'entity_id',
     ];
 
     protected $attributes = [
-        'is_active' => ActiveStatusEnum::Active
+        'is_active' => ActiveStatusEnum::Active,
     ];
 
     public function users(): BelongsToMany

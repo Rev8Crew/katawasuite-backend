@@ -19,8 +19,6 @@ class Paginator extends AbstractTool
 
     /**
      * Create a new Paginator instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid, $perPageSelector = true)
     {
@@ -61,7 +59,7 @@ class Paginator extends AbstractTool
      */
     protected function perPageSelector()
     {
-        if (!$this->perPageSelector) {
+        if (! $this->perPageSelector) {
             return;
         }
 
@@ -77,7 +75,7 @@ class Paginator extends AbstractTool
     {
         $parameters = [
             'first' => $this->paginator->firstItem(),
-            'last'  => $this->paginator->lastItem(),
+            'last' => $this->paginator->lastItem(),
             'total' => $this->paginator->total(),
         ];
 
@@ -95,7 +93,7 @@ class Paginator extends AbstractTool
      */
     public function render()
     {
-        if (!$this->grid->showPagination()) {
+        if (! $this->grid->showPagination()) {
             return '';
         }
 

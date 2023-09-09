@@ -37,7 +37,7 @@ class GameResource extends JsonResource
             'url' => route('games.play', ['short' => $this->short]).'#'.$this->short,
             'is_active' => $this->is_active,
 
-            'images' => collect($this->images)->map(fn(string $image) => \Storage::disk('admin')->url($image)),
+            'images' => collect($this->images)->map(fn (string $image) => \Storage::disk('admin')->url($image)),
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

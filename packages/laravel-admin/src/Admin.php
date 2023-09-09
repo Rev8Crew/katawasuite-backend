@@ -73,9 +73,6 @@ class Admin
     }
 
     /**
-     * @param $model
-     * @param Closure $callable
-     *
      * @return \Encore\Admin\Grid
      *
      * @deprecated since v1.6.1
@@ -86,9 +83,6 @@ class Admin
     }
 
     /**
-     * @param $model
-     * @param Closure $callable
-     *
      * @return \Encore\Admin\Form
      *
      *  @deprecated since v1.6.1
@@ -101,8 +95,6 @@ class Admin
     /**
      * Build a tree.
      *
-     * @param $model
-     * @param Closure|null $callable
      *
      * @return \Encore\Admin\Tree
      */
@@ -114,9 +106,7 @@ class Admin
     /**
      * Build show page.
      *
-     * @param $model
-     * @param mixed $callable
-     *
+     * @param  mixed  $callable
      * @return Show
      *
      * @deprecated since v1.6.1
@@ -127,8 +117,7 @@ class Admin
     }
 
     /**
-     * @param Closure $callable
-     *
+     * @param  Closure  $callable
      * @return \Encore\Admin\Layout\Content
      *
      * @deprecated since v1.6.1
@@ -139,8 +128,6 @@ class Admin
     }
 
     /**
-     * @param $model
-     *
      * @return mixed
      */
     public function getModel($model)
@@ -163,7 +150,7 @@ class Admin
      */
     public function menu()
     {
-        if (!empty($this->menu)) {
+        if (! empty($this->menu)) {
             return $this->menu;
         }
 
@@ -176,8 +163,7 @@ class Admin
     }
 
     /**
-     * @param array $menu
-     *
+     * @param  array  $menu
      * @return array
      */
     public function menuLinks($menu = [])
@@ -189,7 +175,7 @@ class Admin
         $links = [];
 
         foreach ($menu as $item) {
-            if (!empty($item['children'])) {
+            if (! empty($item['children'])) {
                 $links = array_merge($links, $this->menuLinks($item['children']));
             } else {
                 $links[] = Arr::only($item, ['title', 'uri', 'icon']);
@@ -202,8 +188,7 @@ class Admin
     /**
      * Set admin title.
      *
-     * @param string $title
-     *
+     * @param  string  $title
      * @return void
      */
     public static function setTitle($title)
@@ -222,8 +207,7 @@ class Admin
     }
 
     /**
-     * @param null|string $favicon
-     *
+     * @param  null|string  $favicon
      * @return string|void
      */
     public static function favicon($favicon = null)
@@ -260,7 +244,6 @@ class Admin
     /**
      * Set navbar.
      *
-     * @param Closure|null $builder
      *
      * @return Navbar
      */
@@ -307,7 +290,7 @@ class Admin
     public function routes()
     {
         $attributes = [
-            'prefix'     => config('admin.route.prefix'),
+            'prefix' => config('admin.route.prefix'),
             'middleware' => config('admin.route.middleware'),
         ];
 
@@ -343,9 +326,8 @@ class Admin
     /**
      * Extend a extension.
      *
-     * @param string $name
-     * @param string $class
-     *
+     * @param  string  $name
+     * @param  string  $class
      * @return void
      */
     public static function extend($name, $class)
@@ -353,17 +335,11 @@ class Admin
         static::$extensions[$name] = $class;
     }
 
-    /**
-     * @param callable $callback
-     */
     public static function booting(callable $callback)
     {
         static::$bootingCallbacks[] = $callback;
     }
 
-    /**
-     * @param callable $callback
-     */
     public static function booted(callable $callback)
     {
         static::$bootedCallbacks[] = $callback;

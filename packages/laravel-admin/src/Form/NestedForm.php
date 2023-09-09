@@ -101,8 +101,8 @@ class NestedForm
      *
      * NestedForm constructor.
      *
-     * @param string $relation
-     * @param Model  $model
+     * @param  string  $relation
+     * @param  Model  $model
      */
     public function __construct($relation, $model = null)
     {
@@ -134,7 +134,7 @@ class NestedForm
             $key = $this->model->getKey();
         }
 
-        if (!is_null($this->key)) {
+        if (! is_null($this->key)) {
             $key = $this->key;
         }
 
@@ -148,8 +148,7 @@ class NestedForm
     /**
      * Set key for current form.
      *
-     * @param mixed $key
-     *
+     * @param  mixed  $key
      * @return $this
      */
     public function setKey($key)
@@ -162,8 +161,7 @@ class NestedForm
     /**
      * Set Form.
      *
-     * @param Form $form
-     *
+     * @param  Form  $form
      * @return $this
      */
     public function setForm(Form $form = null)
@@ -176,8 +174,7 @@ class NestedForm
     /**
      * Set Widget/Form.
      *
-     * @param WidgetForm $form
-     *
+     * @param  WidgetForm  $form
      * @return $this
      */
     public function setWidgetForm(WidgetForm $form = null)
@@ -200,9 +197,8 @@ class NestedForm
     /**
      * Set original values for fields.
      *
-     * @param array  $data
-     * @param string $relatedKeyName
-     *
+     * @param  array  $data
+     * @param  string  $relatedKeyName
      * @return $this
      */
     public function setOriginal($data, $relatedKeyName = null)
@@ -228,8 +224,7 @@ class NestedForm
     /**
      * Prepare for insert or update.
      *
-     * @param array $input
-     *
+     * @param  array  $input
      * @return mixed
      */
     public function prepare($input)
@@ -245,8 +240,7 @@ class NestedForm
     /**
      * Set original data for each field.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return void
      */
     protected function setFieldOriginalValue($key)
@@ -264,8 +258,7 @@ class NestedForm
     /**
      * Do prepare work before store and update.
      *
-     * @param array $record
-     *
+     * @param  array  $record
      * @return array
      */
     protected function prepareRecord($record)
@@ -309,9 +302,8 @@ class NestedForm
     /**
      * Fetch value in input data by column name.
      *
-     * @param array        $data
-     * @param string|array $columns
-     *
+     * @param  array  $data
+     * @param  string|array  $columns
      * @return array|mixed
      */
     protected function fetchColumnValue($data, $columns)
@@ -323,7 +315,7 @@ class NestedForm
         if (is_array($columns)) {
             $value = [];
             foreach ($columns as $name => $column) {
-                if (!Arr::has($data, $column)) {
+                if (! Arr::has($data, $column)) {
                     continue;
                 }
                 $value[$name] = Arr::get($data, $column);
@@ -334,8 +326,6 @@ class NestedForm
     }
 
     /**
-     * @param Field $field
-     *
      * @return $this
      */
     public function pushField(Field $field)
@@ -358,7 +348,6 @@ class NestedForm
     /**
      * Fill data to all fields in form.
      *
-     * @param array $data
      *
      * @return $this
      */
@@ -402,7 +391,6 @@ class NestedForm
     /**
      * Set `errorKey` `elementName` `elementClass` for fields inside hasmany fields.
      *
-     * @param Field $field
      *
      * @return Field
      */
@@ -434,9 +422,8 @@ class NestedForm
     /**
      * Add nested-form fields dynamically.
      *
-     * @param string $method
-     * @param array  $arguments
-     *
+     * @param  string  $method
+     * @param  array  $arguments
      * @return mixed
      */
     public function __call($method, $arguments)

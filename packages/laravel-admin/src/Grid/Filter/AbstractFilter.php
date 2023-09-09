@@ -96,8 +96,7 @@ abstract class AbstractFilter
     /**
      * AbstractFilter constructor.
      *
-     * @param $column
-     * @param string $label
+     * @param  string  $label
      */
     public function __construct($column, $label = '')
     {
@@ -121,8 +120,7 @@ abstract class AbstractFilter
     /**
      * Format label.
      *
-     * @param string $label
-     *
+     * @param  string  $label
      * @return string
      */
     protected function formatLabel($label)
@@ -135,8 +133,7 @@ abstract class AbstractFilter
     /**
      * Format name.
      *
-     * @param string $column
-     *
+     * @param  string  $column
      * @return string
      */
     protected function formatName($column)
@@ -160,7 +157,6 @@ abstract class AbstractFilter
     /**
      * Format id.
      *
-     * @param $columns
      *
      * @return array|string
      */
@@ -169,9 +165,6 @@ abstract class AbstractFilter
         return str_replace('.', '_', $columns);
     }
 
-    /**
-     * @param Filter $filter
-     */
     public function setParent(Filter $filter)
     {
         $this->parent = $filter;
@@ -180,13 +173,12 @@ abstract class AbstractFilter
     /**
      * Get siblings of current filter.
      *
-     * @param null $index
      *
      * @return AbstractFilter[]|mixed
      */
     public function siblings($index = null)
     {
-        if (!is_null($index)) {
+        if (! is_null($index)) {
             return Arr::get($this->parent->filters(), $index);
         }
 
@@ -196,8 +188,7 @@ abstract class AbstractFilter
     /**
      * Get previous filter.
      *
-     * @param int $step
-     *
+     * @param  int  $step
      * @return AbstractFilter[]|mixed
      */
     public function previous($step = 1)
@@ -210,8 +201,7 @@ abstract class AbstractFilter
     /**
      * Get next filter.
      *
-     * @param int $step
-     *
+     * @param  int  $step
      * @return AbstractFilter[]|mixed
      */
     public function next($step = 1)
@@ -224,8 +214,7 @@ abstract class AbstractFilter
     /**
      * Get query condition from filter.
      *
-     * @param array $inputs
-     *
+     * @param  array  $inputs
      * @return array|mixed|null
      */
     public function condition($inputs)
@@ -236,7 +225,7 @@ abstract class AbstractFilter
 
         $value = Arr::get($inputs, $this->column);
 
-        if (!isset($value)) {
+        if (! isset($value)) {
             return;
         }
 
@@ -260,8 +249,7 @@ abstract class AbstractFilter
     /**
      * Select filter.
      *
-     * @param array|\Illuminate\Support\Collection $options
-     *
+     * @param  array|\Illuminate\Support\Collection  $options
      * @return Select
      */
     public function select($options = [])
@@ -270,8 +258,7 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param array|\Illuminate\Support\Collection $options
-     *
+     * @param  array|\Illuminate\Support\Collection  $options
      * @return MultipleSelect
      */
     public function multipleSelect($options = [])
@@ -280,8 +267,7 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param array|\Illuminate\Support\Collection $options
-     *
+     * @param  array|\Illuminate\Support\Collection  $options
      * @return Radio
      */
     public function radio($options = [])
@@ -290,8 +276,7 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param array|\Illuminate\Support\Collection $options
-     *
+     * @param  array|\Illuminate\Support\Collection  $options
      * @return Checkbox
      */
     public function checkbox($options = [])
@@ -302,8 +287,7 @@ abstract class AbstractFilter
     /**
      * Datetime filter.
      *
-     * @param array|\Illuminate\Support\Collection $options
-     *
+     * @param  array|\Illuminate\Support\Collection  $options
      * @return DateTime
      */
     public function datetime($options = [])
@@ -364,7 +348,6 @@ abstract class AbstractFilter
     /**
      * Set presenter object of filter.
      *
-     * @param Presenter $presenter
      *
      * @return mixed
      */
@@ -388,7 +371,6 @@ abstract class AbstractFilter
     /**
      * Set default value for filter.
      *
-     * @param null $default
      *
      * @return $this
      */
@@ -419,8 +401,7 @@ abstract class AbstractFilter
     /**
      * Set element id.
      *
-     * @param string $id
-     *
+     * @param  string  $id
      * @return $this
      */
     public function setId($id)
@@ -493,11 +474,11 @@ abstract class AbstractFilter
     protected function variables()
     {
         return array_merge([
-            'id'        => $this->id,
-            'column'    => $this->column,
-            'name'      => $this->formatName($this->column),
-            'label'     => $this->label,
-            'value'     => $this->value ?: $this->defaultValue,
+            'id' => $this->id,
+            'column' => $this->column,
+            'name' => $this->formatName($this->column),
+            'label' => $this->label,
+            'value' => $this->value ?: $this->defaultValue,
             'presenter' => $this->presenter(),
         ], $this->presenter()->variables());
     }
@@ -523,12 +504,9 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param $method
-     * @param $params
+     * @return mixed
      *
      * @throws \Exception
-     *
-     * @return mixed
      */
     public function __call($method, $params)
     {

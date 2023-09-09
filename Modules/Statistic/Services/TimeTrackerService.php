@@ -10,7 +10,7 @@ use Modules\Statistic\Models\TimeTracker;
 
 class TimeTrackerService implements TimeTrackerServiceInterface
 {
-    public function getTimeSpentByUserForGame(int $userId, ?int $gameId = null): ?string
+    public function getTimeSpentByUserForGame(int $userId, int $gameId = null): ?string
     {
         $trackers = TimeTracker::query()
             ->where('user_id', $userId)

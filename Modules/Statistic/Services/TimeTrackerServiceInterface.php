@@ -12,5 +12,5 @@ interface TimeTrackerServiceInterface
 
     public function findByUserIdAndGameId(int $userId, int $gameId): ?TimeTracker;
 
-    public function getTimeSpentByUserForGame(int $userId, ?int $gameId = null): ?string;
+    public function getTimeSpentByUserForGame(int $userId, int $gameId = null): ?string;
 }

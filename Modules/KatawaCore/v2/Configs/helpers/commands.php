@@ -16,5 +16,5 @@ return [
 
     'window' => \Modules\KatawaCore\v2\Modules\Commands\WindowCommand::class,
     'centered' => \Modules\KatawaCore\v2\Modules\Commands\CenteredCommand::class,
-    'extend' => \Modules\KatawaCore\v2\Modules\Commands\ExtendCommand::class
+    'extend' => \Modules\KatawaCore\v2\Modules\Commands\ExtendCommand::class,
 ];

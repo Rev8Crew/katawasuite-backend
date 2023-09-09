@@ -10,8 +10,8 @@ class ChangeSubscribeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|string|exists:' . Notification::TABLE. ',code',
-            'status' => 'required|int|min:0|max:1'
+            'code' => 'required|string|exists:'.Notification::TABLE.',code',
+            'status' => 'required|int|min:0|max:1',
         ];
     }
 

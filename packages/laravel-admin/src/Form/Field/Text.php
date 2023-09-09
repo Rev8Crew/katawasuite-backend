@@ -6,8 +6,8 @@ use Encore\Admin\Form\Field;
 
 class Text extends Field
 {
-    use PlainInput;
     use HasValuePicker;
+    use PlainInput;
 
     /**
      * @var string
@@ -22,8 +22,7 @@ class Text extends Field
     /**
      * Set custom fa-icon.
      *
-     * @param string $icon
-     *
+     * @param  string  $icon
      * @return $this
      */
     public function icon($icon)
@@ -42,7 +41,7 @@ class Text extends Field
     {
         $this->initPlainInput();
 
-        if (!$this->withoutIcon) {
+        if (! $this->withoutIcon) {
             $this->prepend('<i class="fa '.$this->icon.' fa-fw"></i>');
         }
         $this->defaultAttribute('type', 'text')
@@ -54,7 +53,7 @@ class Text extends Field
             ->mountPicker()
             ->addVariables([
                 'prepend' => $this->prepend,
-                'append'  => $this->append,
+                'append' => $this->append,
             ]);
 
         return parent::render();
@@ -63,8 +62,7 @@ class Text extends Field
     /**
      * Add inputmask to an elements.
      *
-     * @param array $options
-     *
+     * @param  array  $options
      * @return $this
      */
     public function inputmask($options)
@@ -79,8 +77,7 @@ class Text extends Field
     /**
      * Add datalist element to Text input.
      *
-     * @param array $entries
-     *
+     * @param  array  $entries
      * @return $this
      */
     public function datalist($entries = [])

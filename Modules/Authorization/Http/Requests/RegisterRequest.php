@@ -14,7 +14,7 @@ class RegisterRequest extends CustomFormRequest
             'password' => get_password_rules(),
             'email' => 'required|string|email|unique:users',
             'phone' => 'required|unique:users|phone:RU,UA,KZ',
-            'g-recaptcha-response' => ['required', new ReCaptchaRule]
+            'g-recaptcha-response' => ['required', new ReCaptchaRule],
         ];
     }
 

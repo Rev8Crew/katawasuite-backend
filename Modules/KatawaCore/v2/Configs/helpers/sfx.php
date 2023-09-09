@@ -119,5 +119,5 @@ return [
     'sfx_rooftop' => 'rooftop',
 
     'sfx_time' => 'time',
-    'sfx_camera' => 'camera'
+    'sfx_camera' => 'camera',
 ];

@@ -123,8 +123,7 @@ abstract class Action implements Renderable
     }
 
     /**
-     * @param string $prefix
-     *
+     * @param  string  $prefix
      * @return mixed|string
      */
     public function selector($prefix)
@@ -137,14 +136,13 @@ abstract class Action implements Renderable
     }
 
     /**
-     * @param string $class
-     * @param string $prefix
-     *
+     * @param  string  $class
+     * @param  string  $prefix
      * @return string
      */
     public static function makeSelector($class, $prefix)
     {
-        if (!isset(static::$selectors[$class])) {
+        if (! isset(static::$selectors[$class])) {
             static::$selectors[$class] = uniqid($prefix).mt_rand(1000, 9999);
         }
 
@@ -152,9 +150,8 @@ abstract class Action implements Renderable
     }
 
     /**
-     * @param string $name
-     * @param string $value
-     *
+     * @param  string  $name
+     * @param  string  $value
      * @return $this
      */
     public function attribute($name, $value)
@@ -247,8 +244,6 @@ abstract class Action implements Renderable
     }
 
     /**
-     * @param Request $request
-     *
      * @return $this
      */
     public function validate(Request $request)
@@ -265,7 +260,7 @@ abstract class Action implements Renderable
      */
     protected function addScript()
     {
-        if (!is_null($this->interactor)) {
+        if (! is_null($this->interactor)) {
             return $this->interactor->addScript();
         }
 
@@ -395,12 +390,11 @@ SCRIPT;
     }
 
     /**
-     * @param string $method
-     * @param array  $arguments
+     * @param  string  $method
+     * @param  array  $arguments
+     * @return mixed
      *
      * @throws \Exception
-     *
-     * @return mixed
      */
     public function __call($method, $arguments = [])
     {

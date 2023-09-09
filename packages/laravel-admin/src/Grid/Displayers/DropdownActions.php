@@ -28,8 +28,6 @@ class DropdownActions extends Actions
     protected $defaultClass = [Edit::class, Show::class, Delete::class];
 
     /**
-     * @param RowAction $action
-     *
      * @return $this
      */
     public function add(RowAction $action)
@@ -56,9 +54,6 @@ class DropdownActions extends Actions
         }
     }
 
-    /**
-     * @param RowAction $action
-     */
     protected function prepareAction(RowAction $action)
     {
         $action->setGrid($this->grid)
@@ -69,7 +64,6 @@ class DropdownActions extends Actions
     /**
      * Disable view action.
      *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -77,7 +71,7 @@ class DropdownActions extends Actions
     {
         if ($disable) {
             array_delete($this->defaultClass, Show::class);
-        } elseif (!in_array(Show::class, $this->defaultClass)) {
+        } elseif (! in_array(Show::class, $this->defaultClass)) {
             array_push($this->defaultClass, Show::class);
         }
 
@@ -87,7 +81,6 @@ class DropdownActions extends Actions
     /**
      * Disable delete.
      *
-     * @param bool $disable
      *
      * @return $this.
      */
@@ -95,7 +88,7 @@ class DropdownActions extends Actions
     {
         if ($disable) {
             array_delete($this->defaultClass, Delete::class);
-        } elseif (!in_array(Delete::class, $this->defaultClass)) {
+        } elseif (! in_array(Delete::class, $this->defaultClass)) {
             array_push($this->defaultClass, Delete::class);
         }
 
@@ -105,7 +98,6 @@ class DropdownActions extends Actions
     /**
      * Disable edit.
      *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -113,7 +105,7 @@ class DropdownActions extends Actions
     {
         if ($disable) {
             array_delete($this->defaultClass, Edit::class);
-        } elseif (!in_array(Edit::class, $this->defaultClass)) {
+        } elseif (! in_array(Edit::class, $this->defaultClass)) {
             array_push($this->defaultClass, Edit::class);
         }
 
@@ -121,8 +113,7 @@ class DropdownActions extends Actions
     }
 
     /**
-     * @param null|\Closure $callback
-     *
+     * @param  null|\Closure  $callback
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
     public function display($callback = null)
@@ -139,7 +130,7 @@ class DropdownActions extends Actions
 
         $variables = [
             'default' => $this->default,
-            'custom'  => $this->custom,
+            'custom' => $this->custom,
         ];
 
         if (empty($variables['default']) && empty($variables['custom'])) {

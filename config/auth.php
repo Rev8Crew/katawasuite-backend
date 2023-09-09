@@ -111,9 +111,8 @@ return [
     /**
      *  ReCaptcha Secret key
      */
-
     'recaptcha' => [
         'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
-        'public' => env('GOOGLE_RECAPTCHA_KEY')
-    ]
+        'public' => env('GOOGLE_RECAPTCHA_KEY'),
+    ],
 ];

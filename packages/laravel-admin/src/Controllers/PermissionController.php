@@ -37,7 +37,7 @@ class PermissionController extends AdminController
                 $method = $this->http_method ?: ['ANY'];
 
                 if (Str::contains($path, ':')) {
-                    list($method, $path) = explode(':', $path);
+                    [$method, $path] = explode(':', $path);
                     $method = explode(',', $method);
                 }
 
@@ -47,7 +47,7 @@ class PermissionController extends AdminController
                     return "<span class='label label-primary'>{$name}</span>";
                 })->implode('&nbsp;');
 
-                if (!empty(config('admin.route.prefix'))) {
+                if (! empty(config('admin.route.prefix'))) {
                     $path = '/'.trim(config('admin.route.prefix'), '/').$path;
                 }
 
@@ -70,8 +70,7 @@ class PermissionController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
-     *
+     * @param  mixed  $id
      * @return Show
      */
     protected function detail($id)
@@ -89,7 +88,7 @@ class PermissionController extends AdminController
                 $method = $this->http_method ?: ['ANY'];
 
                 if (Str::contains($path, ':')) {
-                    list($method, $path) = explode(':', $path);
+                    [$method, $path] = explode(':', $path);
                     $method = explode(',', $method);
                 }
 
@@ -99,7 +98,7 @@ class PermissionController extends AdminController
                     return "<span class='label label-primary'>{$name}</span>";
                 })->implode('&nbsp;');
 
-                if (!empty(config('admin.route.prefix'))) {
+                if (! empty(config('admin.route.prefix'))) {
                     $path = '/'.trim(config('admin.route.prefix'), '/').$path;
                 }
 

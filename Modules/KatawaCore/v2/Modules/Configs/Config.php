@@ -31,10 +31,10 @@ final class Config
 
     public static function getInstance(string $short = ''): Config
     {
-        if (null === static::$instance) {
-            static::$instance = new static($short);
+        if (self::$instance === null) {
+            self::$instance = new self($short);
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 }

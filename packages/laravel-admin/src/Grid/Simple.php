@@ -21,8 +21,6 @@ class Simple implements Renderable
     protected $model;
 
     /**
-     * @param null $key
-     *
      * @return string
      */
     public function render($key = null)
@@ -44,9 +42,8 @@ class Simple implements Renderable
     }
 
     /**
-     * @param string $name
-     * @param array  $arguments
-     *
+     * @param  string  $name
+     * @param  array  $arguments
      * @return mixed
      */
     public function __call($name, $arguments)

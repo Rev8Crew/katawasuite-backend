@@ -10,9 +10,7 @@ trait ContainsForms
     protected $activeName = 'active';
 
     /**
-     * @param array $forms
-     * @param null  $active
-     *
+     * @param  array  $forms
      * @return mixed
      */
     public static function forms($forms, $active = null)
@@ -23,22 +21,21 @@ trait ContainsForms
     }
 
     /**
-     * @param array $forms
-     * @param null  $active
-     *
+     * @param  array  $forms
      * @return $this
      */
     protected function buildTabbedForms($forms, $active = null)
     {
         $active = $active ?: request($this->activeName);
 
-        if (!isset($forms[$active])) {
+        if (! isset($forms[$active])) {
             $active = key($forms);
         }
 
         foreach ($forms as $name => $class) {
-            if (!is_subclass_of($class, Form::class)) {
+            if (! is_subclass_of($class, Form::class)) {
                 admin_error("Class [{$class}] must be a sub-class of [Encore\Admin\Widgets\Form].");
+
                 continue;
             }
 
@@ -56,8 +53,7 @@ trait ContainsForms
     }
 
     /**
-     * @param string $name
-     *
+     * @param  string  $name
      * @return string
      */
     protected function getTabUrl($name)

@@ -60,7 +60,7 @@ use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, AuthenticationLoggable;
+    use AuthenticationLoggable, HasApiTokens, HasFactory, Notifiable;
 
     public const TABLE = 'users';
 
@@ -115,7 +115,7 @@ class User extends Authenticatable
 
     public function notifications(): BelongsToMany
     {
-        return  $this->belongsToMany(Notification::class)->withTimestamps();
+        return $this->belongsToMany(Notification::class)->withTimestamps();
     }
 
     public function getImageAttribute(): string

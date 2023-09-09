@@ -53,7 +53,7 @@ class UserService implements UserServiceInterface
         return User::whereEmail($email)->first();
     }
 
-    public function changeEmail(User $user, string $email): bool|null
+    public function changeEmail(User $user, string $email): ?bool
     {
         if ($user->email === $email) {
             return true;
@@ -81,9 +81,9 @@ class UserService implements UserServiceInterface
 
     public function changePhone(User $user, string $phone): bool
     {
-        throw_if($user->phone === $phone, new RuntimeException(trans("user::user.samePhone")));
-        throw_if(!phone($phone, ['RU','UA','KZ'])->isValid(), new RuntimeException(trans("user::user.localPhone")));
-        throw_if(User::where('phone', '=', $phone)->exists(), new RuntimeException(trans("user::user.repeatedNumber")));
+        throw_if($user->phone === $phone, new RuntimeException(trans('user::user.samePhone')));
+        throw_if(! phone($phone, ['RU', 'UA', 'KZ'])->isValid(), new RuntimeException(trans('user::user.localPhone')));
+        throw_if(User::where('phone', '=', $phone)->exists(), new RuntimeException(trans('user::user.repeatedNumber')));
 
         return $user->update(['phone' => $phone]);
     }

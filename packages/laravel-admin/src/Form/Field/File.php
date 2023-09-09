@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File extends Field
 {
-    use UploadField;
     use HasValuePicker;
+    use UploadField;
 
     /**
      * Css.
@@ -33,8 +33,8 @@ class File extends Field
     /**
      * Create a new File instance.
      *
-     * @param string $column
-     * @param array  $arguments
+     * @param  string  $column
+     * @param  array  $arguments
      */
     public function __construct($column, $arguments = [])
     {
@@ -83,7 +83,7 @@ class File extends Field
 
         $rules = $attributes = [];
 
-        if (!$fieldRules = $this->getRules()) {
+        if (! $fieldRules = $this->getRules()) {
             return false;
         }
 
@@ -96,8 +96,7 @@ class File extends Field
     /**
      * Prepare for saving.
      *
-     * @param UploadedFile|array $file
-     *
+     * @param  UploadedFile|array  $file
      * @return mixed|string
      */
     public function prepare($file)
@@ -118,7 +117,6 @@ class File extends Field
     /**
      * Upload file and delete original file.
      *
-     * @param UploadedFile $file
      *
      * @return mixed
      */
@@ -128,7 +126,7 @@ class File extends Field
 
         $path = null;
 
-        if (!is_null($this->storagePermission)) {
+        if (! is_null($this->storagePermission)) {
             $path = $this->storage->putFileAs($this->getDirectory(), $file, $this->name, $this->storagePermission);
         } else {
             $path = $this->storage->putFileAs($this->getDirectory(), $file, $this->name);
@@ -164,8 +162,7 @@ class File extends Field
     /**
      * Initialize the caption.
      *
-     * @param string $caption
-     *
+     * @param  string  $caption
      * @return string
      */
     protected function initialCaption($caption)
@@ -186,7 +183,7 @@ class File extends Field
     }
 
     /**
-     * @param string $options
+     * @param  string  $options
      */
     protected function setupScripts($options)
     {
@@ -196,9 +193,9 @@ EOT;
 
         if ($this->fileActionSettings['showRemove']) {
             $text = [
-                'title'   => trans('admin.delete_confirm'),
+                'title' => trans('admin.delete_confirm'),
                 'confirm' => trans('admin.confirm'),
-                'cancel'  => trans('admin.cancel'),
+                'cancel' => trans('admin.cancel'),
             ];
 
             $this->script .= <<<EOT
@@ -243,7 +240,7 @@ EOT;
 
         $this->setupDefaultOptions();
 
-        if (!empty($this->value)) {
+        if (! empty($this->value)) {
             $this->attribute('data-initial-preview', $this->preview());
             $this->attribute('data-initial-caption', $this->initialCaption($this->value));
 

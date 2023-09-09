@@ -27,8 +27,6 @@ class Layout
 
     /**
      * Layout constructor.
-     *
-     * @param Form $form
      */
     public function __construct(Form $form)
     {
@@ -41,8 +39,6 @@ class Layout
 
     /**
      * Add a filter to layout column.
-     *
-     * @param Form\Field $field
      */
     public function addField(Form\Field $field)
     {
@@ -52,8 +48,7 @@ class Layout
     /**
      * Add a new column in layout.
      *
-     * @param int      $width
-     * @param \Closure $closure
+     * @param  int  $width
      */
     public function column($width, \Closure $closure)
     {
@@ -88,8 +83,6 @@ class Layout
 
     /**
      * Remove reserved fields from form layout.
-     *
-     * @param array $fields
      */
     public function removeReservedFields(array $fields)
     {

@@ -7,5 +7,5 @@ return [
     /**
      *  https://vk.com/katawa.suite
      */
-    'domain' => 'katawa.suite'
+    'domain' => 'katawa.suite',
 ];

@@ -6,8 +6,8 @@ namespace Modules\Achievement\Services;
 
 use Carbon\Carbon;
 use DB;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Modules\Achievement\DTO\AchievementCreateDto;
 use Modules\Achievement\Models\Achievement;
 use Modules\Game\Entities\Game;
@@ -94,7 +94,7 @@ class AchievementService implements AchievementServiceInterface
         $achievements = $this->getAll()
             ->load([
                 'rewards',
-                'game'
+                'game',
             ]);
 
         $achievements = $this->removeCompletedAchievementsFromAll($achievements, $completed);
@@ -110,7 +110,7 @@ class AchievementService implements AchievementServiceInterface
     {
         $completedIds = $completed->pluck('id', 'id');
 
-        return $achievements->reject(fn(Achievement $achievement) => isset($completedIds[$achievement['id']]));
+        return $achievements->reject(fn (Achievement $achievement) => isset($completedIds[$achievement['id']]));
     }
 
     public function getAll(): EloquentCollection

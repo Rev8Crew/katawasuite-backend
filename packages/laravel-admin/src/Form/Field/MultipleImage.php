@@ -23,8 +23,7 @@ class MultipleImage extends MultipleFile
     /**
      * Prepare for each file.
      *
-     * @param UploadedFile $image
-     *
+     * @param  UploadedFile  $image
      * @return mixed|string
      */
     protected function prepareForeach(UploadedFile $image = null)

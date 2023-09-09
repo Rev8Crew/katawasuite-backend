@@ -29,6 +29,7 @@ class KatawaCoreController extends Controller
         $katawa->getLines()->fromArray($in);
 
         $parsed = $katawa->parse();
+
         //dd(Tools::getDebugCollection());
         return response($parsed, 200, ['Content-Type' => 'text/plain']);
     }

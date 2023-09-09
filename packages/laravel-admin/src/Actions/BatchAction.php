@@ -21,7 +21,6 @@ abstract class BatchAction extends GridAction
     /**
      * add a single CSS class string to the CSS-Classes array.
      *
-     * @param string $cssClass
      *
      * @return $this
      */
@@ -30,7 +29,7 @@ abstract class BatchAction extends GridAction
         if (empty($cssClass)) {
             return $this;
         }
-        if (!is_string($cssClass)) {
+        if (! is_string($cssClass)) {
             throw new \Exception(__METHOD__.': item is not a valid string');
         }
         $this->cssClasses[] = $cssClass;
@@ -41,7 +40,6 @@ abstract class BatchAction extends GridAction
     /**
      * add multiple CSS class strings to the CSS-Classes array.
      *
-     * @param array $cssClasses
      *
      * @return $this
      */
@@ -50,11 +48,11 @@ abstract class BatchAction extends GridAction
         if (empty($cssClasses)) {
             return $this;
         }
-        if (!is_array($cssClasses)) {
+        if (! is_array($cssClasses)) {
             throw new \Exception(__METHOD__.': parameter is not a valid array');
         }
         foreach ($cssClasses as $item) {
-            if (!is_string($item)) {
+            if (! is_string($item)) {
                 throw new \Exception(__METHOD__.': item is not a valid string');
             }
             $this->cssClasses[] = $item;
@@ -83,13 +81,11 @@ SCRIPT;
     }
 
     /**
-     * @param Request $request
-     *
      * @return mixed
      */
     public function retrieveModel(Request $request)
     {
-        if (!$key = $request->get('_key')) {
+        if (! $key = $request->get('_key')) {
             return false;
         }
 
@@ -126,7 +122,7 @@ SCRIPT;
         return sprintf(
             "<a href='javascript:void(0);' class='%s %s' %s>%s</a>",
             $this->getElementClass(),
-            (!empty($this->cssClasses)) ? implode(' ', $this->cssClasses) : '',
+            (! empty($this->cssClasses)) ? implode(' ', $this->cssClasses) : '',
             $modalId ? "modal='{$modalId}'" : '',
             $this->name()
         );

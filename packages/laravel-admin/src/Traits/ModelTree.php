@@ -66,7 +66,7 @@ trait ModelTree
     /**
      * Set parent column.
      *
-     * @param string $column
+     * @param  string  $column
      */
     public function setParentColumn($column)
     {
@@ -86,7 +86,7 @@ trait ModelTree
     /**
      * Set title column.
      *
-     * @param string $column
+     * @param  string  $column
      */
     public function setTitleColumn($column)
     {
@@ -106,7 +106,7 @@ trait ModelTree
     /**
      * Set order column.
      *
-     * @param string $column
+     * @param  string  $column
      */
     public function setOrderColumn($column)
     {
@@ -116,7 +116,6 @@ trait ModelTree
     /**
      * Set query callback to model.
      *
-     * @param \Closure|null $query
      *
      * @return $this
      */
@@ -140,9 +139,7 @@ trait ModelTree
     /**
      * Build Nested array.
      *
-     * @param array $nodes
-     * @param int   $parentId
-     *
+     * @param  int  $parentId
      * @return array
      */
     protected function buildNestedArray(array $nodes = [], $parentId = 0)
@@ -190,7 +187,6 @@ trait ModelTree
     /**
      * Set the order of branches in the tree.
      *
-     * @param array $order
      *
      * @return void
      */
@@ -206,8 +202,8 @@ trait ModelTree
     /**
      * Save tree order from a tree like array.
      *
-     * @param array $tree
-     * @param int   $parentId
+     * @param  array  $tree
+     * @param  int  $parentId
      */
     public static function saveOrder($tree = [], $parentId = 0)
     {
@@ -231,9 +227,7 @@ trait ModelTree
     /**
      * Get options for Select field in form.
      *
-     * @param \Closure|null $closure
-     * @param string        $rootText
-     *
+     * @param  string  $rootText
      * @return array
      */
     public static function selectOptions(\Closure $closure = null, $rootText = 'ROOT')
@@ -246,11 +240,9 @@ trait ModelTree
     /**
      * Build options of select field in form.
      *
-     * @param array  $nodes
-     * @param int    $parentId
-     * @param string $prefix
-     * @param string $space
-     *
+     * @param  int  $parentId
+     * @param  string  $prefix
+     * @param  string  $space
      * @return array
      */
     protected function buildSelectOptions(array $nodes = [], $parentId = 0, $prefix = '', $space = '&nbsp;')

@@ -19,9 +19,9 @@ class MultipleSelect extends Select
     /**
      * Get other key for this many-to-many relation.
      *
-     * @throws \Exception
-     *
      * @return string
+     *
+     * @throws \Exception
      */
     protected function getOtherKey()
     {
@@ -64,7 +64,7 @@ class MultipleSelect extends Select
             $this->value = explode(',', $relations);
         }
 
-        if (!is_array($relations)) {
+        if (! is_array($relations)) {
             $this->applyCascadeConditions();
 
             return;
@@ -75,7 +75,7 @@ class MultipleSelect extends Select
         if (is_null($first)) {
             $this->value = null;
 
-        // MultipleSelect value store as an ont-to-many relationship.
+            // MultipleSelect value store as an ont-to-many relationship.
         } elseif (is_array($first)) {
             foreach ($relations as $relation) {
                 $this->value[] = Arr::get($relation, $this->getOtherKey());
@@ -100,7 +100,7 @@ class MultipleSelect extends Select
             $this->original = explode(',', $relations);
         }
 
-        if (!is_array($relations)) {
+        if (! is_array($relations)) {
             return;
         }
 
@@ -109,7 +109,7 @@ class MultipleSelect extends Select
         if (is_null($first)) {
             $this->original = null;
 
-        // MultipleSelect value store as an ont-to-many relationship.
+            // MultipleSelect value store as an ont-to-many relationship.
         } elseif (is_array($first)) {
             foreach ($relations as $relation) {
                 $this->original[] = Arr::get($relation, $this->getOtherKey());

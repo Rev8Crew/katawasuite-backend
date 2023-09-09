@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Achievement\Services;
 
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Modules\Achievement\DTO\AchievementCreateDto;
 use Modules\Achievement\Models\Achievement;
 use Modules\Game\Entities\Game;

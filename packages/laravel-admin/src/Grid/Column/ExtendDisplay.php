@@ -39,26 +39,26 @@ trait ExtendDisplay
      * @var array
      */
     public static $displayers = [
-        'editable'      => Displayers\Editable::class,
-        'image'         => Displayers\Image::class,
-        'label'         => Displayers\Label::class,
-        'button'        => Displayers\Button::class,
-        'link'          => Displayers\Link::class,
-        'badge'         => Displayers\Badge::class,
-        'progressBar'   => Displayers\ProgressBar::class,
-        'progress'      => Displayers\ProgressBar::class,
-        'orderable'     => Displayers\Orderable::class,
-        'table'         => Displayers\Table::class,
-        'expand'        => Displayers\Expand::class,
-        'modal'         => Displayers\Modal::class,
-        'carousel'      => Displayers\Carousel::class,
-        'downloadable'  => Displayers\Downloadable::class,
-        'copyable'      => Displayers\Copyable::class,
-        'qrcode'        => Displayers\QRCode::class,
-        'prefix'        => Displayers\Prefix::class,
-        'suffix'        => Displayers\Suffix::class,
-        'secret'        => Displayers\Secret::class,
-        'limit'         => Displayers\Limit::class,
+        'editable' => Displayers\Editable::class,
+        'image' => Displayers\Image::class,
+        'label' => Displayers\Label::class,
+        'button' => Displayers\Button::class,
+        'link' => Displayers\Link::class,
+        'badge' => Displayers\Badge::class,
+        'progressBar' => Displayers\ProgressBar::class,
+        'progress' => Displayers\ProgressBar::class,
+        'orderable' => Displayers\Orderable::class,
+        'table' => Displayers\Table::class,
+        'expand' => Displayers\Expand::class,
+        'modal' => Displayers\Modal::class,
+        'carousel' => Displayers\Carousel::class,
+        'downloadable' => Displayers\Downloadable::class,
+        'copyable' => Displayers\Copyable::class,
+        'qrcode' => Displayers\QRCode::class,
+        'prefix' => Displayers\Prefix::class,
+        'suffix' => Displayers\Suffix::class,
+        'secret' => Displayers\Secret::class,
+        'limit' => Displayers\Limit::class,
     ];
 
     /**
@@ -68,9 +68,6 @@ trait ExtendDisplay
 
     /**
      * Extend column displayer.
-     *
-     * @param $name
-     * @param $displayer
      */
     public static function extend($name, $displayer)
     {
@@ -102,8 +99,6 @@ trait ExtendDisplay
 
     /**
      * Bind search query to grid model.
-     *
-     * @param Model $model
      */
     public function bindSearchQuery(Model $model)
     {
@@ -115,8 +110,6 @@ trait ExtendDisplay
     /**
      * Display column using array value map.
      *
-     * @param array $values
-     * @param null  $default
      *
      * @return $this
      */
@@ -134,7 +127,6 @@ trait ExtendDisplay
     /**
      * Replace output value with giving map.
      *
-     * @param array $replacements
      *
      * @return $this
      */
@@ -150,9 +142,8 @@ trait ExtendDisplay
     }
 
     /**
-     * @param string|Closure $input
-     * @param string         $seperator
-     *
+     * @param  string|Closure  $input
+     * @param  string  $seperator
      * @return $this
      */
     public function repeat($input, $seperator = '')
@@ -165,7 +156,7 @@ trait ExtendDisplay
 
         if ($input instanceof Closure) {
             return $this->display(function ($value) use ($input, $seperator) {
-                return join($seperator, array_fill(0, (int) $value, $input->call($this, [$value])));
+                return implode($seperator, array_fill(0, (int) $value, $input->call($this, [$value])));
             });
         }
 
@@ -175,8 +166,7 @@ trait ExtendDisplay
     /**
      * Render this column with the given view.
      *
-     * @param string $view
-     *
+     * @param  string  $view
      * @return $this
      */
     public function view($view)
@@ -203,8 +193,7 @@ trait ExtendDisplay
     /**
      * Display the fields in the email format as gavatar.
      *
-     * @param int $size
-     *
+     * @param  int  $size
      * @return $this
      */
     public function gravatar($size = 30)
@@ -223,9 +212,8 @@ trait ExtendDisplay
     /**
      * Display field as a loading icon.
      *
-     * @param array $values
-     * @param array $others
-     *
+     * @param  array  $values
+     * @param  array  $others
      * @return $this
      */
     public function loading($values = [], $others = [])
@@ -244,9 +232,7 @@ trait ExtendDisplay
     /**
      * Display column as an font-awesome icon based on it's value.
      *
-     * @param array  $setting
-     * @param string $default
-     *
+     * @param  string  $default
      * @return $this
      */
     public function icon(array $setting, $default = '')
@@ -267,7 +253,6 @@ trait ExtendDisplay
     /**
      * Return a human readable format time.
      *
-     * @param null $locale
      *
      * @return $this
      */
@@ -285,9 +270,7 @@ trait ExtendDisplay
     /**
      * Display column as boolean , `✓` for true, and `✗` for false.
      *
-     * @param array $map
-     * @param bool  $default
-     *
+     * @param  bool  $default
      * @return $this
      */
     public function bool(array $map = [], $default = false)
@@ -302,8 +285,7 @@ trait ExtendDisplay
     /**
      * Display column as a default value if empty.
      *
-     * @param string $default
-     *
+     * @param  string  $default
      * @return $this
      */
     public function default($default = '-')
@@ -316,9 +298,8 @@ trait ExtendDisplay
     /**
      * Add a `dot` before column text.
      *
-     * @param array  $options
-     * @param string $default
-     *
+     * @param  array  $options
+     * @param  string  $default
      * @return $this
      */
     public function dot($options = [], $default = '')

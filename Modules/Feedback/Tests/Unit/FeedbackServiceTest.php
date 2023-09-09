@@ -2,15 +2,10 @@
 
 namespace Modules\Feedback\Tests\Unit;
 
-use AllowDynamicProperties;
-use Encore\Admin\Show\Relation;
 use Modules\Feedback\Entities\DTO\FeedbackCreateDto;
-use Modules\Feedback\Enums\FeedbackRelationEnum;
 use Modules\Feedback\Services\FeedbackServiceInterface;
 use Modules\User\Database\factories\UserFactory;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeedbackServiceTest extends TestCase
 {

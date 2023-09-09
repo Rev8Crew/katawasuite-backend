@@ -25,7 +25,7 @@ trait HasHooks
     /**
      * Initialize with user pre-defined default disables, etc.
      *
-     * @param Closure $callback
+     * @param  Closure  $callback
      */
     public static function init(Closure $callback = null)
     {
@@ -49,9 +49,7 @@ trait HasHooks
     /**
      * Register a hook.
      *
-     * @param string  $name
-     * @param Closure $callback
-     *
+     * @param  string  $name
      * @return $this
      */
     protected function registerHook($name, Closure $callback)
@@ -64,9 +62,8 @@ trait HasHooks
     /**
      * Call hooks by giving name.
      *
-     * @param string $name
-     * @param array  $parameters
-     *
+     * @param  string  $name
+     * @param  array  $parameters
      * @return Response
      */
     protected function callHooks($name, $parameters = [])
@@ -74,7 +71,7 @@ trait HasHooks
         $hooks = Arr::get($this->hooks, $name, []);
 
         foreach ($hooks as $func) {
-            if (!$func instanceof Closure) {
+            if (! $func instanceof Closure) {
                 continue;
             }
 
@@ -89,7 +86,6 @@ trait HasHooks
     /**
      * Set after getting editing model callback.
      *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -101,7 +97,6 @@ trait HasHooks
     /**
      * Set submitted callback.
      *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -113,7 +108,6 @@ trait HasHooks
     /**
      * Set saving callback.
      *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -125,7 +119,6 @@ trait HasHooks
     /**
      * Set saved callback.
      *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -135,8 +128,6 @@ trait HasHooks
     }
 
     /**
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function deleting(Closure $callback)
@@ -145,8 +136,6 @@ trait HasHooks
     }
 
     /**
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function deleted(Closure $callback)
@@ -197,8 +186,7 @@ trait HasHooks
     /**
      * Call hooks when deleting.
      *
-     * @param mixed $id
-     *
+     * @param  mixed  $id
      * @return mixed
      */
     protected function callDeleting($id)

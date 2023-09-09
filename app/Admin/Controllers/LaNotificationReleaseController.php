@@ -58,15 +58,15 @@ class LaNotificationReleaseController extends AdminController
         $form->display('created_at', __('Created at'));
         $form->display('updated_at', __('Updated at'));
 
-//        $form->saved(function (Form $form) {
-//            /**
-//             * @var NotificationRelease $model
-//             */
-//            $model = $form->model();
-//
-//            $notificationReleaseService = app(NotificationReleaseService::class);
-//            $notificationReleaseService->release($model);
-//        });
+        //        $form->saved(function (Form $form) {
+        //            /**
+        //             * @var NotificationRelease $model
+        //             */
+        //            $model = $form->model();
+        //
+        //            $notificationReleaseService = app(NotificationReleaseService::class);
+        //            $notificationReleaseService->release($model);
+        //        });
 
         return $form;
     }

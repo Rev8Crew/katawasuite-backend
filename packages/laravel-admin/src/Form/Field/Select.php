@@ -45,8 +45,7 @@ class Select extends Field
     /**
      * Set options.
      *
-     * @param array|callable|string $options
-     *
+     * @param  array|callable|string  $options
      * @return $this|mixed
      */
     public function options($options = [])
@@ -75,10 +74,6 @@ class Select extends Field
     }
 
     /**
-     * @param array $groups
-     */
-
-    /**
      * Set option groups.
      *
      * eg: $group = [
@@ -92,7 +87,6 @@ class Select extends Field
      *        ...
      *     ]
      *
-     * @param array $groups
      *
      * @return $this
      */
@@ -106,11 +100,10 @@ class Select extends Field
     /**
      * Load options for other select on change.
      *
-     * @param string $field
-     * @param string $sourceUrl
-     * @param string $idField
-     * @param string $textField
-     *
+     * @param  string  $field
+     * @param  string  $sourceUrl
+     * @param  string  $idField
+     * @param  string  $textField
      * @return $this
      */
     public function load($field, $sourceUrl, $idField = 'id', $textField = 'text', bool $allowClear = true)
@@ -123,7 +116,7 @@ class Select extends Field
         }
 
         $placeholder = json_encode([
-            'id'   => '',
+            'id' => '',
             'text' => trans('admin.choose'),
         ]);
 
@@ -160,11 +153,10 @@ EOT;
     /**
      * Load options for other selects on change.
      *
-     * @param array  $fields
-     * @param array  $sourceUrls
-     * @param string $idField
-     * @param string $textField
-     *
+     * @param  array  $fields
+     * @param  array  $sourceUrls
+     * @param  string  $idField
+     * @param  string  $textField
      * @return $this
      */
     public function loads($fields = [], $sourceUrls = [], $idField = 'id', $textField = 'text', bool $allowClear = true)
@@ -173,7 +165,7 @@ EOT;
         $urlsStr = implode('^', $sourceUrls);
 
         $placeholder = json_encode([
-            'id'   => '',
+            'id' => '',
             'text' => trans('admin.choose'),
         ]);
 
@@ -218,16 +210,15 @@ EOT;
     /**
      * Load options from current selected resource(s).
      *
-     * @param string $model
-     * @param string $idField
-     * @param string $textField
-     *
+     * @param  string  $model
+     * @param  string  $idField
+     * @param  string  $textField
      * @return $this
      */
     public function model($model, $idField = 'id', $textField = 'name')
     {
-        if (!class_exists($model)
-            || !in_array(Model::class, class_parents($model))
+        if (! class_exists($model)
+            || ! in_array(Model::class, class_parents($model))
         ) {
             throw new \InvalidArgumentException("[$model] must be a valid model class");
         }
@@ -258,10 +249,9 @@ EOT;
     /**
      * Load options from remote.
      *
-     * @param string $url
-     * @param array  $parameters
-     * @param array  $options
-     *
+     * @param  string  $url
+     * @param  array  $parameters
+     * @param  array  $options
      * @return $this
      */
     protected function loadRemoteOptions($url, $parameters = [], $options = [])
@@ -270,10 +260,10 @@ EOT;
             'url' => $url.'?'.http_build_query($parameters),
         ];
         $configs = array_merge([
-            'allowClear'         => true,
-            'placeholder'        => [
-                'id'        => '',
-                'text'      => trans('admin.choose'),
+            'allowClear' => true,
+            'placeholder' => [
+                'id' => '',
+                'text' => trans('admin.choose'),
             ],
         ], $this->config);
 
@@ -307,17 +297,14 @@ EOT;
     /**
      * Load options from ajax results.
      *
-     * @param string $url
-     * @param $idField
-     * @param $textField
-     *
+     * @param  string  $url
      * @return $this
      */
     public function ajax($url, $idField = 'id', $textField = 'text')
     {
         $configs = array_merge([
-            'allowClear'         => true,
-            'placeholder'        => $this->label,
+            'allowClear' => true,
+            'placeholder' => $this->label,
             'minimumInputLength' => 1,
         ], $this->config);
 
@@ -369,9 +356,8 @@ EOT;
      *
      * all configurations see https://select2.org/configuration/options-api
      *
-     * @param string $key
-     * @param mixed  $val
-     *
+     * @param  string  $key
+     * @param  mixed  $val
      * @return $this
      */
     public function config($key, $val)
@@ -415,9 +401,9 @@ EOT;
     public function render()
     {
         $configs = array_merge([
-            'allowClear'  => true,
+            'allowClear' => true,
             'placeholder' => [
-                'id'   => '',
+                'id' => '',
                 'text' => $this->label,
             ],
         ], $this->config);
@@ -440,7 +426,7 @@ EOT;
 
         $this->addVariables([
             'options' => $this->options,
-            'groups'  => $this->groups,
+            'groups' => $this->groups,
         ]);
 
         $this->addCascadeScript();

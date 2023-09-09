@@ -20,8 +20,8 @@ trait BelongsToRelation
     /**
      * BelongsToRelation constructor.
      *
-     * @param string $column
-     * @param array  $arguments
+     * @param  string  $column
+     * @param  array  $arguments
      */
     public function __construct($column, $arguments = [])
     {
@@ -31,11 +31,11 @@ trait BelongsToRelation
     }
 
     /**
-     * @param string $selectable
+     * @param  string  $selectable
      */
     protected function setSelectable($selectable)
     {
-        if (!class_exists($selectable) || !is_subclass_of($selectable, Selectable::class)) {
+        if (! class_exists($selectable) || ! is_subclass_of($selectable, Selectable::class)) {
             throw new \InvalidArgumentException(
                 "[Class [{$selectable}] must be a sub class of Encore\Admin\Grid\Selectable"
             );
@@ -53,8 +53,7 @@ trait BelongsToRelation
     }
 
     /**
-     * @param int $multiple
-     *
+     * @param  int  $multiple
      * @return string
      */
     protected function getLoadUrl($multiple = 0)
@@ -163,7 +162,7 @@ STYLE;
         $this->addScript()->addHtml()->addStyle();
 
         $this->addVariables([
-            'grid'    => $this->makeGrid(),
+            'grid' => $this->makeGrid(),
             'options' => $this->getOptions(),
         ]);
 

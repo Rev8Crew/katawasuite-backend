@@ -17,9 +17,9 @@ class BelongsToMany extends BelongsTo
     /**
      * Get other key for this many-to-many relation.
      *
-     * @throws \Exception
-     *
      * @return string
+     *
+     * @throws \Exception
      */
     protected function getOtherKey()
     {
@@ -43,9 +43,9 @@ class BelongsToMany extends BelongsTo
     }
 
     /**
-     * @throws \Exception
-     *
      * @return false|string|void
+     *
+     * @throws \Exception
      */
     protected function getOriginalData()
     {
@@ -55,7 +55,7 @@ class BelongsToMany extends BelongsTo
             $data = explode(',', $relations);
         }
 
-        if (!is_array($relations)) {
+        if (! is_array($relations)) {
             return;
         }
 
@@ -64,7 +64,7 @@ class BelongsToMany extends BelongsTo
         if (is_null($first)) {
             $data = null;
 
-        // MultipleSelect value store as an ont-to-many relationship.
+            // MultipleSelect value store as an ont-to-many relationship.
         } elseif (is_array($first)) {
             foreach ($relations as $relation) {
                 $data[] = Arr::get($relation, "pivot.{$this->getOtherKey()}");

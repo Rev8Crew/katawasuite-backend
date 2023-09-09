@@ -96,8 +96,7 @@ class Model
     /**
      * Create a new grid model instance.
      *
-     * @param EloquentModel $model
-     * @param Grid          $grid
+     * @param  Grid  $grid
      */
     public function __construct(EloquentModel $model, Grid $grid = null)
     {
@@ -131,7 +130,7 @@ class Model
     /**
      * Enable or disable pagination.
      *
-     * @param bool $use
+     * @param  bool  $use
      */
     public function usePaginate($use = true)
     {
@@ -151,8 +150,7 @@ class Model
     /**
      * Set the query string variable used to store the per-page.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return $this
      */
     public function setPerPageName($name)
@@ -175,8 +173,7 @@ class Model
     /**
      * Set per-page number.
      *
-     * @param int $perPage
-     *
+     * @param  int  $perPage
      * @return $this
      */
     public function setPerPage($perPage)
@@ -201,8 +198,7 @@ class Model
     /**
      * Set the query string variable used to store the sort.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return $this
      */
     public function setSortName($name)
@@ -215,7 +211,6 @@ class Model
     /**
      * Set parent grid instance.
      *
-     * @param Grid $grid
      *
      * @return $this
      */
@@ -237,8 +232,6 @@ class Model
     }
 
     /**
-     * @param Relation $relation
-     *
      * @return $this
      */
     public function setRelation(Relation $relation)
@@ -275,8 +268,7 @@ class Model
     /**
      * Set collection callback.
      *
-     * @param \Closure $callback
-     *
+     * @param  \Closure  $callback
      * @return $this
      */
     public function collection(\Closure $callback = null)
@@ -289,8 +281,7 @@ class Model
     /**
      * Build.
      *
-     * @param bool $toArray
-     *
+     * @param  bool  $toArray
      * @return array|Collection|mixed
      */
     public function buildData($toArray = true)
@@ -313,9 +304,8 @@ class Model
     }
 
     /**
-     * @param callable $callback
-     * @param int      $count
-     *
+     * @param  callable  $callback
+     * @param  int  $count
      * @return bool
      */
     public function chunk($callback, $count = 100)
@@ -338,7 +328,6 @@ class Model
     /**
      * Add conditions to grid model.
      *
-     * @param array $conditions
      *
      * @return $this
      */
@@ -362,9 +351,9 @@ class Model
     }
 
     /**
-     * @throws \Exception
-     *
      * @return Collection
+     *
+     * @throws \Exception
      */
     protected function get()
     {
@@ -421,7 +410,6 @@ class Model
     /**
      * If current page is greater than last page, then redirect to last page.
      *
-     * @param LengthAwarePaginator $paginator
      *
      * @return void
      */
@@ -449,14 +437,14 @@ class Model
             return $query['method'] == 'paginate';
         });
 
-        if (!$this->usePaginate) {
+        if (! $this->usePaginate) {
             $query = [
-                'method'    => 'get',
+                'method' => 'get',
                 'arguments' => [],
             ];
         } else {
             $query = [
-                'method'    => 'paginate',
+                'method' => 'paginate',
                 'arguments' => $this->resolvePerPage($paginate),
             ];
         }
@@ -467,8 +455,7 @@ class Model
     /**
      * Resolve perPage for pagination.
      *
-     * @param array|null $paginate
-     *
+     * @param  array|null  $paginate
      * @return array
      */
     protected function resolvePerPage($paginate)
@@ -497,7 +484,6 @@ class Model
     /**
      * Find query by method name.
      *
-     * @param $method
      *
      * @return static
      */
@@ -516,7 +502,7 @@ class Model
     protected function setSort()
     {
         $this->sort = \request($this->sortName, []);
-        if (!is_array($this->sort)) {
+        if (! is_array($this->sort)) {
             return;
         }
 
@@ -547,7 +533,7 @@ class Model
             }
 
             // get column. if contains "cast", set set column as cast
-            if (!empty($this->sort['cast'])) {
+            if (! empty($this->sort['cast'])) {
                 $column = "CAST({$columnName} AS {$this->sort['cast']}) {$this->sort['type']}";
                 $method = 'orderByRaw';
                 $arguments = [$column];
@@ -558,7 +544,7 @@ class Model
             }
 
             $this->queries->push([
-                'method'    => $method,
+                'method' => $method,
                 'arguments' => $arguments,
             ]);
         }
@@ -567,13 +553,12 @@ class Model
     /**
      * Set relation sort.
      *
-     * @param string $column
-     *
+     * @param  string  $column
      * @return void
      */
     protected function setRelationSort($column)
     {
-        list($relationName, $relationColumn) = explode('.', $column);
+        [$relationName, $relationColumn] = explode('.', $column);
         // relationship should be camel case
         $relationName = Str::camel($relationName);
 
@@ -583,19 +568,19 @@ class Model
             $relation = $this->model->$relationName();
 
             $this->queries->push([
-                'method'    => 'select',
+                'method' => 'select',
                 'arguments' => [$this->model->getTable().'.*'],
             ]);
 
             $this->queries->push([
-                'method'    => 'join',
+                'method' => 'join',
                 'arguments' => $this->joinParameters($relation),
             ]);
 
             $this->resetOrderBy();
 
             $this->queries->push([
-                'method'    => 'orderBy',
+                'method' => 'orderBy',
                 'arguments' => [
                     $relation->getRelated()->getTable().'.'.$relationColumn,
                     $this->sort['type'],
@@ -621,11 +606,10 @@ class Model
      *
      * `HasOne` and `BelongsTo` relation has different join parameters.
      *
-     * @param Relation $relation
-     *
-     * @throws \Exception
      *
      * @return array
+     *
+     * @throws \Exception
      */
     protected function joinParameters(Relation $relation)
     {
@@ -655,15 +639,14 @@ class Model
     }
 
     /**
-     * @param string $method
-     * @param array  $arguments
-     *
+     * @param  string  $method
+     * @param  array  $arguments
      * @return $this
      */
     public function __call($method, $arguments)
     {
         $this->queries->push([
-            'method'    => $method,
+            'method' => $method,
             'arguments' => $arguments,
         ]);
 
@@ -671,8 +654,6 @@ class Model
     }
 
     /**
-     * @param $key
-     *
      * @return mixed
      */
     public function __get($key)

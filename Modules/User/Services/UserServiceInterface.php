@@ -13,7 +13,7 @@ interface UserServiceInterface
 
     public function getUserByEmail(string $email): ?User;
 
-    public function changeEmail(User $user, string $email): bool|null;
+    public function changeEmail(User $user, string $email): ?bool;
 
     public function changeName(User $user, string $name): bool;
 

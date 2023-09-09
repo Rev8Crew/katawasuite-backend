@@ -40,8 +40,7 @@ abstract class RowAction extends GridAction
     /**
      * Set row model.
      *
-     * @param mixed $key
-     *
+     * @param  mixed  $key
      * @return \Illuminate\Database\Eloquent\Model|mixed
      */
     public function row($key = null)
@@ -56,8 +55,7 @@ abstract class RowAction extends GridAction
     /**
      * Set row model.
      *
-     * @param \Illuminate\Database\Eloquent\Model $row
-     *
+     * @param  \Illuminate\Database\Eloquent\Model  $row
      * @return $this
      */
     public function setRow($row)
@@ -73,8 +71,6 @@ abstract class RowAction extends GridAction
     }
 
     /**
-     * @param Column $column
-     *
      * @return $this
      */
     public function setColumn(Column $column)
@@ -104,13 +100,11 @@ abstract class RowAction extends GridAction
     }
 
     /**
-     * @param Request $request
-     *
      * @return mixed
      */
     public function retrieveModel(Request $request)
     {
-        if (!$key = $request->get('_key')) {
+        if (! $key = $request->get('_key')) {
             return false;
         }
 

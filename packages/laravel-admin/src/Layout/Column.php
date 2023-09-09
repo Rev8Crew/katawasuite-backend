@@ -22,8 +22,7 @@ class Column implements Buildable
     /**
      * Column constructor.
      *
-     * @param $content
-     * @param int $width
+     * @param  int  $width
      */
     public function __construct($content, $width = 12)
     {
@@ -49,7 +48,6 @@ class Column implements Buildable
     /**
      * Append content to column.
      *
-     * @param $content
      *
      * @return $this
      */
@@ -63,13 +61,12 @@ class Column implements Buildable
     /**
      * Add a row for column.
      *
-     * @param $content
      *
      * @return Column
      */
     public function row($content)
     {
-        if (!$content instanceof \Closure) {
+        if (! $content instanceof \Closure) {
             $row = new Row($content);
         } else {
             $row = new Row();

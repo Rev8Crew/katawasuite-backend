@@ -13,13 +13,13 @@ class ReCaptchaRule implements ValidationRule
         $secret = config('auth.recaptcha.secret');
 
         if ($secret) {
-            $response = Http::get("https://www.google.com/recaptcha/api/siteverify",[
+            $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
                 'secret' => config('auth.recaptcha.secret'),
-                'response' => $value
+                'response' => $value,
             ]);
 
-            if (!$response || !$response->json()["success"]) {
-                $fail("validation.recaptcha")->translate();
+            if (! $response || ! $response->json()['success']) {
+                $fail('validation.recaptcha')->translate();
             }
         }
     }
