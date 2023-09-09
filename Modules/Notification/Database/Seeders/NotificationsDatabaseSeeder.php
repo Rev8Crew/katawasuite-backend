@@ -28,6 +28,13 @@ class NotificationsDatabaseSeeder extends Seeder
 
         $notification->users()->save($userService->getUserByEmail(config('app.admin_default_email')));
 
+        Notification::create([
+            'name' => 'Уведомление о новых версиях Katawa Shoujo',
+            'short' => 'Новая версия новеллы на сайте!',
+            'description' => 'Каждый раз, при добавлении на сайт новой версии новеллы, вам будет приходить письмо на электронную почту, указанную в профиле',
+            'code' => NotificationCodeEnum::NewGameVersion->value,
+        ]);
+
         // $this->call("OthersTableSeeder");
     }
 }

@@ -885,6 +885,10 @@ class Form implements Renderable
                 continue;
             }
 
+            if ($field instanceof Field\MultipleFile && $value === 'images') {
+                continue;
+            }
+
             if (is_array($columns)) {
                 foreach ($columns as $name => $column) {
                     Arr::set($prepared, $column, $value[$name]);

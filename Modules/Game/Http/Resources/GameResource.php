@@ -18,6 +18,8 @@ class GameResource extends JsonResource
             'description' => $this->description,
             'short_description' => $this->short_description,
 
+            'walkthrough' => $this->walkthrough,
+
             'parent_id' => $this->parent_id,
 
             'width' => $this->width,

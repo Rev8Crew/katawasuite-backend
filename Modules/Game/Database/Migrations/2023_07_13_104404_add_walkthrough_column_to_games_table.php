@@ -9,14 +9,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table(Game::TABLE, function (Blueprint $table) {
-            $table->json('images')->nullable();
+            $table->text('walkthrough')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table(Game::TABLE, function (Blueprint $table) {
-            $table->dropColumn('images');
+            $table->dropColumn('walkthrough');
         });
     }
 };

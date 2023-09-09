@@ -255,6 +255,6 @@ class AuthorizationController extends \App\Http\Controllers\Controller
 
         $token = $this->authService->socialAuth($authUser, $authProvider)->createToken('web');
 
-        return redirect()->to('app/auth/signin?'.http_build_query(['redirect' => '/home', 'social' => $token->plainTextToken]));
+        return redirect()->to('app/auth/signin?'.http_build_query(['redirect' => '/home', 'social' => $token->accessToken]));
     }
 }

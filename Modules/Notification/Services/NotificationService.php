@@ -6,6 +6,8 @@ namespace Modules\Notification\Services;
 
 use App\Enums\ActiveStatusEnum;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\Game\Entities\Game;
+use Modules\Notification\Enums\NotificationEntityEnum;
 use Modules\Notification\Models\Notification;
 use Modules\User\Entities\User;
 use Webmozart\Assert\Assert;
@@ -41,6 +43,7 @@ class NotificationService implements NotificationServiceInterface
     public function unsubscribe(User $user, Notification $notification): void
     {
         $user->notifications()->wherePivot('notification_id', $notification->id)->detach();
+        $user->save();
     }
 
     public function getByCode(string $code): Notification
@@ -50,5 +53,14 @@ class NotificationService implements NotificationServiceInterface
         Assert::notNull($model, "Can't find Notification");
 
         return $model;
+    }
+
+    public function getNotificationType(Notification $notification): NotificationEntityEnum
+    {
+        if ($notification->entity_class && $notification->entity_class === Game::class) {
+            return NotificationEntityEnum::Games;
+        }
+
+        return NotificationEntityEnum::Web;
     }
 }

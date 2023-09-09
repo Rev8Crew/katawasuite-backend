@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Notification\Services;
 
 use Illuminate\Database\Eloquent\Collection;
+use Modules\Notification\Enums\NotificationEntityEnum;
 use Modules\Notification\Models\Notification;
 use Modules\User\Entities\User;
 use Webmozart\Assert\InvalidArgumentException;
@@ -25,4 +26,6 @@ interface NotificationServiceInterface
     public function subscribe(User $user, Notification $notification): void;
 
     public function unsubscribe(User $user, Notification $notification): void;
+
+    public function getNotificationType(Notification $notification): NotificationEntityEnum;
 }

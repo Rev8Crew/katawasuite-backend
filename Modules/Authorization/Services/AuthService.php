@@ -55,21 +55,20 @@ class AuthService implements AuthServiceInterface
             );
 
             $user = $this->userService->getUserByEmail($email ?? '');
+            $user = $user ?? $this->userService->create($registerDto);
+            $user->socials()->save($existSocial);
 
-            if ($user === null) {
-                $user = $this->userService->create($registerDto);
-            }
         } else {
             if ($socialiteUser->getAvatar()) {
                 $this->socialService->changeAvatar($existSocial, $socialiteUser->getAvatar());
             }
 
             $user = $existSocial->user;
-        }
 
-        if (false === $existSocial->exists) {
-            $user->socials()->save($existSocial);
-            $user->unsetRelation('socials');
+            if ($user === null) {
+                $user = $this->userService->getUserByEmail($email ?? '');
+                $user->socials()->save($existSocial);
+            }
         }
 
         \Auth::login($user);

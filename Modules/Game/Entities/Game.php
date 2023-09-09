@@ -24,6 +24,7 @@ use Modules\File\Entities\File;
  * @property int $is_active
  * @property int|null $image_id
  * @property int|null $restriction
+ * @property string $walkthrough
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $dir
@@ -72,7 +73,8 @@ class Game extends Model
         'image_id',
         'width',
         'height',
-        'images'
+        'images',
+        'walkthrough'
     ];
 
     protected $casts = [

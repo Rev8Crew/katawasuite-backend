@@ -14,7 +14,7 @@ class GameService implements GameServiceInterface
 {
     public function getAllGames(): Collection
     {
-        return Game::active()->get();
+        return Game::active()->orderBy('id')->get();
     }
 
     public function getGameByShort(string $short): Game

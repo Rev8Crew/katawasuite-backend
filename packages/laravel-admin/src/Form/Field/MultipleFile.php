@@ -73,6 +73,11 @@ class MultipleFile extends Field
             return false;
         }
 
+        $valid = Arr::get($input, $this->column, []);
+        if ((array_key_exists(0, $valid) && $valid[0] === null)) {
+            return false;
+        }
+
         $attributes[$this->column] = $this->label;
 
         list($rules, $input) = $this->hydrateFiles(Arr::get($input, $this->column, []));
@@ -133,6 +138,10 @@ class MultipleFile extends Field
      */
     public function prepare($files)
     {
+        if (is_null($files) || (array_key_exists(0, $files) && $files[0] === null)) {
+            return 'images';
+        }
+
         if (request()->has(static::FILE_DELETE_FLAG)) {
             if ($this->pathColumn) {
                 return $this->destroyFromHasMany(request(static::FILE_DELETE_FLAG));

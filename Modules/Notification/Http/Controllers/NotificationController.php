@@ -5,6 +5,7 @@ namespace Modules\Notification\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Common\Response;
 use Crypt;
+use Modules\Notification\Http\Requests\ChangeSubscribeRequest;
 use Modules\Notification\Http\Resources\NotificationReleaseResource;
 use Modules\Notification\Services\NotificationReleaseServiceInterface;
 use Modules\Notification\Services\NotificationServiceInterface;
@@ -65,5 +66,20 @@ class NotificationController extends Controller
         $data->load('notification')->take(6);
 
         return $response->withData(NotificationReleaseResource::collection($data));
+    }
+
+    public function changeSubscribe(ChangeSubscribeRequest $request): Response
+    {
+        $response = Response::make();
+        $user = request()->user();
+        $notification = $this->notificationService->getByCode($request->input('code'));
+
+        if ($request->input('status')) {
+            $this->notificationService->subscribe($user, $notification);
+        } else {
+            $this->notificationService->unsubscribe($user, $notification);
+        }
+
+        return $response->success();
     }
 }

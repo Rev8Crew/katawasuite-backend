@@ -18,6 +18,8 @@ Route::prefix('notifications')->middleware('auth:sanctum')->name('notifications.
 
     Route::post('get-releases-by-user', [NotificationController::class, 'getReleasesByUser'])->name('get-releases-by-user');
 
+    Route::post('change-subscribe', [NotificationController::class, 'changeSubscribe'])->name('change-subscribe');
+
     Route::post('subscribe-to-all', [NotificationController::class, 'subscribeToAll'])->name('subscribe-to-all');
     Route::post('unsubscribe-to-all', [NotificationController::class, 'unsubscribeToAll'])->name('unsubscribe-to-all');
 });

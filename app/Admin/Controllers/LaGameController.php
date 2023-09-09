@@ -39,7 +39,6 @@ class LaGameController extends AdminController
         })->image('', 100, 100);
         $grid->column('restriction', __('Restriction'));
         $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -94,6 +93,8 @@ class LaGameController extends AdminController
         $form->number('restriction', __('Restriction'));
 
         $form->multipleImage('images', __('Изображения к новелле'))->uniqueName()->removable();
+
+        $form->summernote('walkthrough', __('Прохождение'));
 
         return $form;
     }
