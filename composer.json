@@ -26,13 +26,9 @@
         "sentry/sentry-laravel": "^3.3",
         "socialiteproviders/telegram": "*",
         "socialiteproviders/vkontakte": "^5.0",
-        "spatie/cpu-load-health-check": "^1.0",
-        "spatie/laravel-health": "^1.22",
         "spatie/laravel-translatable": "^6.3",
-        "spatie/security-advisories-health-check": "*",
         "spiral/roadrunner-laravel": "^5.11",
         "torann/geoip": "^3.0",
-        "victord11/ssl-certification-health-check": "*",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.1"
     },
     "require-dev": {

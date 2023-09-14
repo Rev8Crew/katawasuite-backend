@@ -19,7 +19,7 @@ class AppLoginRequest extends FormRequest
         return [
             'email' => 'required|email',
             'password' => 'required|string',
-            'g-recaptcha-response' => ['required', new ReCaptchaRule],
+            'g-recaptcha-response' => ['sometimes', new ReCaptchaRule],
         ];
     }
 

@@ -4,7 +4,6 @@ use App\Http\Controllers\CommonController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\AdminEmailMiddleware;
 use App\Http\Middleware\VerifyCsrfToken;
-use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static function () {
     Route::get('/database', [TestController::class, 'database'])
@@ -21,8 +20,6 @@ Route::middleware(AdminEmailMiddleware::class)->prefix('test')->group(static fun
 
     Route::get('/url', [TestController::class, 'url'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
-
-    Route::get('/health', HealthCheckResultsController::class);
 });
 
 Route::get('/storage/{filename}', [CommonController::class, 'storage'])->where('filename', '^(?!(api)).*$');

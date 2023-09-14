@@ -17,8 +17,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table(\Modules\Notification\Models\Notification::TABLE, function (Blueprint $table) {
-            $table->dropColumn('entity_class');
-            $table->dropColumn('entity_id');
+            $table->dropColumn(['entity_class', 'entity_id']);
         });
     }
 };
