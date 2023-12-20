@@ -23,10 +23,10 @@ class LadderService implements LadderServiceInterface
     ) {
     }
 
-    public function getNewYearLadder2022(): Collection
+    public function getNewYearLadder(int $year = 2022): Collection
     {
-        $startYearDate = Carbon::parse('2022-01-01 00:00:00');
-        $endYearDate = Carbon::parse('2022-12-31 23:59:59');
+        $startYearDate = Carbon::parse( (string) $year . '-01-01 00:00:00');
+        $endYearDate = Carbon::parse((string) $year . '-12-31 23:59:59');
 
         return $this->achievementService->getUsersByAchievements($startYearDate, $endYearDate)->map(function (\stdClass $row) {
             return (array) $row;
@@ -35,10 +35,10 @@ class LadderService implements LadderServiceInterface
         });
     }
 
-    public function getNewYearStats2022(): Collection
+    public function getNewYearStats(int $year = 2022): Collection
     {
-        $startYearDate = Carbon::parse('2022-01-01 00:00:00');
-        $endYearDate = Carbon::parse('2022-12-31 00:00:00');
+        $startYearDate = Carbon::parse((string) $year . '-01-01 00:00:00');
+        $endYearDate = Carbon::parse((string) $year . '-12-31 00:00:00');
 
         $countStartButtonClick = UserStatistic::query()->whereOption('start')->whereBetween('created_at', [$startYearDate, $endYearDate])->count();
         $countSaveButtonClick = UserStatistic::query()->whereOption('continue')->whereBetween('created_at', [$startYearDate, $endYearDate])->count();

@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 interface LadderServiceInterface
 {
-    public function getNewYearLadder2022(): Collection;
+    public function getNewYearLadder(int $year = 2022): Collection;
 
-    public function getNewYearStats2022(): Collection;
+    public function getNewYearStats(int $year = 2022): Collection;
 }
