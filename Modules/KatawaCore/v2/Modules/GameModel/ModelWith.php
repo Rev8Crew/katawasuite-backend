@@ -45,6 +45,14 @@ abstract class ModelWith extends Model
             $exists = KatawaCore::ARG_SECOND;
         }
 
+        if ($this->line->get(KatawaCore::ARG_FOURTH) === 'at') {
+            $exists = KatawaCore::ARG_FOURTH;
+        }
+
+        if ($this->line->get(KatawaCore::ARG_FIFTH) === 'at') {
+            $exists = KatawaCore::ARG_FIFTH;
+        }
+
         if ($exists) {
             $at = $this->line->get($exists + 1);
 

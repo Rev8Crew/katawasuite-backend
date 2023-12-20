@@ -33,6 +33,21 @@ final class CharacterModel extends ModelWith
 
         $this->name = $name;
 
+        if ($this->name === 'sonya') {
+
+            $path = $this->line->get(KatawaCore::ARG_SECOND) . '/' . $this->line->get(KatawaCore::ARG_THIRD);
+
+            #show sonya form red_eye nohappy1 with dissolve
+            if (
+                $this->line->get(KatawaCore::ARG_SECOND) === 'dress' &&
+                $this->line->get(KatawaCore::ARG_THIRD) === 'red_eye'
+            ) {
+                $path = $this->line->get(KatawaCore::ARG_SECOND) . ' '
+                    . $this->line->get(KatawaCore::ARG_THIRD) . '/'
+                    . $this->line->get(KatawaCore::ARG_FOURTH);
+            }
+        }
+
         if ($path) {
             $path = $this->replaceNightPath($path);
         }
@@ -109,6 +124,10 @@ final class CharacterModel extends ModelWith
         $canBeUsedAsPath = $this->name.'_'.$pathOfExile.'.png';
         if ($this->isReplacedLongName) {
             $canBeUsedAsPath = $pathOfExile.'.png';
+        }
+
+        if ($this->name === 'sonya') {
+            $canBeUsedAsPath =$pathOfExile.'.png';
         }
 
         foreach ($this->getForegroundPaths($fixNamePathIfRequired, $canBeUsedAsPath) as $paths) {

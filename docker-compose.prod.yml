@@ -50,6 +50,7 @@ services:
       - ./docker/nginx/certs:/etc/nginx/certs
       - ./docker/nginx/vhost:/etc/nginx/vhost.d
       - ./docker/nginx/html:/usr/share/nginx/html
+      - ./docker/nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   acme-companion:

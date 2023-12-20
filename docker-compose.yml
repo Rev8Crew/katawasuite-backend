@@ -48,6 +48,7 @@ services:
     volumes:
       - ./docker/htpasswd:/etc/nginx/htpasswd
 #      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   web:

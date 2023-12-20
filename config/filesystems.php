@@ -107,6 +107,12 @@ return [
         public_path('games/ksa/foreground') => public_path('games/ks/foreground'),
         public_path('games/ksa/sound') => public_path('games/ks/sound'),
         public_path('games/ksa/video') => public_path('games/ks/video'),
+
+        public_path('games/letter_to_venus/background') => public_path('games/ks/background'),
+        public_path('games/letter_to_venus/font') => public_path('games/ks/font'),
+        public_path('games/letter_to_venus/foreground') => public_path('games/ks/foreground'),
+        public_path('games/letter_to_venus/sound') => public_path('games/ks/sound'),
+        public_path('games/letter_to_venus/video') => public_path('games/ks/video'),
     ],
 
 ];

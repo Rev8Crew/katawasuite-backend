@@ -4,6 +4,7 @@ namespace Modules\KatawaCore\v2\Modules\GameModel;
 
 use Modules\KatawaCore\v2\KatawaCore;
 use Modules\KatawaCore\v2\Modules\Helpers\KatawaHelper;
+use Str;
 
 class NoteModel extends Model
 {
@@ -36,6 +37,10 @@ class NoteModel extends Model
 
         if ($this->text === 'clear') {
             return self::COMMAND.' \n\n';
+        }
+
+        if ( Str::contains($this->text, 'dissolve', true)) {
+            return self::COMMAND.' \n';
         }
 
         return self::COMMAND.' + '.$this->text;

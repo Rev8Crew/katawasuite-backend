@@ -18,7 +18,10 @@ class EmitCommand extends Command
                 strpos($this->line->get(KatawaCore::ARG_FIRST), 'fixedwritten_note') !== false
             ) &&
             // Проверяем что нет нескольких u в нашей записке, иначе это сложная конструкция для парсинга
-            $this->line->filter(fn (string $sentence) => strpos($sentence, 'u') !== false)->count() === 1
+            (
+                $this->line->filter(fn (string $sentence) => strpos($sentence, 'u') !== false)->count() === 1 ||
+                $this->line->filter(fn (string $sentence) => strpos($sentence, 'u') !== false)->count() === 0
+            )
         ) {
             $note = WrittenNote::make($this->line)->setHtml();
 
