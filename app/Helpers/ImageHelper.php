@@ -9,8 +9,14 @@ class ImageHelper
 {
     public static function getAvatarImage($name): string
     {
-        $replaceable = rawurlencode($name); //preg_replace('/[^a-z0-9 _.-]+/i', '', $name);
+        $replaceable = $name; //preg_replace('/[^a-z0-9 _.-]+/i', '', $name);
 
-        return 'https://avatars.dicebear.com/v2/initials/'.$replaceable.'.svg';
+        $query = http_build_query([
+            'seed' => $replaceable,
+            'radius' => 50,
+            'backgroundType' => 'gradientLinear',
+        ]);
+
+        return 'https://api.dicebear.com/7.x/initials/svg?'.$query;
     }
 }
