@@ -84,6 +84,14 @@ return [
             'path' => 'vfx/venus_book.png',
             'dissolve' => true,
         ],
+        'venus_notes' => [
+            'path' => 'vfx/venus_notes.png',
+            'dissolve' => true,
+        ],
+        'diafilm' => [
+            'path' => 'vfx/diafilm.png',
+            'dissolve' => true,
+        ]
     ],
 
     /** Замена персонажей */

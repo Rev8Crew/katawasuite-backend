@@ -120,4 +120,104 @@ return [
 
     'sfx_time' => 'time',
     'sfx_camera' => 'camera',
+    'sfx_auto_idle1' => 'auto_idle1',
+    'sfx_auto_move' => 'auto_move',
+    'sfx_auto_started' => 'auto_started',
+    'sfx_auto_stopped' => 'auto_stopped',
+    'sfx_birds1' => 'birds1',
+    'sfx_birds2' => 'birds2',
+    'sfx_bus' => 'bus',
+
+    'sfx_car_idle' => 'car_idle',
+
+    'sfx_car_move1' => 'car_move1',
+
+    'sfx_car_move2' => 'car_move2',
+
+    'sfx_car_move3' => 'car_move3',
+
+    'sfx_car_nostart' => 'car_nostart',
+
+    'sfx_car_stopped1' => 'car_stopped1',
+
+    'sfx_car_stopped2' => 'car_stopped2',
+
+    'sfx_city' => 'city',
+
+    'sfx_dust' => 'dust',
+
+    'sfx_electric_car' => 'electric_car',
+
+    'sfx_engine_idle' => 'engine_idle',
+
+    'sfx_fall' => 'fall',
+
+    'sfx_guillotine' => 'guillotine',
+
+    'sfx_hangup' => 'hangup',
+
+    'sfx_jackdaws' => 'jackdaws',
+
+    'sfx_knock_down1' => 'knock_down1',
+
+    'sfx_knock_down2' => 'knock_down2',
+
+    'sfx_modem' => 'modem',
+
+    'sfx_painting1' => 'painting1',
+
+    'sfx_painting2' => 'painting2',
+
+    'sfx_painting3' => 'painting3',
+
+    'sfx_painting4' => 'painting4',
+
+    'sfx_painting5' => 'painting5',
+
+    'sfx_painting6' => 'painting6',
+
+    'sfx_painting7' => 'painting7',
+
+    'sfx_painting8' => 'painting8',
+
+    'sfx_punch1' => 'punch1',
+
+    'sfx_punch2' => 'punch2',
+
+    'sfx_railway1' => 'railway1',
+
+    'sfx_railway2' => 'railway2',
+
+    'sfx_ringtone' => 'ringtone',
+
+    'sfx_road' => 'road',
+
+    'sfx_scooter' => 'scooter',
+
+    'sfx_skates' => 'skates',
+
+    'sfx_ski' => 'ski',
+
+    'sfx_slap' => 'slap',
+
+    'sfx_slides' => 'slides',
+
+    'sfx_subway1' => 'subway1',
+
+    'sfx_subway2' => 'subway2',
+
+    'sfx_subway_attention' => 'subway_attention',
+
+    'sfx_subway_doors' => 'subway_doors',
+
+    'sfx_wagon' => 'wagon',
+
+    'sfx_water_jump' => 'water_jump',
+
+    'sfx_wind' => 'wind',
+
+    'sfx_wood_brokes' => 'wood_brokes',
+
+    'sfx_wood_chopping' => 'wood_chopping',
+
 ];

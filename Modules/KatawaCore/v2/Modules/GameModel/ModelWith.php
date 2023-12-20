@@ -7,6 +7,7 @@ use Modules\KatawaCore\v2\KatawaCore;
 use Modules\KatawaCore\v2\Modules\GameModel\Helpers\Position;
 use Modules\KatawaCore\v2\Modules\GameModel\Helpers\PositionParser;
 use Modules\KatawaCore\v2\Modules\Tools\Tools;
+use Str;
 
 abstract class ModelWith extends Model
 {
@@ -51,6 +52,10 @@ abstract class ModelWith extends Model
 
         if ($this->line->get(KatawaCore::ARG_FIFTH) === 'at') {
             $exists = KatawaCore::ARG_FIFTH;
+        }
+
+        if ( Str::contains($this->line->get(KatawaCore::ARG_SECOND), ":") ) {
+            $exists = KatawaCore::ARG_SECOND;
         }
 
         if ($exists) {

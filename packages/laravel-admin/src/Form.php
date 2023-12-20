@@ -833,6 +833,10 @@ class Form implements Renderable
                 continue;
             }
 
+            if ($field instanceof Field\File && $value === 'file') {
+                continue;
+            }
+
             if ($field instanceof Field\MultipleFile && $value === 'images') {
                 continue;
             }

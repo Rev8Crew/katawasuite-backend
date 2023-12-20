@@ -33,6 +33,7 @@ class PositionParser
         $this->parseByPositionString();
         $this->parseByFullSpan();
         $this->parseByTransform();
+        $this->parseByAnchor();
 
         if (strpos($this->at, 'Slide') !== false) {
             $value = Tools::takeParamsFromFunction($this->at);
@@ -47,6 +48,10 @@ class PositionParser
         }
 
         return $this;
+    }
+
+    protected function parseByAnchor()
+    {
     }
 
     protected function parseByTransform()

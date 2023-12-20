@@ -101,6 +101,10 @@ class File extends Field
      */
     public function prepare($file)
     {
+        if (is_null($file)) {
+            return 'file';
+        }
+
         if ($this->picker) {
             return parent::prepare($file);
         }

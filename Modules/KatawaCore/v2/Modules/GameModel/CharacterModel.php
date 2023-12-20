@@ -202,6 +202,6 @@ final class CharacterModel extends ModelWith
             $path = substr($path, 0, -3);
         }
 
-        return str_replace(['_ss', '_fb', '_rn', '_nl'], '', $path);
+        return str_replace(['_ss', '_fb', '_rn', '_nl', ':'], '', $path);
     }
 }

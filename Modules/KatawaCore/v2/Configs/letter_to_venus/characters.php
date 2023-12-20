@@ -45,5 +45,7 @@ return [
     "mo" => "Мама",
     "da" => "Папа",
 
-    'venus_book' => ''
+    'venus_book' => '',
+    'venus_notes' => '',
+    'diafilm' => ''
 ];
